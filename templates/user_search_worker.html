@@ -1,0 +1,184 @@
+{% extends 'user_index.html' %} {% load static %} {% block content %}
+
+<body>
+    <style>
+        table tr[data-href] {
+            cursor: pointer;
+        }
+    </style>
+
+
+
+<div class="row ">
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <div class="row" style="margin-top: -20px">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                        <br>
+                        <h4>All Workers And Contactors </h4><br>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                        <form>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="myInput" onkeyup="myFunction()"
+                                    placeholder="Search for work.." title="Type in a work" style="color:white;">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                    <!-- table start hear -->
+
+                    <div class="table-responsive">
+                        <table class="table " id="myTable">
+                            <thead>
+
+                                <tr >
+                                    <th style="padding-left:15px;">sl no </th>
+                                    <th style="padding-left:15px;"> Name </th>
+                                    <th style="padding-left:12px;"> location </th>
+                                    <th style="padding-left:15px;"> work type</th>
+                                    <th style="padding-left:12px;"> work </th>
+                                    <th style="padding-left:28px;">view profile </th>
+                                    <th style="padding-left:15px;"> Reports </th>
+                                    <th style="padding-left:15px;"> Contact </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                <tr>
+                                    <td>1</td>
+                                    <td> ajay</td>
+                                    <td>palakkad</td>
+                                    <td>worker</td>
+                                    <td>carpenter</td>
+                                    <td>               
+                                        <a href="{% url 'user_worker_profile' %}" class="btn btn-outline-warning mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> view profile</a> 
+                                    </td>
+                                    <td>               
+                                        <a href="{% url 'user_worker_reports' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> View Reports</a> 
+                                    </td>
+                                    <td>               
+                                        <a href="{% url 'admin_workers_register' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  call</a> 
+                                    </td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td> arun</td>
+                                    <td>palakkad</td>
+                                    <td>contactor</td>
+                                    <td>carpenter</td>
+                                    <td>               
+                                        <a href="{% url 'user_worker_profile' %}" class="btn btn-outline-warning mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> view profile</a> 
+                                    </td>
+                                    <td>               
+                                        <a href="{% url 'user_worker_reports' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> View Reports</a> 
+                                    </td>
+                                    <td>               
+                                        <a href="{% url 'admin_workers_register' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  call</a> 
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td> Akash</td>
+                                    <td>palakkad</td>
+                                    <td>contactor</td>
+                                    <td>painter</td>
+                                    <td>               
+                                        <a href="{% url 'user_worker_profile' %}" class="btn btn-outline-warning mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> view profile</a> 
+                                    </td>
+                                    <td>               
+                                        <a href="{% url 'user_worker_reports' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> View Reports</a> 
+                                    </td>
+                                    <td>               
+                                        <a href="{% url 'admin_workers_register' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  call</a> 
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td> Akash</td>
+                                    <td>palakkad</td>
+                                    <td>worker</td>
+                                    <td>plumber</td>
+                                    <td>               
+                                        <a href="{% url 'user_worker_profile' %}" class="btn btn-outline-warning mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> view profile</a> 
+                                    </td>
+                                    <td>               
+                                        <a href="{% url 'user_worker_reports' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> View Reports</a> 
+                                    </td>
+                                    <td>               
+                                        <a href="{% url 'admin_workers_register' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  call</a> 
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td> Akash</td>
+                                    <td>palakkad</td>
+                                    <td>worker</td>
+                                    <td>plumber</td>
+                                    <td>               
+                                        <a href="{% url 'user_worker_profile' %}" class="btn btn-outline-warning mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> view profile</a> 
+                                    </td>
+                                    <td>               
+                                        <a href="{% url 'user_worker_reports' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> View Reports</a> 
+                                    </td>
+                                    <td>               
+                                        <a href="{% url 'admin_workers_register' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  call</a> 
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td> Akash</td>
+                                    <td>palakkad</td>
+                                    <td>worker</td>
+                                    <td>plumber</td>
+                                    <td>               
+                                        <a href="{% url 'user_worker_profile' %}" class="btn btn-outline-warning mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> view profile</a> 
+                                    </td>
+                                    <td>               
+                                        <a href="{% url 'user_worker_reports' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> View Reports</a> 
+                                    </td>
+                                    <td>               
+                                        <a href="{% url 'admin_workers_register' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  call</a> 
+                                    </td>
+                                </tr>
+
+                            
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script>
+    function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[4];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+
+    
+</script>
+
+{% endblock %}

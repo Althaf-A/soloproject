@@ -62,13 +62,13 @@
         <li class="nav-item profile">
           <div class="profile-desc">
             <div class="profile-pic">
-              <!-- <div class="count-indicator">
-                <img class="img-xs rounded-circle " src="{{.image.url}}" alt="">
+              <div class="count-indicator">
+                <img class="img-xs rounded-circle " src="{% static 'assets/images/dashboard/Img_5.jpg'%}" alt="">
                 <span class="count bg-success"></span>
-              </div> -->
+              </div> 
               <div class="profile-name">
-                <h5 class="mb-0 font-weight-normal">althaf</h5>
-                <span>Admin</span>
+                <h5 class="mb-0 font-weight-normal">Akash</h5>
+                <span>User</span>
               </div>
             </div>
             <a href="#" id="profile-dropdown" data-bs-toggle="dropdown"></a>
@@ -80,7 +80,7 @@
           <span class="nav-link">Navigation</span>
         </li>
         <li class="nav-item menu-items">
-          <a class="nav-link" href="{% url 'admin_dashboard' %}">
+          <a class="nav-link" href="{% url 'user_dashboard' %}">
             <span class="menu-icon">
               <i class="mdi mdi-apps"></i>
             </span>
@@ -88,27 +88,19 @@
           </a>
         </li>
         <li class="nav-item menu-items">
-          <a class="nav-link" href="{% url 'admin_workers_details' %}">
+          <a class="nav-link" href="{% url 'user_search_worker' %}">
             <span class="menu-icon">
               <i class="mdi mdi-account-key"></i>
             </span>
-            <span class="menu-title">Workers&contractors</span>
+            <span class="menu-title">Search Workers</span>
           </a>
         </li>
         <li class="nav-item menu-items">
-          <a class="nav-link" href="{% url 'admin_users_details' %}">
+          <a class="nav-link" href="{% url 'user_history_list' %}">
             <span class="menu-icon">
               <i class="mdi mdi-account-multiple-plus text-primary"></i>
             </span>
-            <span class="menu-title">All Users</span>
-          </a>
-        </li>
-        <li class="nav-item menu-items">
-          <a class="nav-link" href="{% url 'admin_new_worker_aprove' %}">
-            <span class="menu-icon">
-              <i class="mdi mdi-comment-question-outline"></i>
-            </span>
-            <span class="menu-title">New Request</span>
+            <span class="menu-title">History</span>
           </a>
         </li>
         <li class="nav-item menu-items">
@@ -116,7 +108,7 @@
             <span class="menu-icon">
               <i class="mdi mdi-library-plus"></i>
             </span>
-            <span class="menu-title">Feed back</span>
+            <span class="menu-title">Post Feedback</span>
           </a>
         </li>
         
@@ -127,7 +119,7 @@
       <!-- partial:partials/_navbar.html -->
       <nav class="navbar p-0 fixed-top d-flex flex-row">
         <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-          <a class="sidebar-brand brand-logo-mini text-light text-decoration-none" href="admin_index">
+          <a class="sidebar-brand brand-logo-mini text-light text-decoration-none" href="user_index">
             <p style="color: white; opacity: 1; font-size: 35px;margin-top: 3vh;padding-left: 100px;">PROJECT</p>
           </a>
         </div>

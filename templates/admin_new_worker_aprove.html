@@ -27,7 +27,8 @@
                                 <th> Name </th>
                                 <th> work</th>
                                 <th> view profile</th>
-                                <th> Status </th>
+                                <th> Aprove </th>
+                                <th> Dissmiss </th>
                             </tr>
                         </thead>
                         <tbody> 
@@ -47,6 +48,11 @@
                                         <i class="mdi mdi-playlist-check"></i>&nbsp; Aprove
                                     </div>
                                 </td>
+                                <td>
+                                    <div class="badge badge-outline-danger" style="width: 105px;">
+                                        <i class="mdi mdi-playlist-check"></i>&nbsp; Dissmiss
+                                    </div>
+                                </td>
                             </tr>
                             <tr>
                                 <td>2</td>
@@ -62,6 +68,11 @@
                                 <td>
                                     <div class="badge badge-outline-success" style="width: 105px;">
                                         <i class="mdi mdi-playlist-check"></i>&nbsp; Aprove
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="badge badge-outline-danger" style="width: 105px;">
+                                        <i class="mdi mdi-playlist-check"></i>&nbsp; Dissmiss
                                     </div>
                                 </td>
                             </tr>
@@ -81,6 +92,11 @@
                                         <i class="mdi mdi-playlist-check"></i>&nbsp; Aprove
                                     </div>
                                 </td>
+                                <td>
+                                    <div class="badge badge-outline-danger" style="width: 105px;">
+                                        <i class="mdi mdi-playlist-check"></i>&nbsp; Dissmiss
+                                    </div>
+                                </td>
                             </tr>
                             <tr>
                                 <td>4</td>
@@ -98,6 +114,11 @@
                                         <i class="mdi mdi-playlist-check"></i>&nbsp; Aprove
                                     </div>
                                 </td>
+                                <td>
+                                    <div class="badge badge-outline-danger" style="width: 105px;">
+                                        <i class="mdi mdi-playlist-check"></i>&nbsp; Dissmiss
+                                    </div>
+                                </td>
                             </tr>
                             
                         </tbody>
@@ -108,5 +129,28 @@
     </div>
 </div>
 </div>
+<script>
+    function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+
+    
+</script>
 
 {% endblock %}

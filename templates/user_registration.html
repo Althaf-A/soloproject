@@ -71,7 +71,7 @@
         
       <div class="row w-100 m-0">
         <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
-          <div class="card col-lg-8 mx-auto">
+          <div class="card col-lg-6 mx-auto">
             <div class="card-body px-5 py-5">
              
               <h3 class="card-title text-left mb-3">Register</h3>
@@ -97,45 +97,27 @@
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                       <select class="form-control text-light" id="ref" name="dept">
                         <option selected="true" style='display: none'>Select Department</option>
-                        {% for i in vars1 %}
-                        <option value="{{i.id}}">{{i.name}}</option>
-                        {% endfor %}
+                        <option value="">User</option>
+                        <option value="">Worker</option>
+                        <option value="">Contactor</option>
                       </select>
                     </div>
                   </div>
                   <br>
-                <div class="form-group">
-                  <label>Reference</label>
-                  <div class="row">
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                     <select class="form-control text-light" id="ref" name="reference">
-                         <option selected="true" style='display: none'>Select</option>
-                        <option value="no reference">No reference</option>
-                        {% for i in var %}
-                        <option value="{{i.fullname}}">{{i.fullname}}</option>
-                        {% endfor %}
-                      </select>
-                    </div>
-                  </div>
                   <br>
-                  <div class="form-group">
-                    <label>Qualification</label>
-                    <input type="text" name="qualifcation" class="form-control p_input text-light" required>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label>Passout year</label>
+                  <!-- <div class="form-group">
+                    <label>designation</label>
                     <input type="number" name="passoutyr" class="form-control p_input text-light" required>
-                  </div>
+                  </div> -->
                 <div class="text-center ">
                     <button type="submit" onclick="ValidateEmail(document.form1.email)" class="btn btn-primary btn-block enter-btn mt-3"
                       style="width:100px">Register</button>
                   </div>
-                  
-              </form>
 
             </div>
+          </form>
           </div>
+        
         </div>
         <!-- content-wrapper ends -->
       </div>
