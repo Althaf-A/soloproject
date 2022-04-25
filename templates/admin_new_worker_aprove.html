@@ -1,0 +1,112 @@
+{% extends 'admin_index.html' %} {% load static %} {% block content %}
+<div class="row " style="padding-top: 20px;">
+    <div class="col-12 grid-margin">
+        <div class="card ">
+            <div class="card-body">
+                <div class="row" style="margin-top: -20px">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                        <br>
+                        <h4>New Workers </h4><br>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                        <form>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="myInput" onkeyup="myFunction()"
+                                    placeholder="Search for names.." title="Type in a name" style="color:white;">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+                <div class="table-responsive">
+                    <table class="table" id="myTable">
+                        <thead>
+                            <tr>
+                                <th>Sl.no</th>
+                                <th> Name </th>
+                                <th> work</th>
+                                <th> view profile</th>
+                                <th> Status </th>
+                            </tr>
+                        </thead>
+                        <tbody> 
+                            <tr>
+                                <td>1</td>
+                                <td>Akash</td>
+                                <td class="text-wrap text-justify">carpenter</td>
+                                <td>
+                                    <a href="{% url 'admin_worker_profile_view' %}">
+                                        <div class="badge badge-outline-primary" style="width: 105px;">
+                                            <i class="mdi mdi-playlist-remove"></i>&nbsp; view profile
+                                        </div>
+                                    </a>
+                                </td>
+                                <td>
+                                    <div class="badge badge-outline-success" style="width: 105px;">
+                                        <i class="mdi mdi-playlist-check"></i>&nbsp; Aprove
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>jishnu</td>
+                                <td class="text-wrap text-justify">masone</td>
+                                <td>
+                                    <a href="{% url 'admin_worker_profile_view' %}">
+                                        <div class="badge badge-outline-primary" style="width: 105px;">
+                                            <i class="mdi mdi-playlist-remove"></i>&nbsp; view profile
+                                        </div>
+                                    </a>
+                                </td>
+                                <td>
+                                    <div class="badge badge-outline-success" style="width: 105px;">
+                                        <i class="mdi mdi-playlist-check"></i>&nbsp; Aprove
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Ajay</td>
+                                <td class="text-wrap text-justify">plumber</td>
+                                <td>
+                                    <a href="{% url 'admin_worker_profile_view' %}">
+                                        <div class="badge badge-outline-primary" style="width: 105px;">
+                                            <i class="mdi mdi-playlist-remove"></i>&nbsp; view profile
+                                        </div>
+                                    </a>
+                                </td>
+                                <td>
+                                    <div class="badge badge-outline-success" style="width: 105px;">
+                                        <i class="mdi mdi-playlist-check"></i>&nbsp; Aprove
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Arun</td>
+                                <td class="text-wrap text-justify">painter</td>
+                                <td>
+                                    <a href="{% url 'admin_worker_profile_view' %}">
+                                        <div class="badge badge-outline-primary" style="width: 105px;">
+                                            <i class="mdi mdi-playlist-remove"></i>&nbsp; view profile
+                                        </div>
+                                    </a>
+                                </td>
+                                <td>
+                                    <div class="badge badge-outline-success" style="width: 105px;">
+                                        <i class="mdi mdi-playlist-check"></i>&nbsp; Aprove
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}

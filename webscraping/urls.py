@@ -23,6 +23,9 @@ urlpatterns = [
     path('',views.Login,name="Login"),
     path('Register/',views.Register,name="Register"),
     path('admin_dashboard/', views.admin_dashboard , name='admin_dashboard'),
-    
-    
+    path('admin_new_worker_aprove/', views.admin_new_worker_aprove, name='admin_new_worker_aprove'),
+    path('admin_users_details/', views.admin_users_details, name='admin_users_details'),
+    path('admin_user_profile_view/', views.admin_user_profile_view, name='admin_user_profile_view'),
+    path('admin_worker_profile_view/', views.admin_worker_profile_view, name='admin_worker_profile_view'),
+    path('admin_workers_details/', views.admin_workers_details, name='admin_workers_details'),
 ]

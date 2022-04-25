@@ -1,0 +1,113 @@
+{% extends 'admin_index.html' %} {% load static %} {% block content %}
+
+<body>
+    <style>
+        table tr[data-href] {
+            cursor: pointer;
+        }
+    </style>
+
+
+
+    <div class="row ">
+        <div class="col-12 grid-margin">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                            <h4> All Users</h4>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                        </div>
+                    </div>
+
+                    <!-- table start hear -->
+
+                    <div class="table-responsive">
+                        <table class="table " id="myTable">
+                            <thead>
+
+                                <tr >
+                                    <th style="padding-left:38px;">sl no </th>
+                                    <th style="padding-left:15px;"> Name </th>
+                                    <th style="padding-left:12px;"> location </th>
+                                    
+                                    <th style="padding-left:28px;">view profile </th>
+                                    <th style="padding-left:15px;"> Register </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                <tr>
+                                    <td>1</td>
+                                    <td> Akash</td>
+                                    <td>palakkad</td>
+                                    <td>               
+                                        <a href="{% url 'admin_user_profile_view' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> view profile</a> 
+                                    </td>
+                                    <td>               
+                                        <a href="{{i.amount_downlod.url}}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  Register</a> 
+                                    </td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td> Akash</td>
+                                    <td>palakkad</td>
+                                    <td>               
+                                        <a href="{% url 'admin_user_profile_view' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> view profile</a> 
+                                    </td>
+                                    <td>               
+                                        <a href="{{i.amount_downlod.url}}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  Register</a> 
+                                    </td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td> Akash</td>
+                                    <td>palakkad</td>
+                                    <td>               
+                                        <a href="{% url 'admin_user_profile_view' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> view profile</a> 
+                                    </td>
+                                    <td>               
+                                        <a href="{{i.amount_downlod.url}}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  Register</a> 
+                                    </td>
+                                    
+                                </tr>
+                            
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script>
+    function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+
+    
+</script>
+
+{% endblock %}
