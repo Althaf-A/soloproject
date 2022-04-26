@@ -100,6 +100,13 @@ def admin_workers_feedbacks(request):
 def admin_users_feedbacks(request):
     return render(request,'admin_users_feedbacks.html')
 
+def admin_all_workers(request):
+    return render(request,'admin_all_workers.html')
+
+def admin_all_contractors(request):
+    return render(request,'admin_all_contractors.html')
+
+
 ############################user################################
 
 def user_dashboard(request):
@@ -119,3 +126,36 @@ def user_history_list(request):
 
 def user_post_feedback(request):
     return render(request,'user_post_feedback.html')
+
+
+    ######################worker##########
+    
+def worker_dashboard(request):
+    return render(request,'worker_dashboard.html')
+
+def worker_work_details_cards(request):
+    return render(request,'worker_work_details_cards.html')
+
+def worker_post_work_details(request):
+    return render(request,'worker_post_work_details.html')
+
+def worker_view_edit_details(request):
+    return render(request,'worker_view_edit_details.html')
+
+def worker_edit_work_details(request):
+    return render(request,'worker_edit_work_details.html')
+
+def worker_user_enquiry_list(request):
+    return render(request,'worker_user_enquiry_list.html')
+
+def worker_history_list(request):
+    return render(request,'worker_history_list.html')
+
+def worker_feedback_cards(request):
+    return render(request,'worker_feedback_cards.html')
+
+def worker_post_feedback(request):
+    return render(request,'worker_post_feedback.html')
+
+def worker_view_feedback(request):
+    return render(request,'worker_view_feedback.html')

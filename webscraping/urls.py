@@ -23,6 +23,8 @@ urlpatterns = [
     path('',views.Login,name="Login"),
     path('Register/',views.Register,name="Register"),
     path('logout/', views.logout, name='logout'),
+
+#######################admin##############################
     path('admin_dashboard/', views.admin_dashboard , name='admin_dashboard'),
     path('admin_new_worker_aprove/', views.admin_new_worker_aprove, name='admin_new_worker_aprove'),
     path('admin_users_details/', views.admin_users_details, name='admin_users_details'),
@@ -34,14 +36,30 @@ urlpatterns = [
     path('admin_feedback_cards/', views.admin_feedback_cards, name='admin_feedback_cards'),
     path('admin_workers_feedbacks/', views.admin_workers_feedbacks, name='admin_workers_feedbacks'),
     path('admin_users_feedbacks/', views.admin_users_feedbacks, name='admin_users_feedbacks'),
+    path('admin_all_workers/', views.admin_all_workers, name='admin_all_workers'),
+    path('admin_all_contractors/', views.admin_all_contractors, name='admin_all_contractors'),
 
-    #############################user##########################
 
+
+#############################user##########################
     path('user_dashboard/', views.user_dashboard, name='user_dashboard'),
     path('user_search_worker/', views.user_search_worker, name='user_search_worker'),
     path('user_worker_profile/', views.user_worker_profile, name='user_worker_profile'),
     path('user_worker_reports/', views.user_worker_reports, name='user_worker_reports'),
     path('user_history_list/', views.user_history_list, name='user_history_list'),
     path('user_post_feedback/', views.user_post_feedback, name='user_post_feedback'),
+
+############################worker########################
+    path('worker_dashboard/', views.worker_dashboard, name='worker_dashboard'),
+    path('worker_work_details_cards/', views.worker_work_details_cards, name='worker_work_details_cards'),
+    path('worker_post_work_details/', views.worker_post_work_details, name='worker_post_work_details'),
+    path('worker_view_edit_details/', views.worker_view_edit_details, name='worker_view_edit_details'),
+    path('worker_edit_work_details/', views.worker_edit_work_details, name='worker_edit_work_details'),
+    path('worker_user_enquiry_list/', views.worker_user_enquiry_list, name='worker_user_enquiry_list'),
+    path('worker_history_list/', views.worker_history_list, name='worker_history_list'),
+    path('worker_feedback_cards/', views.worker_feedback_cards, name='worker_feedback_cards'),
+    path('worker_post_feedback/', views.worker_post_feedback, name='worker_post_feedback'),
+    path('worker_view_feedback/', views.worker_view_feedback, name='worker_view_feedback'),
+
 
 ]

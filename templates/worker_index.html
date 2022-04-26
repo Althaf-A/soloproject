@@ -88,15 +88,23 @@
           </a>
         </li>
         <li class="nav-item menu-items">
-          <a class="nav-link" href="{% url 'user_search_worker' %}">
+          <a class="nav-link" href="{% url 'worker_work_details_cards' %}">
             <span class="menu-icon">
               <i class="mdi mdi-account-key"></i>
             </span>
-            <span class="menu-title"> Work</span>
+            <span class="menu-title"> Work Details</span>
           </a>
         </li>
         <li class="nav-item menu-items">
-          <a class="nav-link" href="{% url 'user_history_list' %}">
+          <a class="nav-link" href="{% url 'worker_user_enquiry_list' %}">
+            <span class="menu-icon">
+              <i class="mdi mdi-comment-question-outline"></i>
+            </span>
+            <span class="menu-title">Enquiry</span>
+          </a>
+        </li>
+        <li class="nav-item menu-items">
+          <a class="nav-link" href="{% url 'worker_history_list' %}">
             <span class="menu-icon">
               <i class="mdi mdi-account-multiple-plus text-primary"></i>
             </span>
@@ -104,11 +112,11 @@
           </a>
         </li>
         <li class="nav-item menu-items">
-          <a class="nav-link" href="{% url 'user_post_feedback' %}">
+          <a class="nav-link" href="{% url 'worker_feedback_cards' %}">
             <span class="menu-icon">
-              <i class="mdi mdi-library-plus"></i>
+              <i class="mdi mdi-library-plus text-success"></i>
             </span>
-            <span class="menu-title">Post Feedback</span>
+            <span class="menu-title">Feedback</span>
           </a>
         </li>
         

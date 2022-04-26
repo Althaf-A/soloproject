@@ -1,135 +1,219 @@
 {% extends 'admin_index.html' %} {% load static %} {% block content %}
+<div class="row">
+    <div class="col-12 col-sm-1 col-md-1 col-lg-1"></div>
+    <div class="col-12 col-sm-10 col-md-10 col-lg-12 grid-margin">
+        <div class="card mt-3 mb-5">
+            <div class="card-body">
+                <div class="card-body" id="personForm">
 
-<body>
-    <style>
-        table tr[data-href] {
-            cursor: pointer;
-        }
-    </style>
-
-
-
-    <div class="row ">
-        <div class="col-12 grid-margin">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                            <h4> All Workers and Contactors</h4>
+                    <div class="row mt-5 ">
+                        <div class="col-12 col-sm-12 col-md-5 col-lg-5 ">
+                            <div class="form-group row ">
+                                <label class="col-6 col-sm-6 col-md-6 col-lg-5 col-form-label ">Work Type </label>
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 ">
+                                    <select class="badge badge-outline-primary bg-dark text-light " id="depmt" name="dep "><option style="display: none ">Work Type</option>
+                                        <option value="{{ i.id }}">Worker</option>
+                                        <option value="{{ i.id }}">contractor</option>
+                                      </select>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 "></div>
+                        <div class="col-12 col-sm-12 col-md-5 col-lg-5 ">
+                            <div class="form-group row ">
+                                <label class="col-6 col-sm-6 col-md-6 col-lg-5 col-form-label ">Work </label>
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 ">
+                                    <select class="badge badge-outline-primary bg-dark text-light " id="desi" name="desig "><option style="display: none ">Work</option>
+
+                      <option value="{{t.id}}">carpenter</option>
+                      <option value="{{t.id}}">painter</option>
+                      <option value="{{t.id}}">plumber</option>
+                    </select>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-4 ">
+                            <center>
+                                <button type="button" class="btn btn-primary btn-icon-text " id="btnSearch" style="width: 100px; ">Search </button>
+                            </center>
 
-                    <!-- table start hear -->
-
-                    <div class="table-responsive">
-                        <table class="table " id="myTable">
-                            <thead>
-
-                                <tr >
-                                    <th style="padding-left:38px;">sl no </th>
-                                    <th style="padding-left:15px;"> Name </th>
-                                    <th style="padding-left:12px;"> location </th>
-                                    <th style="padding-left:15px;"> work type</th>
-                                    <th style="padding-left:12px;"> work </th>
-                                    
-                                    <th style="padding-left:28px;">view profile </th>
-                                    <th style="padding-left:15px;"> Register </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                
-                                <tr>
-                                    <td>1</td>
-                                    <td> ajay</td>
-                                    <td>palakkad</td>
-                                    <td>worker</td>
-                                    <td>carpenter</td>
-                                    <td>               
-                                        <a href="{% url 'admin_worker_profile_view' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> view profile</a> 
-                                    </td>
-                                    <td>               
-                                        <a href="{% url 'admin_workers_register' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  Register</a> 
-                                    </td>
-                                    
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td> arun</td>
-                                    <td>palakkad</td>
-                                    <td>contactor</td>
-                                    <td>carpenter</td>
-                                    <td>               
-                                        <a href="{% url 'admin_worker_profile_view' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> view profile</a> 
-                                    </td>
-                                    <td>               
-                                        <a href="{% url 'admin_workers_register' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  Register</a> 
-                                    </td>
-                                    
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td> Akash</td>
-                                    <td>palakkad</td>
-                                    <td>contactor</td>
-                                    <td>painter</td>
-                                    <td>               
-                                        <a href="{% url 'admin_worker_profile_view' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> view profile</a> 
-                                    </td>
-                                    <td>               
-                                        <a href="{% url 'admin_workers_register' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  Register</a> 
-                                    </td>
-                                    
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td> Akash</td>
-                                    <td>palakkad</td>
-                                    <td>worker</td>
-                                    <td>plumber</td>
-                                    <td>               
-                                        <a href="{% url 'admin_worker_profile_view' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> view profile</a> 
-                                    </td>
-                                    <td>               
-                                        <a href="{% url 'admin_workers_register' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  Register</a> 
-                                    </td>
-                                    
-                                </tr>
-                            
-                                
-                            </tbody>
-                        </table>
+                        </div>
                     </div>
+                <div id="hiddendiv"><body>
+                    <style>
+                        table tr[data-href] {
+                            cursor: pointer;
+                        }
+                    </style>
+                
+                
+                
+                    <div class="row ">
+                        <div class="col-12 grid-margin">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                            <h4> All Workers </h4>
+                                        </div>
+                                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                        </div>
+                                    </div>
+                
+                                    <!-- table start hear -->
+                
+                                    <div class="table-responsive">
+                                        <table class="table " id="myTable">
+                                            <thead>
+                
+                                                <tr >
+                                                    <th style="padding-left:38px;">sl no </th>
+                                                    <th style="padding-left:15px;"> Name </th>
+                                                    <th style="padding-left:12px;"> location </th>
+                                                    <th style="padding-left:15px;"> work type</th>
+                                                    <th style="padding-left:12px;"> work </th>
+                                                    
+                                                    <th style="padding-left:28px;">view profile </th>
+                                                    <th style="padding-left:15px;"> Register </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td> ajay</td>
+                                                    <td>palakkad</td>
+                                                    <td>worker</td>
+                                                    <td>carpenter</td>
+                                                    <td>               
+                                                        <a href="{% url 'admin_worker_profile_view' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> view profile</a> 
+                                                    </td>
+                                                    <td>               
+                                                        <a href="{% url 'admin_workers_register' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  Register</a> 
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td> arun</td>
+                                                    <td>palakkad</td>
+                                                    <td>contactor</td>
+                                                    <td>carpenter</td>
+                                                    <td>               
+                                                        <a href="{% url 'admin_worker_profile_view' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> view profile</a> 
+                                                    </td>
+                                                    <td>               
+                                                        <a href="{% url 'admin_workers_register' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  Register</a> 
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td> Akash</td>
+                                                    <td>palakkad</td>
+                                                    <td>contactor</td>
+                                                    <td>painter</td>
+                                                    <td>               
+                                                        <a href="{% url 'admin_worker_profile_view' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> view profile</a> 
+                                                    </td>
+                                                    <td>               
+                                                        <a href="{% url 'admin_workers_register' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  Register</a> 
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <td>4</td>
+                                                    <td> Akash</td>
+                                                    <td>palakkad</td>
+                                                    <td>worker</td>
+                                                    <td>plumber</td>
+                                                    <td>               
+                                                        <a href="{% url 'admin_worker_profile_view' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> view profile</a> 
+                                                    </td>
+                                                    <td>               
+                                                        <a href="{% url 'admin_workers_register' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  Register</a> 
+                                                    </td>
+                                                    
+                                                </tr>
+                                            
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                </body>
+                
+                <script>
+                    function myFunction() {
+                        var input, filter, table, tr, td, i, txtValue;
+                        input = document.getElementById("myInput");
+                        filter = input.value.toUpperCase();
+                        table = document.getElementById("myTable");
+                        tr = table.getElementsByTagName("tr");
+                        for (i = 0; i < tr.length; i++) {
+                            td = tr[i].getElementsByTagName("td")[0];
+                            if (td) {
+                                txtValue = td.textContent || td.innerText;
+                                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                    tr[i].style.display = "";
+                                } else {
+                                    tr[i].style.display = "none";
+                                }
+                            }
+                        }
+                    }
+                
+                
+                    
+                </script>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-</body>
 
-<script>
-    function myFunction() {
-        var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[0];
-            if (td) {
-                txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
+
+
+<script type="text/javascript ">
+    $("#btnSearch").click(function() {
+
+        const fdate = $("#txtDate").val();
+        const tdate = $("#txtDate1").val();
+        const desi = $("#desi").val();
+        const depmt = $("#depmt").val();
+        const csrf = document.getElementById('csrfmiddlewaretoken')
+        console.log("hihsd", depmt)
+        jQuery.ajax({
+            url: 'accounts_acntpay',
+            method: 'post',
+            data: {
+
+                'fdate': fdate,
+                'tdate': tdate,
+                'desi': desi,
+                'depmt': depmt,
+
+            },
+
+            success: function(data) {
+                $("#hiddendiv").html(data);
             }
-        }
+        });
+    });
+
+
+    function showDiv() {
+        document.getElementById('hiddendiv').style.display = "block ";
     }
-
-
-    
 </script>
+
+
 
 {% endblock %}

@@ -1,0 +1,113 @@
+{% extends 'worker_index.html' %} {% load static %} {% block content %}
+
+<div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 grid-margin">
+      <div class="card mt-3 mb-5">
+        <div class="card-body">
+          <form class="form-sample">
+            <div class="row">
+              <div class="col-8 col-sm-8 col-md-10 col-lg-10 mt-3">
+                <h4 class="card-description"> Personal Information </h4>
+              </div>
+              <div class="col-4 col-sm-4 col-md-2 col-lg-2">
+                <img src="{% static 'assets/images/auth/lockscreen-bg.jpg'%}" id="image" class="img-fluid rounded-circle mb-3 " alt="image"  style="margin-right:20px;height:100px; width:100px;"
+                data-toggle="modal" data-target="#myModal{{mem.id}}">
+              </div>
+            </div>
+            <p class="card-description"> worker details </p>
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group row">
+                  <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Full Name:</label>
+                  <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                    <p class="mt-2">worker1</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group row">
+                  <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Gender:</label>
+                  <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                    <p class="mt-2">male</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group row">
+                  <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Joining date:</label>
+                  <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                    <p class="mt-2">05-04-1990</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group row">
+                  <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Category:</label>
+                  <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                    <p class="mt-2">worker</p>
+                  </div>
+                </div>
+              </div>
+              
+              <br><br><br><br>
+              <p class="card-description"> Work Details</p>
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group row">
+                  <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Work:</label>
+                  <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                    <p class="mt-2">painter</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group row">
+                  <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">contact no:</label>
+                  <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                    <p class="mt-2">8584456446</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group row">
+                  <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">work experience:</label>
+                  <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                    <p class="mt-2">4 years</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group row">
+                  <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">City:</label>
+                  <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                    <p class="mt-2">palakkad</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group row">
+                  <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">State:</label>
+                  <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                    <p class="mt-2">Kerala</p>
+                  </div>
+                </div>
+              </div>
+              <br><br>
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                    <center>
+                        <a href="{% url 'worker_edit_work_details' %}">
+                        <button type="button" class="btn btn-outline-primary btn-icon-text"><i class="mdi mdi-file-check btn-icon-prepend"></i> Edit Details </button>
+                        </a>
+                    </center>
+                </div>
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+{% endblock %}

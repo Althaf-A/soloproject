@@ -23,8 +23,9 @@
                         <thead>
                             <tr>
                                 <th>sl no</th>
-                                <th>from Date</th>
-                                <th>To Date</th>
+                                <th>Post Date</th>
+                                <th>worker</th>
+                                <th>worker type</th>
                                 <th>work</th>
                                 <th>Feedback</th>
                             </tr>
@@ -33,7 +34,8 @@
                             <tr>
                                 <td>1</td>
                                 <td>10-02-2022</td>
-                                <td>10-02-2022</td>
+                                <td>Akash</td>
+                                <td>contractor</td>
                                 <td><span class="ps-2">create pool</span></td>
                                 <td>
                                     <button type="button" class="btn btn-outline-primary btn-icon-text" data-toggle="modal" data-target="#myModal">Feedback</button>
@@ -42,8 +44,9 @@
                             <tr>
                                 <td>2</td>
                                 <td>10-02-2022</td>
-                                <td>10-02-2022</td>
-                                <td><span class="ps-2">painting wall</span></td>
+                                <td>Akash</td>
+                                <td>worker</td>
+                                <td><span class="ps-2">painting</span></td>
                                 <td>
                                     <button type="button" class="btn btn-outline-primary btn-icon-text" data-toggle="modal" data-target="#myModal">Feed back</button>
                                 </td>
@@ -51,7 +54,8 @@
                             <tr>
                                 <td>3</td>
                                 <td>10-02-2022</td>
-                                <td>10-02-2022</td>
+                                <td>Akash</td>
+                                <td>contractor</td>
                                 <td><span class="ps-2">plumbing</span></td>
                                <td>
                                     <button type="button" class="btn btn-outline-primary btn-icon-text" data-toggle="modal" data-target="#myModal">Feed back</button>
@@ -60,7 +64,8 @@
                             <tr>
                                 <td>4</td>
                                 <td>10-02-2022</td>
-                                <td>10-02-2022</td>
+                                <td>Akash</td>
+                                <td>worker</td>
                                 <td><span class="ps-2">build room</span></td>
                                  <td>
                                     <button type="button" class="btn btn-outline-primary btn-icon-text" data-toggle="modal" data-target="#myModal">Feed back</button>
@@ -73,6 +78,33 @@
         </div>
     </div>
 </div>
+<!-- Modal -->
+
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Feed back</h4>
+                <button type="button" style="color: white;" class="close" data-dismiss="modal">&times;
+                </button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <p class="col-12 col-sm-12 col-md-12 col-lg-12 ">
+                    veryfast and veryquick action relly thankfull to this platform
+                </p>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer"></div>
+
+        </div>
+    </div>
+</div>
+<!-- modal end -->
 <script>
     function myFunction() {
         var input, filter, table, tr, td, i, txtValue;

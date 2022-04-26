@@ -11,7 +11,7 @@
                         <h4 class="card-title">PROFILE </h4>
                     </div>
                     <div class="col-4 col-sm-4 col-md-2 col-lg-2">
-                        <img src="" class="img-fluid rounded-circle mb-3 " alt="image" style="margin-right:20px;border-radius: 50%">
+                        <img src="{% static 'assets/images/dashboard/Img_4.jpg'%}" class="img-fluid rounded-circle mb-3 " alt="image" style="margin-right:20px;border-radius: 50%">
                     </div>
                 </div>
                 <div class="row">
@@ -58,6 +58,63 @@
         </div>
     </div>
 </div>
+<div class="row" style="padding-top:20px;">
+    <div class="col-12 col-sm-6 col-md-6 col-lg-6 grid-margin">
+      <a href="{% url 'admin_all_workers' %}" style="text-decoration: none;">
+        <div class="card" style="height: 180px">
+          <div class="card-body">         
+            <div class="row" style="margin-top:40px;">
+              <div class="col-8 col-sm-12 col-xl-8 my-auto">
+                <div class="d-flex d-sm-block d-md-flex align-items-center">               
+                    <h3 class="mb-0" style="color:white;">All Workers</h3>                               
+                </div>            
+              </div>
+              <div class="col-4 col-sm-12 col-xl-2 text-center text-xl-right">
+                <h3 class="text-light">25</h3>
+              </div>
+            </div>
+          </div>
+      </div>
+      </a>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6 col-lg-6 grid-margin">
+      <a href="{% url 'admin_all_contractors' %}" style="text-decoration:none;">
+        <div class="card" style="height: 180px">
+          <div class="card-body">
+            <div class="row" style="margin-top:40px;">
+              <div class="col-8 col-sm-12 col-md-8 col-lg-8 my-auto">
+                <div class="d-flex d-sm-block d-md-flex align-items-center">
+                  <h3 class="mb-0" style="color:white;">All Contractors</h3>
+                </div>
+              </div>
+              <div class="col-4 col-sm-12 col-md-4 col-lg-4 text-center text-xl-right">
+                <h3 class="text-light">8</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6 col-lg-6 grid-margin">
+        <a href="{% url 'admin_users_details' %}" style="text-decoration: none;">
+          <div class="card" style="height: 180px">
+            <div class="card-body">         
+              <div class="row" style="margin-top:40px;">
+                <div class="col-8 col-sm-12 col-xl-8 my-auto">
+                  <div class="d-flex d-sm-block d-md-flex align-items-center">               
+                      <h3 class="mb-0" style="color:white;">All Users</h3>                               
+                  </div>            
+                </div>
+                <div class="col-4 col-sm-12 col-xl-2 text-center text-xl-right">
+                  <h3 class="text-light">8</h3>
+                </div>
+              </div>
+            </div>
+        </div>
+        </a>
+      </div>
+  </div>
+  
 
 
 

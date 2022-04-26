@@ -1,4 +1,4 @@
-{%extends 'admin_index.html'%} {% load static %} {% block content %}
+{%extends 'worker_index.html'%} {% load static %} {% block content %}
 
 <div class="row mt-3 mb-5">
     <div class="col-12 col-sm-12 col-md-12 col-lg-12 grid-margin">
@@ -6,74 +6,70 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12 ">
-                        <h3>Workers Feedback </h3>
+                        <h3>Users Enquiry </h3>
                     </div>
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12 ">
                         <form>
                             <div class="input-group input-group mb-3">
                                 <input type="text" class="form-control text-light" id="myInput" onkeyup="myFunction()" placeholder="Search for worker.." title="Type in a name">
-
                             </div>
                         </form>
                     </div>
                 </div>
-                <div class="table-responsive">
-
+                <div class="table-responsive" >
                     <table class="table " id="myTable">
                         <thead>
                             <tr>
                                 <th>sl no</th>
-                                <th>from Date</th>
-                                <th>To Date</th>
-                                <th>user name</th>
-                                <th>worker name</th>
-                                <th>work</th>
-                                <th>Feed back</th>
+                                <th>User name</th>
+                                <th>Date</th>
+                                <th>Enquiry</th>
+                                <th>Replay</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>1</td>
-                                <td>10-02-2022</td>
-                                <td>10-02-2022</td>
                                 <td>aravind</td>
-                                <td>Akash</td>
-                                <td><span class="ps-2">painting wall</span></td>
+                                <td>10-02-2022</td>
                                 <td>
-                                    <button type="button" class="btn btn-outline-primary btn-icon-text" data-toggle="modal" data-target="#myModal">Feed back</button>
+                                    <button type="button" class="btn btn-outline-primary btn-icon-text" data-toggle="modal" data-target="#myModal">View Enquiry</button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-outline-primary btn-icon-text" data-toggle="modal" data-target="#myModal1">Post Replay</button>
                                 </td>
                             </tr>
                             <tr>
                                 <td>2</td>
+                                <td>Akash</td>
                                 <td>10-02-2022</td>
-                                <td>10-02-2022</td>
-                                <td>aravind</td>
-                                <td>fuad</td>
-                                <td><span class="ps-2">painting wall</span></td>
                                 <td>
-                                    <button type="button" class="btn btn-outline-primary btn-icon-text" data-toggle="modal" data-target="#myModal">Feed back</button>
+                                    <button type="button" class="btn btn-outline-primary btn-icon-text" data-toggle="modal" data-target="#myModal">View Enquiry</button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-outline-primary btn-icon-text" data-toggle="modal" data-target="#myModal1">Post Replay</button>
                                 </td>
                             </tr>
                             <tr>
                                 <td>3</td>
+                                <td>akil</td>
                                 <td>10-02-2022</td>
-                                <td>10-02-2022</td>
-                                <td>aravind</td>
-                                <td>dawn</td>
-                                <td><span class="ps-2">plumbing</span></td>
-                               <td>
-                                    <button type="button" class="btn btn-outline-primary btn-icon-text" data-toggle="modal" data-target="#myModal">Feed back</button>
+                                <td>
+                                    <button type="button" class="btn btn-outline-primary btn-icon-text" data-toggle="modal" data-target="#myModal">View Enquiry</button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-outline-primary btn-icon-text" data-toggle="modal" data-target="#myModal1">Post Replay</button>
                                 </td>
                             </tr>
                             <tr>
                                 <td>4</td>
+                                <td>jishu</td>
                                 <td>10-02-2022</td>
-                                <td>10-02-2022</td>
-                                <td>aravind</td>
-                                <td>dani</td>
-                                <td><span class="ps-2">not bad</span></td>
-                                 <td>
-                                    <button type="button" class="btn btn-outline-primary btn-icon-text" data-toggle="modal" data-target="#myModal">Feed back</button>
+                                <td>
+                                    <button type="button" class="btn btn-outline-primary btn-icon-text" data-toggle="modal" data-target="#myModal">View Enquiry</button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-outline-primary btn-icon-text" data-toggle="modal" data-target="#myModal1">Post Replay</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -106,6 +102,34 @@
             <!-- Modal footer -->
             <div class="modal-footer"></div>
 
+        </div>
+    </div>
+</div>
+<!-- modal end -->
+<div class="modal" id="myModal1">
+    <div class="modal-dialog">
+        <div class="col-12 grid-margin stretch-card bg-dark text-light modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Feedback</h4>
+                <button type="button" style="color: white" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+            </div>
+            <!-- Modal body -->
+            <form method="post" action="">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <textarea class="col-12 grid-margin stretch-card text-light" style="background-color: rgba(66, 65, 65, 0.267)" rows="6" name="review" Required></textarea>
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-outline-primary btn-icon-text">
+                    <i class="mdi mdi-file-check btn-icon-prepend text-info" style="font-size: 18px"></i>
+                    Submit
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
