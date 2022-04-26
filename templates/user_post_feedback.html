@@ -1,0 +1,132 @@
+{%extends 'user_index.html'%} {% load static %} {% block content %}
+
+<div class="row mt-3 mb-5">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 ">
+                        <h3>Feedback </h3>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 ">
+                        <form>
+                            <div class="input-group input-group mb-3">
+                                <input type="text" class="form-control text-light" id="myInput" onkeyup="myFunction()" placeholder="Search for worker.." title="Type in a name">
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="table-responsive">
+
+                    <table class="table " id="myTable">
+                        <thead>
+                            <tr>
+                                <th>sl no</th>
+                                <th>from Date</th>
+                                <th>To Date</th>
+                                <th>work</th>
+                                <th>worker id</th>
+                                <th>post Feedback</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>10-02-2022</td>
+                                <td>10-02-2022</td>
+                                <td><span class="ps-2">create pool</span></td>
+                                <td>3</td>
+                                <td>
+                                    <button type="button" class="btn btn-outline-success btn-icon-text" data-toggle="modal" data-target="#myModal">Post Feedback</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>10-02-2022</td>
+                                <td>10-02-2022</td>
+                                <td><span class="ps-2">painting wall</span></td>
+                                <td>9</td>
+                                <td>
+                                    <button type="button" class="btn btn-outline-success btn-icon-text" data-toggle="modal" data-target="#myModal">Post Feedback</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>10-02-2022</td>
+                                <td>10-02-2022</td>
+                                <td><span class="ps-2">plumbing</span></td>
+                                <td>5</td>
+                               <td>
+                                    <button type="button" class="btn btn-outline-success btn-icon-text" data-toggle="modal" data-target="#myModal">Post Feedback</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>10-02-2022</td>
+                                <td>10-02-2022</td>
+                                <td><span class="ps-2">build room</span></td>
+                                <td>2</td>
+                                 <td>
+                                    <button type="button" class="btn btn-outline-success btn-icon-text" data-toggle="modal" data-target="#myModal">Post Feedback</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="col-12 grid-margin stretch-card bg-dark text-light modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Feedback</h4>
+                <button type="button" style="color: white" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+            </div>
+            <!-- Modal body -->
+            <form method="post" action="">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <textarea class="col-12 grid-margin stretch-card text-light" style="background-color: rgba(66, 65, 65, 0.267)" rows="6" name="review" Required></textarea>
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-outline-primary btn-icon-text">
+                    <i class="mdi mdi-file-check btn-icon-prepend text-info" style="font-size: 18px"></i>
+                    Submit
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- modal end -->
+
+
+<script>
+    function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[2];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+{%endblock%}

@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.Login,name="Login"),
     path('Register/',views.Register,name="Register"),
+    path('logout/', views.logout, name='logout'),
     path('admin_dashboard/', views.admin_dashboard , name='admin_dashboard'),
     path('admin_new_worker_aprove/', views.admin_new_worker_aprove, name='admin_new_worker_aprove'),
     path('admin_users_details/', views.admin_users_details, name='admin_users_details'),
@@ -41,5 +42,6 @@ urlpatterns = [
     path('user_worker_profile/', views.user_worker_profile, name='user_worker_profile'),
     path('user_worker_reports/', views.user_worker_reports, name='user_worker_reports'),
     path('user_history_list/', views.user_history_list, name='user_history_list'),
+    path('user_post_feedback/', views.user_post_feedback, name='user_post_feedback'),
 
 ]
