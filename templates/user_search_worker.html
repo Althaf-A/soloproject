@@ -12,8 +12,9 @@
                                 <label class="col-6 col-sm-6 col-md-6 col-lg-5 col-form-label ">Work Type </label>
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-6 ">
                                     <select class="badge badge-outline-primary bg-dark text-light " id="depmt" name="dep "><option style="display: none ">Work Type</option>
+                                        {% for i in mem %}
                                         <option value="{{ i.id }}">Worker</option>
-                                        <option value="{{ i.id }}">contractor</option>
+                                        {% endfor %}
                                       </select>
                                 </div>
                             </div>
@@ -34,6 +35,24 @@
 
                         </div>
                     </div>
+                    <div class="row mt-5 ">
+                        
+                        <div class="col-12 col-sm-12 col-md-5 col-lg-5 ">
+                            <div class="form-group row ">
+                                <label class="col-6 col-sm-6 col-md-6 col-lg-5 col-form-label ">City </label>
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 ">
+                                    <select class="badge badge-outline-primary bg-dark text-light " id="desi" name="desig "><option style="display: none ">select city</option>
+
+                      <option value="{{t.id}}">pkd</option>
+                      <option value="{{t.id}}">kottayam</option>
+                      <option value="{{t.id}}">kannur</option>
+                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                       
+                    </div>
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-4 ">
                             <center>
                                 <button type="button" class="btn btn-primary btn-icon-text " id="btnSearch" style="width: 100px; ">Search </button>
@@ -42,7 +61,6 @@
                         </div>
                     </div>
                 <div id="hiddendiv">
-<body>
     <style>
         table tr[data-href] {
             cursor: pointer;
@@ -60,14 +78,6 @@
                         <br>
                         <h4>All Workers And Contactors </h4><br>
                     </div>
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                        <form>
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="myInput" onkeyup="myFunction()"
-                                    placeholder="Search for work.." title="Type in a work" style="color:white;">
-                            </div>
-                        </form>
-                    </div>
                 </div>
 
                     <!-- table start hear -->
@@ -79,12 +89,12 @@
                                 <tr >
                                     <th style="padding-left:15px;">sl no </th>
                                     <th style="padding-left:15px;"> Name </th>
-                                    <th style="padding-left:12px;"> location </th>
+                                    <th style="padding-left:12px;"> city </th>
                                     <th style="padding-left:15px;"> work type</th>
                                     <th style="padding-left:12px;"> work </th>
                                     <th style="padding-left:28px;">view profile </th>
-                                    <th style="padding-left:15px;"> Reports </th>
-                                    <th style="padding-left:15px;"> Contact </th>
+                                    <th style="padding-left:20px;"> Reports </th>
+                                    <th style="padding-left:25px;"> Contact </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -102,6 +112,7 @@
                                         <a href="{% url 'user_worker_reports' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> View Reports</a> 
                                     </td>
                                     <td>               
+                                        <button type="button" class="btn btn-outline-danger mr-2 ml-6 btn-icon-text" data-toggle="modal" data-target="#myModal">Enquiry</button>
                                         <a href="{% url 'admin_workers_register' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  call</a> 
                                     </td>
                                     
@@ -118,7 +129,8 @@
                                     <td>               
                                         <a href="{% url 'user_worker_reports' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> View Reports</a> 
                                     </td>
-                                    <td>               
+                                    <td>
+                                        <button type="button" class="btn btn-outline-danger mr-2 ml-6 btn-icon-text" data-toggle="modal" data-target="#myModal">Enquiry</button>               
                                         <a href="{% url 'admin_workers_register' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  call</a> 
                                     </td>
                                 </tr>
@@ -135,6 +147,24 @@
                                         <a href="{% url 'user_worker_reports' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> View Reports</a> 
                                     </td>
                                     <td>               
+                                        <button type="button" class="btn btn-outline-danger mr-2 ml-6 btn-icon-text" data-toggle="modal" data-target="#myModal">Enquiry</button>
+                                        <a href="{% url 'admin_workers_register' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  call</a> 
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td> Akash</td>
+                                    <td>palakkad</td>
+                                    <td>worker</td>
+                                    <td>plumber</td>
+                                    <td>               
+                                        <a href="{% url 'user_worker_profile' %}" class="btn btn-outline-warning mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> view profile</a> 
+                                    </td>
+                                    <td>               
+                                        <a href="{% url 'user_worker_reports' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;" > View Reports</a> 
+                                    </td>
+                                    <td>               
+                                        <button type="button" class="btn btn-outline-danger mr-2 ml-6 btn-icon-text" data-toggle="modal" data-target="#myModal">Enquiry</button>
                                         <a href="{% url 'admin_workers_register' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  call</a> 
                                     </td>
                                 </tr>
@@ -150,7 +180,8 @@
                                     <td>               
                                         <a href="{% url 'user_worker_reports' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> View Reports</a> 
                                     </td>
-                                    <td>               
+                                    <td> 
+                                        <button type="button" class="btn btn-outline-danger mr-2 ml-6 btn-icon-text" data-toggle="modal" data-target="#myModal">Enquiry</button>              
                                         <a href="{% url 'admin_workers_register' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  call</a> 
                                     </td>
                                 </tr>
@@ -166,23 +197,8 @@
                                     <td>               
                                         <a href="{% url 'user_worker_reports' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> View Reports</a> 
                                     </td>
-                                    <td>               
-                                        <a href="{% url 'admin_workers_register' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  call</a> 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td> Akash</td>
-                                    <td>palakkad</td>
-                                    <td>worker</td>
-                                    <td>plumber</td>
-                                    <td>               
-                                        <a href="{% url 'user_worker_profile' %}" class="btn btn-outline-warning mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> view profile</a> 
-                                    </td>
-                                    <td>               
-                                        <a href="{% url 'user_worker_reports' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> View Reports</a> 
-                                    </td>
-                                    <td>               
+                                    <td>  
+                                        <button type="button" class="btn btn-outline-danger mr-2 ml-6 btn-icon-text" data-toggle="modal" data-target="#myModal">Enquiry</button>              
                                         <a href="{% url 'admin_workers_register' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  call</a> 
                                     </td>
                                 </tr>
@@ -196,40 +212,41 @@
             </div>
         </div>
     </div>
+    <!-- Modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="col-12 grid-margin stretch-card bg-dark text-light modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Enquiry</h4>
+                <button type="button" style="color: white" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+            </div>
+            <!-- Modal body -->
+            <form method="post" action="">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <textarea class="col-12 grid-margin stretch-card text-light" style="background-color: rgba(66, 65, 65, 0.267)" rows="6" name="review" Required></textarea>
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-outline-primary btn-icon-text">
+                    <i class="mdi mdi-file-check btn-icon-prepend text-info" style="font-size: 18px"></i>
+                    Submit
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- modal end -->
 
-</body>
-
-<script>
-    function myFunction() {
-        var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[4];
-            if (td) {
-                txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
-    }
-
-
-    
-</script>
 </div>
 </div>
 </div>
 </div>
 </div>
-
-
-
 
 <script type="text/javascript ">
 $("#btnSearch").click(function() {

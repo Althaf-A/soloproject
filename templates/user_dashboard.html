@@ -11,7 +11,8 @@
                         <h4 class="card-title">PROFILE </h4>
                     </div>
                     <div class="col-4 col-sm-4 col-md-2 col-lg-2">
-                        <img src="{% static 'assets/images/dashboard/Img_5.jpg'%}" class="img-fluid rounded-circle mb-3 " alt="image" style="margin-right:20px;border-radius: 50%">
+                       
+                        <img src="{{z.photo.url}}" class="img-fluid rounded-circle mb-3 " alt="image" style="margin-right:20px;border-radius: 50%">
                     </div>
                 </div>
                 <div class="row">
@@ -19,7 +20,7 @@
                         <div class="form-group row">
                             <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Name</label>
                             <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                <p class="text-muted mt-2">Althaf A</p>
+                                <p class="text-muted mt-2">{{z.fullname }}</p>
                             </div>
                         </div>
                     </div>
@@ -27,9 +28,9 @@
                 <div class="row">
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                         <div class="form-group row">
-                            <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Designation</label>
+                            <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Category</label>
                             <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                <p class="text-muted mt-2">User</p>
+                                <p class="text-muted mt-2">{{z.category.name}}</p>
                             </div>
                         </div>
                     </div>
@@ -39,7 +40,7 @@
                         <div class="form-group row">
                             <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Email</label>
                             <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                <p class="text-muted mt-2">admin@gmail.com</p>
+                                <p class="text-muted mt-2">{{z.email}}</p>
                             </div>
                         </div>
                     </div>
@@ -49,7 +50,15 @@
                         <div class="form-group row">
                             <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Contact No</label>
                             <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                <p class="text-muted mt-2">8156862539</p>
+                                <p class="text-muted mt-2">{{z.contact_no}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group row">
+                            <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">joiningdate</label>
+                            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                <p class="text-muted mt-2">{{z.regdate}}</p>
                             </div>
                         </div>
                     </div>

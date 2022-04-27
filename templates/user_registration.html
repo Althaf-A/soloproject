@@ -92,11 +92,11 @@
                   <input type="text" name="contact" class="form-control p_input text-light" required>
                 </div>
                 <div class="form-group">
-                  <label>Department</label>
+                  <label>Category</label>
                   <div class="row">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                       <select class="form-control text-light" id="ref" name="dept">
-                        <option selected="true" style='display: none'>Select Department</option>
+                        <option selected="true" style='display: none'>Select Category</option>
                         {% for i in vars1 %}
                         <option value="{{i.id}}">{{i.name}}</option>
                         {% endfor %}
@@ -105,10 +105,14 @@
                   </div>
                   <br>
                   <br>
-                  <!-- <div class="form-group">
-                    <label>designation</label>
-                    <input type="number" name="passoutyr" class="form-control p_input text-light" required>
-                  </div> -->
+                   <div class="form-group">
+                    <label>City</label>
+                    <input type="text" name="city" class="form-control p_input text-light" required>
+                  </div> 
+                  <div class="form-group">
+                    <label>Photo</label>
+                    <input type="file" name="photo" class="form-control p_input text-light" required>
+                  </div>
                 <div class="text-center ">
                     <button type="submit" onclick="ValidateEmail(document.form1.email)" class="btn btn-primary btn-block enter-btn mt-3"
                       style="width:100px">Register</button>
