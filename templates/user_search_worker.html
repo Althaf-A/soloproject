@@ -11,9 +11,9 @@
                             <div class="form-group row ">
                                 <label class="col-6 col-sm-6 col-md-6 col-lg-5 col-form-label ">Work Type </label>
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-6 ">
-                                    <select class="badge badge-outline-primary bg-dark text-light " id="depmt" name="dep "><option style="display: none ">Work Type</option>
+                                    <select class="badge badge-outline-primary bg-dark text-light " id="wrkt" name="worktype "><option style="display: none ">Work Type</option>
                                         {% for i in mem %}
-                                        <option value="{{ i.id }}">Worker</option>
+                                        <option value="{{ i.id }}">{{i.work_type.work_type}}</option>
                                         {% endfor %}
                                       </select>
                                 </div>
@@ -24,12 +24,11 @@
                             <div class="form-group row ">
                                 <label class="col-6 col-sm-6 col-md-6 col-lg-5 col-form-label ">Work </label>
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-6 ">
-                                    <select class="badge badge-outline-primary bg-dark text-light " id="desi" name="desig "><option style="display: none ">Work</option>
-
-                      <option value="{{t.id}}">carpenter</option>
-                      <option value="{{t.id}}">painter</option>
-                      <option value="{{t.id}}">plumber</option>
-                    </select>
+                                    <select class="badge badge-outline-primary bg-dark text-light " id="wrkn" name="workname "><option style="display: none ">Work</option>
+                                    {% for t in mem %}
+                                        <option value="{{t.id}}">{{t.work_name}}</option>
+                                    {% endfor %}
+                                    </select>
                                 </div>
                             </div>
 
@@ -41,12 +40,11 @@
                             <div class="form-group row ">
                                 <label class="col-6 col-sm-6 col-md-6 col-lg-5 col-form-label ">City </label>
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-6 ">
-                                    <select class="badge badge-outline-primary bg-dark text-light " id="desi" name="desig "><option style="display: none ">select city</option>
-
-                      <option value="{{t.id}}">pkd</option>
-                      <option value="{{t.id}}">kottayam</option>
-                      <option value="{{t.id}}">kannur</option>
-                    </select>
+                                    <select class="badge badge-outline-primary bg-dark text-light " id="city" name="citty "><option style="display: none ">select city</option>
+                                    {% for t in mem %}
+                                        <option value="{{t.id}}">{{t.work_city}}</option>
+                                    {% endfor %}
+                                    </select>
                                 </div>
                             </div>
 
@@ -61,211 +59,29 @@
                         </div>
                     </div>
                 <div id="hiddendiv">
-    <style>
-        table tr[data-href] {
-            cursor: pointer;
-        }
-    </style>
-
-
-
-<div class="row ">
-    <div class="col-12 grid-margin">
-        <div class="card">
-            <div class="card-body">
-                <div class="row" style="margin-top: -20px">
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                        <br>
-                        <h4>All Workers And Contactors </h4><br>
-                    </div>
-                </div>
-
-                    <!-- table start hear -->
-
-                    <div class="table-responsive">
-                        <table class="table " id="myTable">
-                            <thead>
-
-                                <tr >
-                                    <th style="padding-left:15px;">sl no </th>
-                                    <th style="padding-left:15px;"> Name </th>
-                                    <th style="padding-left:12px;"> city </th>
-                                    <th style="padding-left:15px;"> work type</th>
-                                    <th style="padding-left:12px;"> work </th>
-                                    <th style="padding-left:28px;">view profile </th>
-                                    <th style="padding-left:20px;"> Reports </th>
-                                    <th style="padding-left:25px;"> Contact </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                
-                                <tr>
-                                    <td>1</td>
-                                    <td> ajay</td>
-                                    <td>palakkad</td>
-                                    <td>worker</td>
-                                    <td>carpenter</td>
-                                    <td>               
-                                        <a href="{% url 'user_worker_profile' %}" class="btn btn-outline-warning mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> view profile</a> 
-                                    </td>
-                                    <td>               
-                                        <a href="{% url 'user_worker_reports' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> View Reports</a> 
-                                    </td>
-                                    <td>               
-                                        <button type="button" class="btn btn-outline-danger mr-2 ml-6 btn-icon-text" data-toggle="modal" data-target="#myModal">Enquiry</button>
-                                        <a href="{% url 'admin_workers_register' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  call</a> 
-                                    </td>
-                                    
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td> arun</td>
-                                    <td>palakkad</td>
-                                    <td>contactor</td>
-                                    <td>carpenter</td>
-                                    <td>               
-                                        <a href="{% url 'user_worker_profile' %}" class="btn btn-outline-warning mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> view profile</a> 
-                                    </td>
-                                    <td>               
-                                        <a href="{% url 'user_worker_reports' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> View Reports</a> 
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-outline-danger mr-2 ml-6 btn-icon-text" data-toggle="modal" data-target="#myModal">Enquiry</button>               
-                                        <a href="{% url 'admin_workers_register' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  call</a> 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td> Akash</td>
-                                    <td>palakkad</td>
-                                    <td>contactor</td>
-                                    <td>painter</td>
-                                    <td>               
-                                        <a href="{% url 'user_worker_profile' %}" class="btn btn-outline-warning mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> view profile</a> 
-                                    </td>
-                                    <td>               
-                                        <a href="{% url 'user_worker_reports' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> View Reports</a> 
-                                    </td>
-                                    <td>               
-                                        <button type="button" class="btn btn-outline-danger mr-2 ml-6 btn-icon-text" data-toggle="modal" data-target="#myModal">Enquiry</button>
-                                        <a href="{% url 'admin_workers_register' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  call</a> 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td> Akash</td>
-                                    <td>palakkad</td>
-                                    <td>worker</td>
-                                    <td>plumber</td>
-                                    <td>               
-                                        <a href="{% url 'user_worker_profile' %}" class="btn btn-outline-warning mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> view profile</a> 
-                                    </td>
-                                    <td>               
-                                        <a href="{% url 'user_worker_reports' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;" > View Reports</a> 
-                                    </td>
-                                    <td>               
-                                        <button type="button" class="btn btn-outline-danger mr-2 ml-6 btn-icon-text" data-toggle="modal" data-target="#myModal">Enquiry</button>
-                                        <a href="{% url 'admin_workers_register' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  call</a> 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td> Akash</td>
-                                    <td>palakkad</td>
-                                    <td>worker</td>
-                                    <td>plumber</td>
-                                    <td>               
-                                        <a href="{% url 'user_worker_profile' %}" class="btn btn-outline-warning mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> view profile</a> 
-                                    </td>
-                                    <td>               
-                                        <a href="{% url 'user_worker_reports' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> View Reports</a> 
-                                    </td>
-                                    <td> 
-                                        <button type="button" class="btn btn-outline-danger mr-2 ml-6 btn-icon-text" data-toggle="modal" data-target="#myModal">Enquiry</button>              
-                                        <a href="{% url 'admin_workers_register' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  call</a> 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td> Akash</td>
-                                    <td>palakkad</td>
-                                    <td>worker</td>
-                                    <td>plumber</td>
-                                    <td>               
-                                        <a href="{% url 'user_worker_profile' %}" class="btn btn-outline-warning mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> view profile</a> 
-                                    </td>
-                                    <td>               
-                                        <a href="{% url 'user_worker_reports' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> View Reports</a> 
-                                    </td>
-                                    <td>  
-                                        <button type="button" class="btn btn-outline-danger mr-2 ml-6 btn-icon-text" data-toggle="modal" data-target="#myModal">Enquiry</button>              
-                                        <a href="{% url 'admin_workers_register' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  call</a> 
-                                    </td>
-                                </tr>
-
-                            
-                                
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                    
             </div>
         </div>
-    </div>
-    <!-- Modal -->
-<div class="modal" id="myModal">
-    <div class="modal-dialog">
-        <div class="col-12 grid-margin stretch-card bg-dark text-light modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title">Enquiry</h4>
-                <button type="button" style="color: white" class="close" data-dismiss="modal">
-                    &times;
-                </button>
-            </div>
-            <!-- Modal body -->
-            <form method="post" action="">
-                {% csrf_token %}
-                <div class="modal-body">
-                    <textarea class="col-12 grid-margin stretch-card text-light" style="background-color: rgba(66, 65, 65, 0.267)" rows="6" name="review" Required></textarea>
-                </div>
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-outline-primary btn-icon-text">
-                    <i class="mdi mdi-file-check btn-icon-prepend text-info" style="font-size: 18px"></i>
-                    Submit
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!-- modal end -->
-
-</div>
-</div>
-</div>
+      </div>
 </div>
 </div>
 
 <script type="text/javascript ">
 $("#btnSearch").click(function() {
 
-const fdate = $("#txtDate").val();
-const tdate = $("#txtDate1").val();
-const desi = $("#desi").val();
-const depmt = $("#depmt").val();
+const workt = $("#wrkt").val();
+const workn = $("#wrkn").val();
+const city = $("#city").val();
 const csrf = document.getElementById('csrfmiddlewaretoken')
 console.log("hihsd", depmt)
 jQuery.ajax({
-url: 'accounts_acntpay',
+url: 'user_search_worker_table',
 method: 'post',
 data: {
 
-    'fdate': fdate,
-    'tdate': tdate,
-    'desi': desi,
-    'depmt': depmt,
+    'workt': workt,
+    'workn': workn,
+    'city': city,
 
 },
 

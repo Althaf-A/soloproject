@@ -8,6 +8,8 @@ from webscraping.settings import EMAIL_HOST_USER
 from django.core.mail import send_mail
 from django.contrib import messages
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
+from django.views.decorators.csrf import csrf_exempt
+from urllib.parse import urlencode
 # Create your views here.
 def Register(request):
    if request.method == 'POST':
@@ -46,13 +48,14 @@ def Register(request):
   
 
 def Login(request):
-
-    des = category.objects.get(name='user')
-    des1 = category.objects.get(name='worker')
-    des2 = category.objects.get(name='contractor')
+ 
+    
     if request.method == 'POST':
         email = request.POST['username']
         password = request.POST['password']
+        des = category.objects.get(name='user')
+        des1 = category.objects.get(name='worker')
+        des2 = category.objects.get(name='contractor')
         if user_register.objects.filter(email=email, password=password, category_id=des.id).exists():
             member = user_register.objects.get(
                 email=request.POST['username'], password=request.POST['password'])
@@ -137,39 +140,99 @@ def admin_all_contractors(request):
 
 def user_dashboard(request):
     if 'username2' in request.session:
-
         if request.session.has_key('username2'):
             username2 = request.session['username2']
-
         z = user_register.objects.filter(id=username2)
-
         return render(request,'user_dashboard.html', {'z': z})
     else:
         return redirect('/')
 
 def user_search_worker(request):
-    if 'usernametrnr2' in request.session:
+    if 'username2' in request.session:
         if request.session.has_key('username2'):
             username2 = request.session['username2']
 
         z = user_register.objects.filter(id=username2)
+        mem=work_details.objects.all()
 
-        return render(request,'user_search_worker.html',{'z': z})
+        return render(request,'user_search_worker.html',{'mem':mem,'z': z})
     else:
         return redirect('/')
 
-    
+@csrf_exempt
+def user_search_worker_table(request):
+    if 'username2' in request.session:
+        workt = int(request.POST['worktype'])
+        workn = request.POST['workname']
+        citty = request.POST['citty']
+
+        names = work_details.objects.filter(work_city=citty, work_type_id=workt, work_name=workn).values(
+            'worker_id__fullname', 'work_city', 'user_id__account_no', 'user_id__bank_name', 'user_id__bank_branch', 'worker_id__id', 'user_id__email', 'id')
+        print(workt)
+        print(workn)
+        print(citty)
+        print(names)
+        return render(request, 'user_search_worker_table.html', {'names': names})
+    else:
+        return redirect('/')
+
 def user_worker_profile(request):
-    return render(request,'user_worker_profile.html')
+    if 'username2' in request.session:
+        if request.session.has_key('username2'):
+            username2 = request.session['username2']
+        z = user_register.objects.filter(id=username2)
+        return render(request,'user_worker_profile.html', {'z': z})
+    else:
+        return redirect('/')
 
 def user_worker_reports(request):
-    return render(request,'user_worker_reports.html')
+    if 'username2' in request.session:
+        if request.session.has_key('username2'):
+            username2 = request.session['username2']
+        z = user_register.objects.filter(id=username2)
+        return render(request,'user_worker_reports.html', {'z': z})
+    else:
+        return redirect('/')
 
 def user_history_list(request):
-    return render(request,'user_history_list.html')
+    if 'username2' in request.session:
+        if request.session.has_key('username2'):
+            username2 = request.session['username2']
+        if request.session.has_key('username'):
+            username = request.session['username']
+        z = user_register.objects.filter(id=username2)
+        mem= feedback.objects.filter(category_id=username,replay_status='0')
+        return render(request,'user_history_list.html', {'z': z,'mem':mem})
+    else:
+        return redirect('/')
 
 def user_post_feedback(request):
-    return render(request,'user_post_feedback.html')
+    if 'username2' in request.session:
+        if request.session.has_key('username2'):
+            username2 = request.session['username2']
+        if request.session.has_key('username'):
+            username = request.session['username']
+        z = user_register.objects.filter(id=username2)
+        mem= feedback.objects.filter(category_id=username,replay_status='1')
+        return render(request,'user_post_feedback.html', {'z': z,'mem':mem})
+    else:
+        return redirect('/')
+def save_user_feedback(request):
+    if 'username2' in request.session:
+
+        if request.session.has_key('username2'):
+            username2 = request.session['username2']
+
+        tid = request.GET.get('tid')
+        vars = feedback.objects.get(id=tid)
+        print(vars.id)
+        vars.feedback_replay = request.POST.get('feedback')
+        vars.replay_status = 0
+        print('hello')
+        vars.save()
+        return redirect('user_post_feedback')
+    else:
+        return redirect('/')
 
 
     ######################worker##########
