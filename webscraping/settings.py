@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'webscraping.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'soloproject1',
+        'NAME': 'soloproject2',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',

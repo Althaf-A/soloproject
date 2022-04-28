@@ -85,6 +85,8 @@ def Login(request):
             user = authenticate(username=username, password=password)
             if user:
                 auth.login(request, user)
+                request.session['SAdm_id'] = user.id
+                
                 return redirect('admin_dashboard')
             else:
                   context = {'msg_error': 'Invalid data'}
@@ -97,7 +99,19 @@ def logout(request):
     return redirect("/") 
     
 def admin_dashboard(request):
-    return render(request,'admin_dashboard.html')
+    if 'SAdm_id' in request.session:
+        if request.session.has_key('SAdm_id'):
+            SAdm_id = request.session['SAdm_id']
+        users = User.objects.filter(id=SAdm_id)
+        ur = category.objects.get(name='user')
+        uss= user_register.objects.filter(category_id=ur.id).count()
+        wr = category.objects.get(name='worker')
+        wrkr= user_register.objects.filter(category_id=wr.id).count()
+        co = category.objects.get(name='user')
+        con= user_register.objects.filter(category_id=co.id).count()
+        return render(request, 'admin_dashboard.html', {'users': users,'uss':uss,'wrkr':wrkr,'con':con})
+    else:
+        return redirect('/')
 
 def admin_new_worker_aprove(request):
     return render(request,'admin_new_worker_aprove.html')
@@ -112,8 +126,15 @@ def admin_worker_profile_view(request):
     return render(request,'admin_worker_profile_view.html')
     
 def admin_workers_details(request):
-    return render(request,'admin_workers_details.html')
-    
+    if 'SAdm_id' in request.session:
+        if request.session.has_key('SAdm_id'):
+            SAdm_id = request.session['SAdm_id']
+        users = User.objects.filter(id=SAdm_id)
+
+        return render(request,'admin_workers_details.html',{'users': users})
+    else:
+        return redirect('/')
+
 def admin_user_activity(request):
     return render(request,'admin_user_activity.html')
 
@@ -130,10 +151,26 @@ def admin_users_feedbacks(request):
     return render(request,'admin_users_feedbacks.html')
 
 def admin_all_workers(request):
-    return render(request,'admin_all_workers.html')
+    if 'SAdm_id' in request.session:
+        if request.session.has_key('SAdm_id'):
+            SAdm_id = request.session['SAdm_id']
+        users = User.objects.filter(id=SAdm_id)
+        wrkr = category.objects.get(name='worker')
+        wr= user_register.objects.filter(category_id=wrkr.id)
+        wrk= work_details.objects.get(worker_id_id=wr.id)
+        return render(request,'admin_all_workers.html',{'users': users,'wr':wr,'wrk':wrk})
+    else:
+        return redirect('/')
 
 def admin_all_contractors(request):
-    return render(request,'admin_all_contractors.html')
+    if 'SAdm_id' in request.session:
+        if request.session.has_key('SAdm_id'):
+            SAdm_id = request.session['SAdm_id']
+        users = User.objects.filter(id=SAdm_id)
+        
+        return render(request,'admin_all_contractors.html',{'users': users})
+    else:
+        return redirect('/')
 
 
 ############################user################################
@@ -201,7 +238,7 @@ def user_history_list(request):
         if request.session.has_key('username'):
             username = request.session['username']
         z = user_register.objects.filter(id=username2)
-        mem= feedback.objects.filter(category_id=username,replay_status='0')
+        mem= feedback.objects.filter(user_id_id=username,replay_status='0')
         return render(request,'user_history_list.html', {'z': z,'mem':mem})
     else:
         return redirect('/')
@@ -213,7 +250,7 @@ def user_post_feedback(request):
         if request.session.has_key('username'):
             username = request.session['username']
         z = user_register.objects.filter(id=username2)
-        mem= feedback.objects.filter(category_id=username,replay_status='1')
+        mem= feedback.objects.filter(user_id_id=username,replay_status='1')
         return render(request,'user_post_feedback.html', {'z': z,'mem':mem})
     else:
         return redirect('/')

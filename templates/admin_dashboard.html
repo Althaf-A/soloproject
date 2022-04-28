@@ -10,16 +10,14 @@
                     <div class="col-8 col-sm-8 col-md-10 col-lg-10 mt-3">
                         <h4 class="card-title">PROFILE </h4>
                     </div>
-                    <div class="col-4 col-sm-4 col-md-2 col-lg-2">
-                        <img src="{% static 'assets/images/dashboard/Img_4.jpg'%}" class="img-fluid rounded-circle mb-3 " alt="image" style="margin-right:20px;border-radius: 50%">
-                    </div>
+                    {% for i in users %}
                 </div>
                 <div class="row">
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                         <div class="form-group row">
                             <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Name</label>
                             <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                <p class="text-muted mt-2">Althaf A</p>
+                                <p class="text-muted mt-2">{{i.first_name}}  {{i.last_name}}</p>
                             </div>
                         </div>
                     </div>
@@ -39,7 +37,7 @@
                         <div class="form-group row">
                             <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Email</label>
                             <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                <p class="text-muted mt-2">admin@gmail.com</p>
+                                <p class="text-muted mt-2">{{i.email}}</p>
                             </div>
                         </div>
                     </div>
@@ -47,9 +45,9 @@
                 <div class="row">
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                         <div class="form-group row">
-                            <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Contact No</label>
+                            <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Join date</label>
                             <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                <p class="text-muted mt-2">8156862539</p>
+                                <p class="text-muted mt-2">{{i.date_joined}}</p>
                             </div>
                         </div>
                     </div>
@@ -58,6 +56,7 @@
         </div>
     </div>
 </div>
+{% endfor %}
 <div class="row" style="padding-top:20px;">
     <div class="col-12 col-sm-6 col-md-6 col-lg-6 grid-margin">
       <a href="{% url 'admin_all_workers' %}" style="text-decoration: none;">
@@ -70,7 +69,7 @@
                 </div>            
               </div>
               <div class="col-4 col-sm-12 col-xl-2 text-center text-xl-right">
-                <h3 class="text-light">25</h3>
+                <h3 class="text-light">{{wrkr}}</h3>
               </div>
             </div>
           </div>
@@ -88,7 +87,7 @@
                 </div>
               </div>
               <div class="col-4 col-sm-12 col-md-4 col-lg-4 text-center text-xl-right">
-                <h3 class="text-light">8</h3>
+                <h3 class="text-light">{{con}}</h3>
               </div>
             </div>
           </div>
@@ -106,7 +105,7 @@
                   </div>            
                 </div>
                 <div class="col-4 col-sm-12 col-xl-2 text-center text-xl-right">
-                  <h3 class="text-light">8</h3>
+                  <h3 class="text-light">{{uss}}</h3>
                 </div>
               </div>
             </div>

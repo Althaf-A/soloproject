@@ -37,7 +37,7 @@
                                 <td>{{i.post_date}}</td>
                                 <td>{{i.work_name.work_name}}</td>
                                 <td>{{i.work_type.work_type}}</td>
-                                <td><span class="ps-2">create pool</span></td>
+                                <td><span class="ps-2">{{i.work}}</span></td>
                                 <td>
                                     <button type="button" class="btn btn-outline-primary btn-icon-text" data-toggle="modal" data-target="#myModal{{i.id}}">Feedback</button>
                                 </td>
@@ -68,7 +68,7 @@
             <!-- Modal body -->
             <div class="modal-body">
                 <p class="col-12 col-sm-12 col-md-12 col-lg-12 ">
-                    {{i.feedback_replay}}
+                    {{i.feedback}}
                 </p>
             </div>
 
