@@ -44,45 +44,23 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                
+                                {% if ur %} {% for i in ur %}
                                 <tr>
-                                    <td>1</td>
-                                    <td> Akash</td>
-                                    <td>palakkad</td>
+                                    <td>{{forloop.counter}}</td>
+                                    <td> {{i.fullname}}</td>
+                                    <td>{{i.city}}</td>
                                     <td>               
-                                        <a href="{% url 'admin_user_profile_view' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> view profile</a> 
+                                        <a href="/admin_user_profile_view/{{i.id}}/" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> view profile</a> 
                                     </td>
                                     <td>               
                                         <a href="{% url 'admin_user_activity' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  Activities</a> 
                                     </td>
                                     
                                 </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td> Akash</td>
-                                    <td>palakkad</td>
-                                    <td>               
-                                        <a href="{% url 'admin_user_profile_view' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> view profile</a> 
-                                    </td>
-                                    <td>               
-                                        <a href="{% url 'admin_user_activity' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  Activities</a> 
-                                    </td>
-                                    
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td> Akash</td>
-                                    <td>palakkad</td>
-                                    <td>               
-                                        <a href="{% url 'admin_user_profile_view' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> view profile</a> 
-                                    </td>
-                                    <td>               
-                                        <a href="{% url 'admin_user_activity' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  Activities</a> 
-                                    </td>
-                                    
-                                </tr>
-                            
-                                
+                                {% endfor %} {% else %}
+                               <h5>Nothing to display...</h5>
+                                {% endif %}
+     
                             </tbody>
                         </table>
                     </div>

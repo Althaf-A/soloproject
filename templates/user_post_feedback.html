@@ -35,8 +35,8 @@
                             {% if mem %} {% for i in mem %}
                             <tr>
                                 <td>{{forloop.counter}}</td>
-                                <td>{{i.from_date}}</td>
-                                <td>{{i.to_date}}</td>
+                                <td>{{i.from_date|date:"d-m-Y"}}</td>
+                                <td>{{i.to_date|date:"d-m-Y"}}</td>
                                 <td>{{i.worker_id.fullname}}</td>
                                 <td>{{i.work_type.work_type}}</td>
                                 <td><span class="ps-2">{{i.work}}</span></td>

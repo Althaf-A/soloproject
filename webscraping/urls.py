@@ -14,9 +14,10 @@ urlpatterns = [
 #######################admin##############################
     path('admin_dashboard/', views.admin_dashboard , name='admin_dashboard'),
     path('admin_new_worker_aprove/', views.admin_new_worker_aprove, name='admin_new_worker_aprove'),
+    path('admin_worker_status_cards/', views.admin_worker_status_cards, name='admin_worker_status_cards'),
     path('admin_users_details/', views.admin_users_details, name='admin_users_details'),
-    path('admin_user_profile_view/', views.admin_user_profile_view, name='admin_user_profile_view'),
-    path('admin_worker_profile_view/', views.admin_worker_profile_view, name='admin_worker_profile_view'),
+    path('admin_user_profile_view/<int:id>/', views.admin_user_profile_view, name='admin_user_profile_view'),
+    path('admin_worker_profile_view/<int:id>/', views.admin_worker_profile_view, name='admin_worker_profile_view'),
     path('admin_workers_details/', views.admin_workers_details, name='admin_workers_details'),
     path('admin_workers_register/', views.admin_workers_register, name='admin_workers_register'),
     path('admin_user_activity/', views.admin_user_activity, name='admin_user_activity'),
@@ -25,6 +26,9 @@ urlpatterns = [
     path('admin_users_feedbacks/', views.admin_users_feedbacks, name='admin_users_feedbacks'),
     path('admin_all_workers/', views.admin_all_workers, name='admin_all_workers'),
     path('admin_all_contractors/', views.admin_all_contractors, name='admin_all_contractors'),
+    path('admin_aproved_workers/', views.admin_aproved_workers, name='admin_aproved_workers'),
+    path('admin_rejected_workers/', views.admin_rejected_workers, name='admin_rejected_workers'),
+    path('reject_worker/', views.reject_worker, name='reject_worker'),
 
 
 

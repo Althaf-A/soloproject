@@ -35,6 +35,7 @@ class work_details(models.Model):
     work_status = models.CharField(max_length=20,default='0')
     worker_id= models.ForeignKey(user_register, on_delete=models.SET_NULL,related_name='worker_id', null=True, blank=True, default='')
     work_city = models.CharField(max_length=100,default='')
+    experience = models.CharField(max_length=20,default='0')
 
 class feedback(models.Model):
     user_id= models.ForeignKey(user_register, on_delete=models.SET_NULL,related_name='userid', null=True, blank=True, default='')

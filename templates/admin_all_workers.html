@@ -28,7 +28,7 @@
                             <thead>
 
                                 <tr >
-                                    <th style="padding-left:38px;">sl no </th>
+                                    <th style="padding-left:10px;">sl no </th>
                                     <th style="padding-left:15px;"> Name </th>
                                     <th style="padding-left:12px;"> location </th>
                                     <th style="padding-left:12px;"> work </th>
@@ -39,10 +39,10 @@
                             <tbody>
                                 {% if wr %} {% for i in wr %}
                                 <tr>
-                                    <td>{{forloop.count}}</td>
+                                    <td>{{forloop.counter}}</td>
                                     <td> {{i.fullname}}</td>
                                     <td>{{i.city}}</td>
-                                    <td>{{wrk}}</td>
+                                    <td>{{i.work_name.work_name}}</td>
                                     <td>               
                                         <a href="{% url 'admin_worker_profile_view' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> view profile</a> 
                                     </td>

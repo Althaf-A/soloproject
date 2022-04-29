@@ -38,60 +38,23 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                
+                                {% if co %} {% for i in co %}
                                 <tr>
-                                    <td>1</td>
-                                    <td> ajay</td>
-                                    <td>palakkad</td>
-                                    <td>carpenter</td>
+                                    <td>{{forloop.counter}}</td>
+                                    <td> {{i.fullname}}</td>
+                                    <td>{{i.city}}</td>
+                                    <td>{{i.work_name.work_name}}</td>
                                     <td>               
-                                        <a href="{% url 'admin_worker_profile_view' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> view profile</a> 
+                                        <a href="{% url 'admin_worker_profile_view' i.id %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> view profile</a> 
                                     </td>
                                     <td>               
-                                        <a href="{% url 'admin_workers_register' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  Register</a> 
+                                        <a href="{% url 'admin_workers_register'%}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  Register</a> 
                                     </td>
                                     
                                 </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td> arun</td>
-                                    <td>palakkad</td>
-                                    <td>carpenter</td>
-                                    <td>               
-                                        <a href="{% url 'admin_worker_profile_view' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> view profile</a> 
-                                    </td>
-                                    <td>               
-                                        <a href="{% url 'admin_workers_register' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  Register</a> 
-                                    </td>
-                                    
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td> Akash</td>
-                                    <td>palakkad</td>
-                                    <td>painter</td>
-                                    <td>               
-                                        <a href="{% url 'admin_worker_profile_view' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> view profile</a> 
-                                    </td>
-                                    <td>               
-                                        <a href="{% url 'admin_workers_register' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  Register</a> 
-                                    </td>
-                                    
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td> Akash</td>
-                                    <td>palakkad</td>
-                                    <td>plumber</td>
-                                    <td>               
-                                        <a href="{% url 'admin_worker_profile_view' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> view profile</a> 
-                                    </td>
-                                    <td>               
-                                        <a href="{% url 'admin_workers_register' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  Register</a> 
-                                    </td>
-                                    
-                                </tr>
-                            
+                                {% endfor %} {% else %}
+                               <h5>Nothing to display...</h5>
+                                {% endif %}
                                 
                             </tbody>
                         </table>

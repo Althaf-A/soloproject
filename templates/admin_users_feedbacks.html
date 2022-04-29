@@ -24,6 +24,7 @@
                             <tr>
                                 <th>sl no</th>
                                 <th>Post Date</th>
+                                <th>user</th>
                                 <th>worker</th>
                                 <th>worker type</th>
                                 <th>work</th>
@@ -31,46 +32,21 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {% if ur %} {% for i in mem %}
                             <tr>
-                                <td>1</td>
-                                <td>10-02-2022</td>
-                                <td>Akash</td>
-                                <td>contractor</td>
-                                <td><span class="ps-2">create pool</span></td>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{i.post_date|date:"d-m-Y"}}</td>
+                                <td>{{i.user_id.fullname}}</td>
+                                <td>{{i.worker_id.fullname}}</td>
+                                <td>{{i.work_type.work_type}}</td>
+                                <td><span class="ps-2">{{i.work}}</span></td>
                                 <td>
                                     <button type="button" class="btn btn-outline-primary btn-icon-text" data-toggle="modal" data-target="#myModal">Feedback</button>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>10-02-2022</td>
-                                <td>Akash</td>
-                                <td>worker</td>
-                                <td><span class="ps-2">painting</span></td>
-                                <td>
-                                    <button type="button" class="btn btn-outline-primary btn-icon-text" data-toggle="modal" data-target="#myModal">Feed back</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>10-02-2022</td>
-                                <td>Akash</td>
-                                <td>contractor</td>
-                                <td><span class="ps-2">plumbing</span></td>
-                               <td>
-                                    <button type="button" class="btn btn-outline-primary btn-icon-text" data-toggle="modal" data-target="#myModal">Feed back</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>10-02-2022</td>
-                                <td>Akash</td>
-                                <td>worker</td>
-                                <td><span class="ps-2">build room</span></td>
-                                 <td>
-                                    <button type="button" class="btn btn-outline-primary btn-icon-text" data-toggle="modal" data-target="#myModal">Feed back</button>
-                                </td>
-                            </tr>
+                            {% endfor %} {% else %}
+                               <h5>Nothing to display...</h5>
+                            {% endif %}
                         </tbody>
                     </table>
                 </div>
@@ -94,7 +70,7 @@
             <!-- Modal body -->
             <div class="modal-body">
                 <p class="col-12 col-sm-12 col-md-12 col-lg-12 ">
-                    veryfast and veryquick action relly thankfull to this platform
+                   {{ veryfast and veryquick action relly thankfull to this platform}}
                 </p>
             </div>
 

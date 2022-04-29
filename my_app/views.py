@@ -64,14 +64,14 @@ def Login(request):
             request.session['username2'] = member.id
             z = user_register.objects.filter(id=member.id)
             return render(request, 'user_dashboard.html', {'member': member,'z':z})
-        elif user_register.objects.filter(email=email, password=password, category_id=des1.id).exists():
+        elif user_register.objects.filter(email=email, password=password, category_id=des1.id ,status=1).exists():
             member = user_register.objects.get(
                 email=request.POST['username'], password=request.POST['password'])
             request.session['usernamew'] = member.category_id
             request.session['usernamew1'] = member.fullname
             request.session['usernamew2'] = member.id
             return render(request, 'worker_dashboard.html', {'member': member})
-        elif user_register.objects.filter(email=email, password=password, category_id=des2.id).exists():
+        elif user_register.objects.filter(email=email, password=password, category_id=des2.id ,status=1).exists():
             member = user_register.objects.get(
                 email=request.POST['username'], password=request.POST['password'])
             request.session['usernamec'] = member.category_id
@@ -114,16 +114,110 @@ def admin_dashboard(request):
         return redirect('/')
 
 def admin_new_worker_aprove(request):
-    return render(request,'admin_new_worker_aprove.html')
-    
+    if 'SAdm_id' in request.session:
+        if request.session.has_key('SAdm_id'):
+            SAdm_id = request.session['SAdm_id']
+        users = User.objects.filter(id=SAdm_id)
+        wrkr = category.objects.get(name='user')
+        wr= user_register.objects.filter(status=0).exclude(category_id=wrkr.id)
+        if request.method == 'POST':
+            id = request.GET.get('tid')
+            v = user_register.objects.get(id=id)
+            v.status = 1
+            v.save()
+        return render(request,'admin_new_worker_aprove.html',{'users': users,'wr':wr})
+    else:
+        return redirect('/')
+
+def reject_worker(request):
+    if request.method == 'POST':
+        id = request.GET.get('tid')
+            
+        v = user_register.objects.get(id=id)
+        v.status=2
+        v.save()
+    return redirect('admin_new_worker_aprove')
+
+def admin_worker_status_cards(request):
+    if 'SAdm_id' in request.session:
+        if request.session.has_key('SAdm_id'):
+            SAdm_id = request.session['SAdm_id']
+        users = User.objects.filter(id=SAdm_id)
+        ur = category.objects.get(name='user')
+        return render(request,'admin_worker_status_cards.html',{'users': users})
+    else:
+        return redirect('/')
+
+def admin_aproved_workers(request):
+    if 'SAdm_id' in request.session:
+        if request.session.has_key('SAdm_id'):
+            SAdm_id = request.session['SAdm_id']
+        users = User.objects.filter(id=SAdm_id)
+        wrkr = category.objects.get(name='user')
+        wr= user_register.objects.filter(status=1).exclude(category_id=wrkr.id)
+        if request.method == 'POST':
+            id = request.GET.get('tid')
+            v = user_register.objects.get(id=id)
+            v.status = 2
+            v.save()
+        return render(request,'admin_aproved_workers.html',{'users': users,'wr':wr})
+    else:
+        return redirect('/')
+
+def admin_rejected_workers(request):
+    if 'SAdm_id' in request.session:
+        if request.session.has_key('SAdm_id'):
+            SAdm_id = request.session['SAdm_id']
+        users = User.objects.filter(id=SAdm_id)
+        wrkr = category.objects.get(name='user')
+        wr= user_register.objects.filter(status=2).exclude(category_id=wrkr.id)
+        
+        if request.method == 'POST':
+            id = request.GET.get('tid')
+            
+            v = user_register.objects.get(id=id)
+            v.status=1
+            v.save()
+            print(v)
+        return render(request,'admin_rejected_workers.html',{'users': users,'wr':wr})
+    else:
+        return redirect('/')
+
+
 def admin_users_details(request):
-    return render(request,'admin_users_details.html')
+    if 'SAdm_id' in request.session:
+        if request.session.has_key('SAdm_id'):
+            SAdm_id = request.session['SAdm_id']
+        users = User.objects.filter(id=SAdm_id)
+        usr = category.objects.get(name='user')
+        ur= user_register.objects.filter(category_id=usr.id)
+        return render(request,'admin_users_details.html',{'users': users,'ur':ur})
+    else:
+        return redirect('/')
 
-def admin_user_profile_view(request):
-    return render(request,'admin_user_profile_view.html')
+def admin_user_profile_view(request,id):
+    if 'SAdm_id' in request.session:
+        if request.session.has_key('SAdm_id'):
+            SAdm_id = request.session['SAdm_id']
+        users = User.objects.filter(id=SAdm_id)
+        mem= user_register.objects.get(id=id)
 
-def admin_worker_profile_view(request):
-    return render(request,'admin_worker_profile_view.html')
+        return render(request,'admin_user_profile_view.html',{'users': users,'mem':mem})
+    else:
+        return redirect('/')
+
+def admin_worker_profile_view(request,id):
+    if 'SAdm_id' in request.session:
+        if request.session.has_key('SAdm_id'):
+            SAdm_id = request.session['SAdm_id']
+        users = User.objects.filter(id=SAdm_id)
+        mem= user_register.objects.get(id=id)
+        # wr=work_details.objects.get(worker_id=mem)
+
+        return render(request,'admin_worker_profile_view.html',{'users': users,'mem':mem})
+    else:
+        return redirect('/')
+
     
 def admin_workers_details(request):
     if 'SAdm_id' in request.session:
@@ -136,29 +230,63 @@ def admin_workers_details(request):
         return redirect('/')
 
 def admin_user_activity(request):
-    return render(request,'admin_user_activity.html')
+    if 'SAdm_id' in request.session:
+        if request.session.has_key('SAdm_id'):
+            SAdm_id = request.session['SAdm_id']
+        users = User.objects.filter(id=SAdm_id)
+
+        return render(request,'admin_user_activity.html',{'users': users})
+    else:
+        return redirect('/')
 
 def admin_workers_register(request):
-    return render(request,'admin_workers_register.html')
+    if 'SAdm_id' in request.session:
+        if request.session.has_key('SAdm_id'):
+            SAdm_id = request.session['SAdm_id']
+        users = User.objects.filter(id=SAdm_id)
+
+        return render(request,'admin_workers_register.html',{'users': users})
+    else:
+        return redirect('/')
 
 def admin_feedback_cards(request):
-    return render(request,'admin_feedback_cards.html')
+    if 'SAdm_id' in request.session:
+        if request.session.has_key('SAdm_id'):
+            SAdm_id = request.session['SAdm_id']
+        users = User.objects.filter(id=SAdm_id)
+
+        return render(request,'admin_feedback_cards.html',{'users': users})
+    else:
+        return redirect('/')
 
 def admin_workers_feedbacks(request):
-    return render(request,'admin_workers_feedbacks.html')
+    if 'SAdm_id' in request.session:
+        if request.session.has_key('SAdm_id'):
+            SAdm_id = request.session['SAdm_id']
+        users = User.objects.filter(id=SAdm_id)
+
+        return render(request,'admin_workers_feedbacks.html',{'users': users})
+    else:
+        return redirect('/')
 
 def admin_users_feedbacks(request):
-    return render(request,'admin_users_feedbacks.html')
+    if 'SAdm_id' in request.session:
+        if request.session.has_key('SAdm_id'):
+            SAdm_id = request.session['SAdm_id']
+        users = User.objects.filter(id=SAdm_id)
+
+        return render(request,'admin_users_feedbacks.html',{'users': users})
+    else:
+        return redirect('/')
 
 def admin_all_workers(request):
     if 'SAdm_id' in request.session:
         if request.session.has_key('SAdm_id'):
             SAdm_id = request.session['SAdm_id']
         users = User.objects.filter(id=SAdm_id)
-        wrkr = category.objects.get(name='worker')
-        wr= user_register.objects.filter(category_id=wrkr.id)
-        wrk= work_details.objects.get(worker_id_id=wr.id)
-        return render(request,'admin_all_workers.html',{'users': users,'wr':wr,'wrk':wrk})
+        wrkr = category.objects.get(name='user')
+        wr= user_register.objects.filter().exclude(category_id=wrkr.id)
+        return render(request,'admin_all_workers.html',{'users': users,'wr':wr})
     else:
         return redirect('/')
 
@@ -167,8 +295,9 @@ def admin_all_contractors(request):
         if request.session.has_key('SAdm_id'):
             SAdm_id = request.session['SAdm_id']
         users = User.objects.filter(id=SAdm_id)
-        
-        return render(request,'admin_all_contractors.html',{'users': users})
+        cokr = category.objects.get(name='contractor')
+        co= user_register.objects.filter(category_id=cokr.id)
+        return render(request,'admin_all_contractors.html',{'users': users,'co':co})
     else:
         return redirect('/')
 

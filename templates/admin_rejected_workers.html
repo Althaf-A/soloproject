@@ -25,18 +25,17 @@
                             <tr>
                                 <th>Sl.no</th>
                                 <th> Name </th>
-                                <th> work</th>
+                                <th> contact</th>
                                 <th> view profile</th>
                                 <th> Aprove </th>
-                                <th> Dissmiss </th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody> 
                             {% if wr %} {% for i in wr %}
                             <tr>
                                 <td>{{forloop.counter}}</td>
                                 <td>{{i.fullname}}</td>
-                                <td class="text-wrap text-justify">{{i.work_name.work_name}}</td>
+                                <td>{{i.contact_no}}</td>
                                 <td>
                                     <a href="/admin_worker_profile_view/{{i.id}}/">
                                         <div class="badge badge-outline-primary" style="width: 105px;">
@@ -45,28 +44,17 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <form action="/admin_new_worker_aprove/?tid={{i.id}}" method="post">
+                                    <form action="/admin_rejected_workers/?tid={{i.id}}" method="post">
                                         {%csrf_token%}
-                                        <button type="submit" class="btn btn-social-icon-text badge-outline-success"
-                                            style="width: 105px;">
-                                            <i class="mdi mdi-playlist-check"></i>&nbsp; Aprove
-                                        </button>
-                                    </form>
-                                </td>
-                                <td>
-                                    <form action="/reject_worker/?tid={{i.id}}" method="post">
-                                        {%csrf_token%}
-                                        <button type="submit" class="btn btn-social-icon-text btn-outline-danger"
-                                            style="width: 135px;">
-                                            <i class="mdi mdi-playlist-check"></i>&nbsp; Dissmiss
-                                        </button>
+                                    <button type="submit" class="btn btn-social-icon-text badge-outline-success" style="width: 105px;">
+                                        <i class="mdi mdi-playlist-check"></i>&nbsp; Aprove
+                                    </button>
                                     </form>
                                 </td>
                             </tr>
                             {% endfor %} {% else %}
                             <h5>Nothing to display...</h5>
-                            {% endif %}
-
+                             {% endif %}
                         </tbody>
                     </table>
                 </div>
@@ -96,7 +84,7 @@
     }
 
 
-
+    
 </script>
 
 {% endblock %}
