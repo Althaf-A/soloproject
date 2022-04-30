@@ -23,8 +23,7 @@
                         <thead>
                             <tr>
                                 <th>sl no</th>
-                                <th>from Date</th>
-                                <th>To Date</th>
+                                <th>post Date</th>
                                 <th>user name</th>
                                 <th>worker name</th>
                                 <th>work</th>
@@ -32,50 +31,20 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {% if mem %} {% for i in mem %}
                             <tr>
-                                <td>1</td>
-                                <td>10-02-2022</td>
-                                <td>10-02-2022</td>
-                                <td>aravind</td>
-                                <td>Akash</td>
-                                <td><span class="ps-2">painting wall</span></td>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{i.post_date|date:"d-m-Y"}}</td>
+                                <td>{{i.user_id.fullname}}</td>
+                                <td>{{i.worker_id.fullname}}</td>
+                                <td><span class="ps-2">{{i.work}}</span></td>
                                 <td>
-                                    <button type="button" class="btn btn-outline-primary btn-icon-text" data-toggle="modal" data-target="#myModal">Feed back</button>
+                                    <button type="button" class="btn btn-outline-primary btn-icon-text" data-toggle="modal" data-target="#myModal{{i.id}}">Feed back</button>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>10-02-2022</td>
-                                <td>10-02-2022</td>
-                                <td>aravind</td>
-                                <td>fuad</td>
-                                <td><span class="ps-2">painting wall</span></td>
-                                <td>
-                                    <button type="button" class="btn btn-outline-primary btn-icon-text" data-toggle="modal" data-target="#myModal">Feed back</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>10-02-2022</td>
-                                <td>10-02-2022</td>
-                                <td>aravind</td>
-                                <td>dawn</td>
-                                <td><span class="ps-2">plumbing</span></td>
-                               <td>
-                                    <button type="button" class="btn btn-outline-primary btn-icon-text" data-toggle="modal" data-target="#myModal">Feed back</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>10-02-2022</td>
-                                <td>10-02-2022</td>
-                                <td>aravind</td>
-                                <td>dani</td>
-                                <td><span class="ps-2">not bad</span></td>
-                                 <td>
-                                    <button type="button" class="btn btn-outline-primary btn-icon-text" data-toggle="modal" data-target="#myModal">Feed back</button>
-                                </td>
-                            </tr>
+                           {% endfor %} {% else %}
+                            <h5>Nothing to display...</h5>
+                            {% endif %}    
                         </tbody>
                     </table>
                 </div>
@@ -84,8 +53,8 @@
     </div>
 </div>
 <!-- Modal -->
-
-<div class="modal" id="myModal">
+{% for i in mem %}
+<div class="modal" id="myModal{{i.id}}">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
 
@@ -99,7 +68,7 @@
             <!-- Modal body -->
             <div class="modal-body">
                 <p class="col-12 col-sm-12 col-md-12 col-lg-12 ">
-                    veryfast and veryquick action relly thankfull to this platform
+                    {{i.feedback}}
                 </p>
             </div>
 
@@ -110,7 +79,7 @@
     </div>
 </div>
 <!-- modal end -->
-
+{% endfor %}
 
 <script>
     function myFunction() {

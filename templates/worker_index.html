@@ -61,21 +61,47 @@
       <ul class="nav">
         <li class="nav-item profile">
           <div class="profile-desc">
-            <div class="profile-pic">
-              <div class="count-indicator">
-                <img class="img-xs rounded-circle " src="{% static 'assets/images/dashboard/Img_5.jpg'%}" alt="">
-                <span class="count bg-success"></span>
-              </div> 
-              <div class="profile-name">
-                <h5 class="mb-0 font-weight-normal">ajay</h5>
-                <span>worker</span>
+              <div class="profile-pic">
+                  <div class="count-indicator">
+                      {% for z in z %}
+                      <img class="img-xs rounded-circle " src="{{z.photo.url}}" alt="">
+                      <span class="count bg-success"></span>
+                  </div>
+
+                  <div class="profile-name">
+                      <h5 class="mb-0 font-weight-normal">{{z.fullname }}</h5>
+                      <span>{{z.category.name}}</span>
+                  </div>
+
               </div>
-            </div>
-            <a href="#" id="profile-dropdown" data-bs-toggle="dropdown"></a>
-             </a>
-            <!-- </div> -->
+              <a href="#" id="profile-dropdown" data-bs-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
+              <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list" aria-labelledby="profile-dropdown">
+                  <a href="/account_trainer" class="dropdown-item preview-item">
+                      <div class="preview-thumbnail">
+                          <div class="preview-icon bg-dark rounded-circle">
+                              <i class="mdi mdi-settings text-primary"></i>
+                          </div>
+                      </div>
+                      <div class="preview-item-content">
+                          <p class="preview-subject ellipsis mb-1 text-small">Account settings</p>
+                      </div>
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a href="/changepassword_trainer" class="dropdown-item preview-item">
+                      <div class="preview-thumbnail">
+                          <div class="preview-icon bg-dark rounded-circle">
+                              <i class="mdi mdi-onepassword  text-info"></i>
+                          </div>
+                      </div>
+                      <div class="preview-item-content">
+                          <p class="preview-subject ellipsis mb-1 text-small">Change Password</p>
+                      </div>
+                  </a>
+
+                  </a>
+              </div>
           </div>
-        </li>
+      </li>
         <li class="nav-item nav-category">
           <span class="nav-link">Navigation</span>
         </li>
@@ -193,6 +219,7 @@
         </div>
         <!-- page-body-wrapper ends -->
       </div>
+      {% endfor %}
       <!-- modal js -->
       <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>

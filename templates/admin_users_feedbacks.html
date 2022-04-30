@@ -32,7 +32,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% if ur %} {% for i in mem %}
+                            {% if mem %} {% for i in mem %}
                             <tr>
                                 <td>{{forloop.counter}}</td>
                                 <td>{{i.post_date|date:"d-m-Y"}}</td>
@@ -41,7 +41,7 @@
                                 <td>{{i.work_type.work_type}}</td>
                                 <td><span class="ps-2">{{i.work}}</span></td>
                                 <td>
-                                    <button type="button" class="btn btn-outline-primary btn-icon-text" data-toggle="modal" data-target="#myModal">Feedback</button>
+                                    <button type="button" class="btn btn-outline-primary btn-icon-text" data-toggle="modal" data-target="#myModal{{i.id}}">Feedback</button>
                                 </td>
                             </tr>
                             {% endfor %} {% else %}
@@ -55,8 +55,8 @@
     </div>
 </div>
 <!-- Modal -->
-
-<div class="modal" id="myModal">
+{% for i in mem %}
+<div class="modal" id="myModal{{i.id}}">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
 
@@ -70,7 +70,7 @@
             <!-- Modal body -->
             <div class="modal-body">
                 <p class="col-12 col-sm-12 col-md-12 col-lg-12 ">
-                   {{ veryfast and veryquick action relly thankfull to this platform}}
+                   {{i.feedback_replay}}
                 </p>
             </div>
 
@@ -81,7 +81,7 @@
     </div>
 </div>
 <!-- modal end -->
-
+{% endfor %}
 
 <script>
     function myFunction() {

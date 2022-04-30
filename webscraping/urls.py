@@ -19,8 +19,8 @@ urlpatterns = [
     path('admin_user_profile_view/<int:id>/', views.admin_user_profile_view, name='admin_user_profile_view'),
     path('admin_worker_profile_view/<int:id>/', views.admin_worker_profile_view, name='admin_worker_profile_view'),
     path('admin_workers_details/', views.admin_workers_details, name='admin_workers_details'),
-    path('admin_workers_register/', views.admin_workers_register, name='admin_workers_register'),
-    path('admin_user_activity/', views.admin_user_activity, name='admin_user_activity'),
+    path('admin_workers_register/<int:id>/', views.admin_workers_register, name='admin_workers_register'),
+    path('admin_user_activity/<int:id>/', views.admin_user_activity, name='admin_user_activity'),
     path('admin_feedback_cards/', views.admin_feedback_cards, name='admin_feedback_cards'),
     path('admin_workers_feedbacks/', views.admin_workers_feedbacks, name='admin_workers_feedbacks'),
     path('admin_users_feedbacks/', views.admin_users_feedbacks, name='admin_users_feedbacks'),
@@ -29,6 +29,7 @@ urlpatterns = [
     path('admin_aproved_workers/', views.admin_aproved_workers, name='admin_aproved_workers'),
     path('admin_rejected_workers/', views.admin_rejected_workers, name='admin_rejected_workers'),
     path('reject_worker/', views.reject_worker, name='reject_worker'),
+    path('admin_all_workers_table/', views.admin_all_workers_table, name='admin_all_workers_table'),
 
 
 

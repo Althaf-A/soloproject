@@ -26,7 +26,7 @@
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-6 ">
                                     <select class="badge badge-outline-primary bg-dark text-light " id="wrkn" name="workname "><option style="display: none ">Work</option>
                                     {% for t in mem %}
-                                        <option value="{{t.id}}">{{t.work_name}}</option>
+                                        <option value="{{t.id}}">{{t.work_name.work_name}}</option>
                                     {% endfor %}
                                     </select>
                                 </div>

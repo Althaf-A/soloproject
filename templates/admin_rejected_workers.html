@@ -37,7 +37,7 @@
                                 <td>{{i.fullname}}</td>
                                 <td>{{i.contact_no}}</td>
                                 <td>
-                                    <a href="/admin_worker_profile_view/{{i.id}}/">
+                                    <a href="{% url 'admin_worker_profile_view' i.id %}">
                                         <div class="badge badge-outline-primary" style="width: 105px;">
                                             <i class="mdi mdi-playlist-remove"></i>&nbsp; view profile
                                         </div>

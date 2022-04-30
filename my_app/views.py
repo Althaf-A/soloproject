@@ -74,9 +74,9 @@ def Login(request):
         elif user_register.objects.filter(email=email, password=password, category_id=des2.id ,status=1).exists():
             member = user_register.objects.get(
                 email=request.POST['username'], password=request.POST['password'])
-            request.session['usernamec'] = member.category_id
-            request.session['usernamec1'] = member.fullname
-            request.session['usernamec2'] = member.id
+            request.session['usernamew'] = member.category_id
+            request.session['usernamew1'] = member.fullname
+            request.session['usernamew2'] = member.id
             return render(request, 'worker_dashboard.html', {'member': member})
 
         elif request.method == 'POST':
@@ -224,28 +224,46 @@ def admin_workers_details(request):
         if request.session.has_key('SAdm_id'):
             SAdm_id = request.session['SAdm_id']
         users = User.objects.filter(id=SAdm_id)
+        mem=work_details.objects.all()
 
-        return render(request,'admin_workers_details.html',{'users': users})
+        return render(request,'admin_workers_details.html',{'users': users,'mem':mem})
     else:
         return redirect('/')
 
-def admin_user_activity(request):
+@csrf_exempt
+def admin_all_workers_table(request):
+    if 'SAdm_id' in request.session:
+        dept_id = int(request.POST['depmt'])
+        desig_id = int(request.POST['desi'])
+
+        names = work_details.objects.filter( work_type_id=desig_id, work_name=dept_id).values(
+            'worker_id__fullname', 'work_city', 'user_id__account_no', 'user_id__bank_name', 'user_id__bank_branch', 'worker_id__id', 'worker_id__email', 'id')
+        print(dept_id)
+        print(desig_id)
+        print(names)
+        return render(request,'admin_all_workers_table.html',{'names': names})
+    else:
+        return redirect('/')
+
+def admin_user_activity(request,id):
     if 'SAdm_id' in request.session:
         if request.session.has_key('SAdm_id'):
             SAdm_id = request.session['SAdm_id']
         users = User.objects.filter(id=SAdm_id)
+        ur= feedback.objects.filter(user_id__id=id)
 
-        return render(request,'admin_user_activity.html',{'users': users})
+        return render(request,'admin_user_activity.html',{'users': users,'ur':ur})
     else:
         return redirect('/')
 
-def admin_workers_register(request):
+def admin_workers_register(request,id):
     if 'SAdm_id' in request.session:
         if request.session.has_key('SAdm_id'):
             SAdm_id = request.session['SAdm_id']
         users = User.objects.filter(id=SAdm_id)
+        ur= feedback.objects.filter(worker_id__id=id)
 
-        return render(request,'admin_workers_register.html',{'users': users})
+        return render(request,'admin_workers_register.html',{'users': users,'ur':ur})
     else:
         return redirect('/')
 
@@ -264,8 +282,9 @@ def admin_workers_feedbacks(request):
         if request.session.has_key('SAdm_id'):
             SAdm_id = request.session['SAdm_id']
         users = User.objects.filter(id=SAdm_id)
+        mem= feedback.objects.filter(replay_status=0)
 
-        return render(request,'admin_workers_feedbacks.html',{'users': users})
+        return render(request,'admin_workers_feedbacks.html',{'users': users,'mem':mem})
     else:
         return redirect('/')
 
@@ -274,8 +293,9 @@ def admin_users_feedbacks(request):
         if request.session.has_key('SAdm_id'):
             SAdm_id = request.session['SAdm_id']
         users = User.objects.filter(id=SAdm_id)
+        mem= feedback.objects.filter(replay_status=1)
 
-        return render(request,'admin_users_feedbacks.html',{'users': users})
+        return render(request,'admin_users_feedbacks.html',{'users': users,'mem':mem})
     else:
         return redirect('/')
 
@@ -284,11 +304,12 @@ def admin_all_workers(request):
         if request.session.has_key('SAdm_id'):
             SAdm_id = request.session['SAdm_id']
         users = User.objects.filter(id=SAdm_id)
-        wrkr = category.objects.get(name='user')
-        wr= user_register.objects.filter().exclude(category_id=wrkr.id)
+        wrkr = category.objects.get(name='worker')
+        wr= user_register.objects.filter(category_id=wrkr.id)
         return render(request,'admin_all_workers.html',{'users': users,'wr':wr})
     else:
         return redirect('/')
+
 
 def admin_all_contractors(request):
     if 'SAdm_id' in request.session:
@@ -367,7 +388,7 @@ def user_history_list(request):
         if request.session.has_key('username'):
             username = request.session['username']
         z = user_register.objects.filter(id=username2)
-        mem= feedback.objects.filter(user_id_id=username,replay_status='0')
+        mem= feedback.objects.filter(user_id_id=username2,replay_status='0')
         return render(request,'user_history_list.html', {'z': z,'mem':mem})
     else:
         return redirect('/')
@@ -379,7 +400,7 @@ def user_post_feedback(request):
         if request.session.has_key('username'):
             username = request.session['username']
         z = user_register.objects.filter(id=username2)
-        mem= feedback.objects.filter(user_id_id=username,replay_status='1')
+        mem= feedback.objects.filter(user_id_id=username2,replay_status='1')
         return render(request,'user_post_feedback.html', {'z': z,'mem':mem})
     else:
         return redirect('/')
@@ -404,11 +425,9 @@ def save_user_feedback(request):
     ######################worker##########
     
 def worker_dashboard(request):
-    if 'usernametw2' in request.session:
-
+    if 'usernamew2' in request.session:
         if request.session.has_key('usernamew2'):
             usernamew2 = request.session['usernamew2']
-
         z = user_register.objects.filter(id=usernamew2)
 
         return render(request,'worker_dashboard.html', {'z': z})
@@ -417,7 +436,15 @@ def worker_dashboard(request):
 
 
 def worker_work_details_cards(request):
-    return render(request,'worker_work_details_cards.html')
+    if 'usernamew2' in request.session:
+        if request.session.has_key('usernamew2'):
+            usernamew2 = request.session['usernamew2']
+        z = user_register.objects.filter(id=usernamew2)
+
+        return render(request,'worker_work_details_cards.html', {'z': z})
+    else:
+        return redirect('/')
+
 
 def worker_post_work_details(request):
     return render(request,'worker_post_work_details.html')
