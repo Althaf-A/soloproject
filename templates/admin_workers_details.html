@@ -14,7 +14,7 @@
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-6 ">
                                     <select class="badge badge-outline-primary bg-dark text-light " id="depmt" name="dep "><option style="display: none ">Work Type</option>
                                         {% for i in mem %}
-                                        <option value="{{ i.id }}">{{i.work_type.work_type}}</option>
+                                        <option value="{{ i.id }}">{{i.category.name}}</option>
                                         {% endfor %}
                                       </select>
                                 </div>
@@ -28,7 +28,7 @@
                                     <select class="badge badge-outline-primary bg-dark text-light " id="desi" name="desig "><option style="display: none ">Work</option>
 
                                         {% for t in mem %}
-                                        <option value="{{t.id}}">{{t.work_name.work_name}}</option>
+                                        <option value="{{t.id}}">{{t.work_name}}</option>
                                         {% endfor %}
                                     </select>
                                 </div>
@@ -61,7 +61,7 @@
         const csrf = document.getElementById('csrfmiddlewaretoken')
         console.log("hihsd", depmt)
         jQuery.ajax({
-            url: 'admin_all_workers_table',
+            url: '/admin_all_workers_table/',
             method: 'post',
             data: {
 

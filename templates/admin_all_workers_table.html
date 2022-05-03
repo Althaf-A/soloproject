@@ -26,9 +26,9 @@
                 {% if names %} {% for i in names %}
                 <tr>
                     <td>{{forloop.counter}}</td>
-                    <td>{{i.worker_id__fullname}}</td>
+                    <td>{{i.fullname}}</td>
                     <td>{{i.city}}</td>
-                    <td>{{i.work_type}}</td>
+                    <td>{{i.category.name}}</td>
                     <td>{{i.work_name}}</td>
                     <td>
                         <a href="{% url 'admin_worker_profile_view' i.id %}" class="btn btn-outline-primary mr-2 ml-6  "

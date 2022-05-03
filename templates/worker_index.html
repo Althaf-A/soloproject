@@ -114,11 +114,11 @@
           </a>
         </li>
         <li class="nav-item menu-items">
-          <a class="nav-link" href="{% url 'worker_work_details_cards' %}">
+          <a class="nav-link" href="{% url 'worker_view_edit_details' %}">
             <span class="menu-icon">
               <i class="mdi mdi-account-key"></i>
             </span>
-            <span class="menu-title"> Work Details</span>
+            <span class="menu-title"> Work Profile</span>
           </a>
         </li>
         <li class="nav-item menu-items">
@@ -138,7 +138,7 @@
           </a>
         </li>
         <li class="nav-item menu-items">
-          <a class="nav-link" href="{% url 'worker_feedback_cards' %}">
+          <a class="nav-link" href="{% url 'worker_post_feedback' %}">
             <span class="menu-icon">
               <i class="mdi mdi-library-plus text-success"></i>
             </span>
@@ -146,7 +146,7 @@
           </a>
         </li>
         <li class="nav-item menu-items">
-          <a class="nav-link" href="{% url 'worker_curent_work' %}">
+          <a class="nav-link" href="{% url 'worker_work_status_cards' %}">
             <span class="menu-icon">
               <i class="mdi mdi-comment-question-outline"></i>
             </span>
@@ -161,7 +161,7 @@
       <!-- partial:partials/_navbar.html -->
       <nav class="navbar p-0 fixed-top d-flex flex-row">
         <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-          <a class="sidebar-brand brand-logo-mini text-light text-decoration-none" href="user_index">
+          <a class="sidebar-brand brand-logo-mini text-light text-decoration-none" href="worker_index">
             <p style="color: white; opacity: 1; font-size: 35px;margin-top: 3vh;padding-left: 100px;">PROJECT</p>
           </a>
         </div>
@@ -175,7 +175,7 @@
               <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
                 <div class="navbar-profile">
                   
-                  &nbsp;ajay<i class="mdi mdi-menu-down d-none d-sm-block"></i>
+                  &nbsp;{{z.fullname }}<i class="mdi mdi-menu-down d-none d-sm-block"></i>
                 </div>
               </a>
               <div id="log" class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">

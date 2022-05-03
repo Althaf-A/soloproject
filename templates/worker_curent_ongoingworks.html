@@ -30,42 +30,25 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {% if mem %} {% for i in mem %}
                             <tr>
-                                <td>1</td>
-                                <td>10-02-2022</td>
-                                <td>aromal</td>
-                                <td><span class="ps-2">create pool</span></td>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{i.from_date|date:"d-m-Y"}}</td>
+                                <td>{{i.user_id.fullname}}</td>
+                                <td><span class="ps-2">{{i.work}}</span></td>
                                 <td>
-                                    <a href="{% url 'admin_worker_profile_view' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">Complete</a> 
-                                </td>
+                                <form action="/worker_curent_ongoingworks/?tid={{i.id}}" method="post">
+                                    {%csrf_token%}
+                                    <button type="submit" class="btn btn-outline-success mr-2 ml-6 " style="font-size: 15px; font-weight: 100;">
+                                        <i class="mdi mdi-playlist-check"></i>&nbsp; Complete
+                                    </button>
+                                </form>
+                            </td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>10-02-2022</td>
-                                <td>aromal</td>
-                                <td><span class="ps-2">painting wall</span></td>
-                                <td>
-                                    <a href="{% url 'admin_worker_profile_view' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">Complete</a> 
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>10-02-2022</td>
-                                <td>aromal</td>
-                                <td><span class="ps-2">plumbing</span></td>
-                                <td>
-                                    <a href="{% url 'admin_worker_profile_view' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">Complete</a> 
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>10-02-2022</td>
-                                <td>aromal</td>
-                                <td><span class="ps-2">not bad</span></td>
-                                <td>
-                                    <a href="{% url 'admin_worker_profile_view' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">Complete</a> 
-                                </td>
-                            </tr>
+                            {% endfor %} {% else %}
+                            <h5>Nothing to display...</h5>
+                            {% endif %}
+                            
                         </tbody>
                     </table>
                 </div>

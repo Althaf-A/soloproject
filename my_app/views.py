@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 import random
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import auth, User
+from numpy import var
 from my_app.models import *
 from datetime import datetime
 from webscraping.settings import EMAIL_HOST_USER
@@ -70,14 +71,16 @@ def Login(request):
             request.session['usernamew'] = member.category_id
             request.session['usernamew1'] = member.fullname
             request.session['usernamew2'] = member.id
-            return render(request, 'worker_dashboard.html', {'member': member})
+            z = user_register.objects.filter(id=member.id)
+            return render(request, 'worker_dashboard.html', {'member': member,'z':z})
         elif user_register.objects.filter(email=email, password=password, category_id=des2.id ,status=1).exists():
             member = user_register.objects.get(
                 email=request.POST['username'], password=request.POST['password'])
             request.session['usernamew'] = member.category_id
             request.session['usernamew1'] = member.fullname
             request.session['usernamew2'] = member.id
-            return render(request, 'worker_dashboard.html', {'member': member})
+            z = user_register.objects.filter(id=member.id)
+            return render(request, 'worker_dashboard.html', {'member': member,'z':z})
 
         elif request.method == 'POST':
             username = request.POST.get('username', None)
@@ -224,7 +227,8 @@ def admin_workers_details(request):
         if request.session.has_key('SAdm_id'):
             SAdm_id = request.session['SAdm_id']
         users = User.objects.filter(id=SAdm_id)
-        mem=work_details.objects.all()
+        des= category.objects.get(name='user')
+        mem=user_register.objects.filter().exclude(category_id=des.id)
 
         return render(request,'admin_workers_details.html',{'users': users,'mem':mem})
     else:
@@ -234,10 +238,10 @@ def admin_workers_details(request):
 def admin_all_workers_table(request):
     if 'SAdm_id' in request.session:
         dept_id = int(request.POST['depmt'])
-        desig_id = int(request.POST['desi'])
+        desig_id = request.POST['desi']
 
-        names = work_details.objects.filter( work_type_id=desig_id, work_name=dept_id).values(
-            'worker_id__fullname', 'work_city', 'user_id__account_no', 'user_id__bank_name', 'user_id__bank_branch', 'worker_id__id', 'worker_id__email', 'id')
+        names = user_register.objects.filter( category_id=dept_id, work_name=desig_id).values(
+            'category__name', 'city',  'fullname', 'work_name', 'id')
         print(dept_id)
         print(desig_id)
         print(names)
@@ -340,7 +344,7 @@ def user_search_worker(request):
             username2 = request.session['username2']
 
         z = user_register.objects.filter(id=username2)
-        mem=work_details.objects.all()
+        mem=user_register.objects.all()
 
         return render(request,'user_search_worker.html',{'mem':mem,'z': z})
     else:
@@ -353,7 +357,7 @@ def user_search_worker_table(request):
         workn = request.POST['workname']
         citty = request.POST['citty']
 
-        names = work_details.objects.filter(work_city=citty, work_type_id=workt, work_name=workn).values(
+        names = user_register.objects.filter(city=citty, work_type_id=workt, work_name=workn).values(
             'worker_id__fullname', 'work_city', 'user_id__account_no', 'user_id__bank_name', 'user_id__bank_branch', 'worker_id__id', 'user_id__email', 'id')
         print(workt)
         print(workn)
@@ -400,7 +404,7 @@ def user_post_feedback(request):
         if request.session.has_key('username'):
             username = request.session['username']
         z = user_register.objects.filter(id=username2)
-        mem= feedback.objects.filter(user_id_id=username2,replay_status='1')
+        mem= feedback.objects.filter(user_id_id=username2,replay_status='0')
         return render(request,'user_post_feedback.html', {'z': z,'mem':mem})
     else:
         return redirect('/')
@@ -414,7 +418,7 @@ def save_user_feedback(request):
         vars = feedback.objects.get(id=tid)
         print(vars.id)
         vars.feedback_replay = request.POST.get('feedback')
-        vars.replay_status = 0
+        vars.replay_status = 1
         print('hello')
         vars.save()
         return redirect('user_post_feedback')
@@ -429,58 +433,145 @@ def worker_dashboard(request):
         if request.session.has_key('usernamew2'):
             usernamew2 = request.session['usernamew2']
         z = user_register.objects.filter(id=usernamew2)
-
         return render(request,'worker_dashboard.html', {'z': z})
     else:
         return redirect('/')
 
 
-def worker_work_details_cards(request):
+def worker_view_edit_details(request):
     if 'usernamew2' in request.session:
         if request.session.has_key('usernamew2'):
             usernamew2 = request.session['usernamew2']
         z = user_register.objects.filter(id=usernamew2)
-
-        return render(request,'worker_work_details_cards.html', {'z': z})
+        return render(request,'worker_view_edit_details.html', {'z': z})
     else:
         return redirect('/')
 
-
-def worker_post_work_details(request):
-    return render(request,'worker_post_work_details.html')
-
-def worker_view_edit_details(request):
-    return render(request,'worker_view_edit_details.html')
-
 def worker_edit_work_details(request):
-    return render(request,'worker_edit_work_details.html')
+    if 'usernamew2' in request.session:
+        if request.session.has_key('usernamew2'):
+            usernamew2 = request.session['usernamew2']
+        z = user_register.objects.filter(id=usernamew2)
+        mem= category.objects.filter().exclude(name='user')
+        if request.method == 'POST':         
+            v = user_register.objects.get(id=usernamew2)
+            v.work_name=request.POST['workname']
+            v.experience=request.POST['experience']
+            v.city=request.POST['city']
+            ut=user_register.objects.get(id=request.POST['category'])
+            v.category_id= ut.id
+            v.save()
+        return render(request,'worker_edit_work_details.html', {'z': z,'mem':mem})
+    else:
+        return redirect('/')
 
 def worker_user_enquiry_list(request):
-    return render(request,'worker_user_enquiry_list.html')
+    if 'usernamew2' in request.session:
+        if request.session.has_key('usernamew2'):
+            usernamew2 = request.session['usernamew2']
+        z = user_register.objects.filter(id=usernamew2)
+        mem = enquiry.objects.filter(worker_id_id=usernamew2,status=0)
+        if request.method == 'POST':
+            id = request.GET.get('tid')           
+            v = enquiry.objects.get(id=id)
+            v.enquiry_reply=request.POST['reply']
+            v.status=1
+            v.save()
+        return render(request,'worker_user_enquiry_list.html', {'z': z,'mem':mem})
+    else:
+        return redirect('/')
 
 def worker_history_list(request):
-    return render(request,'worker_history_list.html')
-
-def worker_feedback_cards(request):
-    return render(request,'worker_feedback_cards.html')
+    if 'usernamew2' in request.session:
+        if request.session.has_key('usernamew2'):
+            usernamew2 = request.session['usernamew2']
+        z = user_register.objects.filter(id=usernamew2)
+        mem = feedback.objects.filter(worker_id=usernamew2,work_status=1).exclude(replay_status=0)
+        return render(request,'worker_history_list.html', {'z': z,'mem':mem})
+    else:
+        return redirect('/')
 
 def worker_post_feedback(request):
-    return render(request,'worker_post_feedback.html')
-
-def worker_view_feedback(request):
-    return render(request,'worker_view_feedback.html')
+    if 'usernamew2' in request.session:
+        if request.session.has_key('usernamew2'):
+             usernamew2 = request.session['usernamew2']
+        z = user_register.objects.filter(id=usernamew2)
+        mem = feedback.objects.filter(worker_id_id=usernamew2,replay_status=0)
+        if request.method == 'POST':
+            id = request.GET.get('tid')           
+            v = feedback.objects.get(id=id)
+            v.feedback=request.POST['feedback']
+            v.replay_status=1
+            v.post_date=datetime.now()
+            v.save()
+        return render(request,'worker_post_feedback.html', {'z': z,'mem':mem})
+    else:
+        return redirect('/')
 
 def worker_work_status_cards(request):
-    return render(request,'worker_work_status_cards.html')
+    if 'usernamew2' in request.session:
+        if request.session.has_key('usernamew2'):
+            usernamew2 = request.session['usernamew2']
+        z = user_register.objects.filter(id=usernamew2)
+        return render(request,'worker_work_status_cards.html', {'z': z})
+    else:
+        return redirect('/')
 
 def worker_curent_work(request):
-    return render(request,'worker_curent_work.html')
+    if 'usernamew2' in request.session:
+        if request.session.has_key('usernamew2'):
+            usernamew2 = request.session['usernamew2']
+        z = user_register.objects.filter(id=usernamew2)
+        return render(request,'worker_curent_work.html', {'z': z})
+    else:
+        return redirect('/')
     
 def worker_completed_workes(request):
-    return render(request,'worker_completed_workes.html')
+    if 'usernamew2' in request.session:
+        if request.session.has_key('usernamew2'):
+            usernamew2 = request.session['usernamew2']
+        z = user_register.objects.filter(id=usernamew2)
+        mem = feedback.objects.filter(worker_id_id=usernamew2,work_status=1)
+        return render(request,'worker_completed_workes.html', {'z': z,'mem':mem})
+    else:
+        return redirect('/')
 
 def worker_curent_ongoingworks(request):
-    return render(request,'worker_curent_ongoingworks.html')
+    if 'usernamew2' in request.session:
+        if request.session.has_key('usernamew2'):
+            usernamew2 = request.session['usernamew2']
+        z = user_register.objects.filter(id=usernamew2)
+        mem = feedback.objects.filter(worker_id_id=usernamew2,work_status=0)
+        if request.method == 'POST':
+            id = request.GET.get('tid')
+            
+            v = feedback.objects.get(id=id)
+            v.work_status=1
+            v.to_date=datetime.now()
+            v.save()
+        return render(request,'worker_curent_ongoingworks.html', {'z': z,'mem':mem})
+    else:
+        return redirect('/')
 
 def worker_curent_addwork(request):
-    return render(request,'worker_curent_addwork.html')
+    if 'usernamew2' in request.session:
+        if request.session.has_key('usernamew2'):
+            usernamew2 = request.session['usernamew2']
+        z = user_register.objects.filter(id=usernamew2)
+        des= category.objects.get(name='user')
+        mem= user_register.objects.filter(category_id=des.id) 
+        pb=feedback()
+        if request.method == 'POST':
+            var=user_register.objects.get(id=usernamew2)         
+            pb.worker_id_id = var.id
+            pb.from_date=request.POST['fromdate']
+            pb.work=request.POST['work']
+            ut=user_register.objects.get(id=request.POST['user'])
+            print(ut)
+            pb.work_status=0
+            pb.replay_status=0
+            pb.user_id_id= ut.id
+            pb.save()
+        return render(request,'worker_curent_addwork.html', {'z': z,'mem':mem})
+    else:
+        return redirect('/')

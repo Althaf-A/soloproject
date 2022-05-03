@@ -25,57 +25,28 @@
                                 <th>sl no</th>
                                 <th>from Date</th>
                                 <th>To Date</th>
-                                <th>user</th>
+                                <th>user name</th>
                                 <th>Work Type</th>
                                 <th>work</th>
                                 <th>post Feedback</th>
                             </tr>
                         </thead>
                         <tbody>
+                            {% if mem %} {% for i in mem %}
                             <tr>
-                                <td>1</td>
-                                <td>10-02-2022</td>
-                                <td>10-02-2022</td>
-                                <td>jishnu</td>
-                                <td>Contractor</td>
-                                <td><span class="ps-2">create pool</span></td>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{i.from_date|date:"d-m-Y"}}</td>
+                                <td>{{i.to_date|date:"d-m-Y"}}</td>
+                                <td>{{i.worker_id.fullname}}</td>
+                                <td>{{i.worker_id.category.name}}</td>
+                                <td><span class="ps-2">{{i.work}}</span></td>
                                 <td>
-                                    <button type="button" class="btn btn-outline-success btn-icon-text" data-toggle="modal" data-target="#myModal">Post Feedback</button>
+                                    <button type="button" class="btn btn-outline-success btn-icon-text" data-toggle="modal" data-target="#myModal{{i.id}}">Post Feedback</button>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>10-02-2022</td>
-                                <td>10-02-2022</td>
-                                <td>arun</td>
-                                <td>worker</td>
-                                <td><span class="ps-2">painting wall</span></td>
-                                <td>
-                                    <button type="button" class="btn btn-outline-success btn-icon-text" data-toggle="modal" data-target="#myModal">Post Feedback</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>10-02-2022</td>
-                                <td>10-02-2022</td>
-                                <td>arun</td>
-                                <td>Contractor</td>
-                                <td><span class="ps-2">plumbing</span></td>
-                               <td>
-                                    <button type="button" class="btn btn-outline-success btn-icon-text" data-toggle="modal" data-target="#myModal">Post Feedback</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>10-02-2022</td>
-                                <td>10-02-2022</td>
-                                <td>akjdjn</td>
-                                <td>worker</td>
-                                <td><span class="ps-2">build room</span></td>
-                                 <td>
-                                    <button type="button" class="btn btn-outline-success btn-icon-text" data-toggle="modal" data-target="#myModal">Post Feedback</button>
-                                </td>
-                            </tr>
+                            {% endfor %} {% else %}
+                            <h5>Nothing to display...</h5>
+                             {% endif %}
                         </tbody>
                     </table>
                 </div>
@@ -84,7 +55,8 @@
     </div>
 </div>
 <!-- Modal -->
-<div class="modal" id="myModal">
+{% for i in mem %}
+<div class="modal" id="myModal{{i.id}}">
     <div class="modal-dialog">
         <div class="col-12 grid-margin stretch-card bg-dark text-light modal-content">
             <!-- Modal Header -->
@@ -95,10 +67,10 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <form method="post" action="">
+            <form method="post" action="/worker_post_feedback/?tid={{i.id}}">
                 {% csrf_token %}
                 <div class="modal-body">
-                    <textarea class="col-12 grid-margin stretch-card text-light" style="background-color: rgba(66, 65, 65, 0.267)" rows="6" name="review" Required></textarea>
+                    <textarea class="col-12 grid-margin stretch-card text-light" style="background-color: rgba(66, 65, 65, 0.267)" rows="6" name="feedback" Required></textarea>
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
@@ -111,6 +83,7 @@
         </div>
     </div>
 </div>
+{% endfor %}
 <!-- modal end -->
 
 

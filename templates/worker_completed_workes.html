@@ -30,34 +30,17 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {% if mem %} {% for i in mem %}
                             <tr>
-                                <td>1</td>
-                                <td>10-02-2022</td>
-                                <td>10-02-2022</td>
-                                <td>aromal</td>
-                                <td><span class="ps-2">create pool</span></td>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{i.from_date|date:"d-m-Y"}}</td>
+                                <td>{{i.to_date|date:"d-m-Y"}}</td>
+                                <td>{{i.user_id.fullname}}</td>
+                                <td><span class="ps-2">{{i.work}}</span></td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>10-02-2022</td>
-                                <td>10-02-2022</td>
-                                <td>aromal</td>
-                                <td><span class="ps-2">painting wall</span></td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>10-02-2022</td>
-                                <td>10-02-2022</td>
-                                <td>aromal</td>
-                                <td><span class="ps-2">plumbing</span></td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>10-02-2022</td>
-                                <td>10-02-2022</td>
-                                <td>aromal</td>
-                                <td><span class="ps-2">not bad</span></td>
-                            </tr>
+                            {% endfor %} {% else %}
+                            <h5>Nothing to display...</h5>
+                            {% endif %}
                         </tbody>
                     </table>
                 </div>

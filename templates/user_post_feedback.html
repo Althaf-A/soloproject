@@ -38,7 +38,7 @@
                                 <td>{{i.from_date|date:"d-m-Y"}}</td>
                                 <td>{{i.to_date|date:"d-m-Y"}}</td>
                                 <td>{{i.worker_id.fullname}}</td>
-                                <td>{{i.work_type.work_type}}</td>
+                                <td>{{i.worker_id.category.name}}</td>
                                 <td><span class="ps-2">{{i.work}}</span></td>
                                 <td>
                                     <button type="button" class="btn btn-outline-success btn-icon-text" data-toggle="modal" data-target="#myModal{{i.id}}">Post Feedback</button>

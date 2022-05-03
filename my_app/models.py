@@ -3,10 +3,6 @@ from django.db import models
 
 # Create your models here.
 
-class work_type(models.Model):
-     work_type = models.CharField(max_length=100)
-class work_name(models.Model):
-     work_name = models.CharField(max_length=200)
 
 class category(models.Model):
      name = models.CharField(max_length=100)
@@ -22,32 +18,32 @@ class user_register(models.Model):
     contact_no = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
     category = models.ForeignKey(category, on_delete=models.SET_NULL,related_name='dep', null=True, blank=True, default='')
-    work_name = models.ForeignKey(work_name, on_delete=models.SET_NULL, related_name='wrname',null=True,blank=True, default='')
-    regdate=models.DateField(default='')
+    regdate=models.DateField(auto_now_add=False, auto_now=False,  null=True, blank=True)
     status = models.CharField(max_length=20,default='0')
     photo = models.FileField(upload_to='images/', null=True, blank=True)
-
-class work_details(models.Model):
-    work_type = models.ForeignKey(work_type, on_delete=models.SET_NULL, related_name='desgn',null=True,blank=True, default='')
-    work_name = models.ForeignKey(work_name, on_delete=models.SET_NULL, related_name='wrkename',null=True,blank=True, default='')
-    contact_no=models.CharField(max_length=200,default='')
-    category_id = models.ForeignKey(category, on_delete=models.SET_NULL,related_name='worker_dep', null=True, blank=True, default='')
-    work_status = models.CharField(max_length=20,default='0')
-    worker_id= models.ForeignKey(user_register, on_delete=models.SET_NULL,related_name='worker_id', null=True, blank=True, default='')
-    work_city = models.CharField(max_length=100,default='')
     experience = models.CharField(max_length=20,default='0')
+    work_name = models.CharField(max_length=200)
+   
+
+    
 
 class feedback(models.Model):
     user_id= models.ForeignKey(user_register, on_delete=models.SET_NULL,related_name='userid', null=True, blank=True, default='')
     worker_id= models.ForeignKey(user_register, on_delete=models.SET_NULL,related_name='worker1', null=True, blank=True, default='')
-    category_id = models.ForeignKey(category, on_delete=models.SET_NULL,related_name='admin', null=True, blank=True, default='')
-    work_name = models.ForeignKey(work_name, on_delete=models.SET_NULL, related_name='wrkname',null=True,blank=True, default='')
-    work_type = models.ForeignKey(work_type, on_delete=models.SET_NULL, related_name='worktyp',null=True,blank=True, default='')
     work =  models.CharField(max_length=300,default='')
-    from_date=models.DateField(default='')
-    to_date=models.DateField(default='')
-    post_date=models.DateField(default='')
-    replay_date=models.DateField(default='')
+    from_date=models.DateField(auto_now_add=False, auto_now=False,  null=True, blank=True)
+    to_date=models.DateField(auto_now_add=False, auto_now=False,  null=True, blank=True)
+    post_date=models.DateField(auto_now_add=False, auto_now=False,  null=True, blank=True)
+    replay_date=models.DateField(auto_now_add=False, auto_now=False,  null=True, blank=True)
     feedback = models.CharField(max_length=300)
     feedback_replay = models.CharField(max_length=300)
     replay_status = models.CharField(max_length=20,default='0')
+    work_status = models.CharField(max_length=20,default='0')
+
+class enquiry(models.Model):
+    user_id= models.ForeignKey(user_register, on_delete=models.SET_NULL,related_name='useride', null=True, blank=True, default='')
+    worker_id= models.ForeignKey(user_register, on_delete=models.SET_NULL,related_name='worker1e', null=True, blank=True, default='')
+    enquiry = models.CharField(max_length=300)
+    enquiry_replay = models.CharField(max_length=300)
+    status = models.CharField(max_length=20,default='0')
+

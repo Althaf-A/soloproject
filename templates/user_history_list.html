@@ -24,6 +24,7 @@
                             <tr>
                                 <th>sl no</th>
                                 <th>Post Date</th>
+                                <th>Reply Date</th>
                                 <th>worker</th>
                                 <th>worker type</th>
                                 <th>work</th>
@@ -35,11 +36,15 @@
                             <tr>
                                 <td>{{forloop.counter}}</td>
                                 <td>{{i.post_date|date:"d-m-Y"}}</td>
+                                <td>{{i.replay_date|date:"d-m-Y"}}</td>
                                 <td>{{i.work_name.work_name}}</td>
                                 <td>{{i.work_type.work_type}}</td>
                                 <td><span class="ps-2">{{i.work}}</span></td>
                                 <td>
-                                    <button type="button" class="btn btn-outline-primary btn-icon-text" data-toggle="modal" data-target="#myModal{{i.id}}">Feedback</button>
+                                    <button type="button" class="btn btn-outline-primary btn-icon-text" data-toggle="modal" data-target="#myModal{{i.id}}">Worker Feedback</button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-outline-primary btn-icon-text" data-toggle="modal" data-target="#myModal1{{i.id}}">Reply</button>
                                 </td>
                             </tr>
                             {% endfor %} {% else %}
@@ -69,6 +74,32 @@
             <div class="modal-body">
                 <p class="col-12 col-sm-12 col-md-12 col-lg-12 ">
                     {{i.feedback}}
+                </p>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer"></div>
+
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<!-- modal end -->
+<div class="modal" id="myModal1{{i.id}}">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Feedback Reply</h4>
+                <button type="button" style="color: white;" class="close" data-dismiss="modal">&times;
+                </button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <p class="col-12 col-sm-12 col-md-12 col-lg-12 ">
+                    {{i.feedback_replay}}
                 </p>
             </div>
 

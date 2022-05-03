@@ -45,15 +45,11 @@ urlpatterns = [
 
 ############################worker########################
     path('worker_dashboard/', views.worker_dashboard, name='worker_dashboard'),
-    path('worker_work_details_cards/', views.worker_work_details_cards, name='worker_work_details_cards'),
-    path('worker_post_work_details/', views.worker_post_work_details, name='worker_post_work_details'),
     path('worker_view_edit_details/', views.worker_view_edit_details, name='worker_view_edit_details'),
     path('worker_edit_work_details/', views.worker_edit_work_details, name='worker_edit_work_details'),
     path('worker_user_enquiry_list/', views.worker_user_enquiry_list, name='worker_user_enquiry_list'),
     path('worker_history_list/', views.worker_history_list, name='worker_history_list'),
-    path('worker_feedback_cards/', views.worker_feedback_cards, name='worker_feedback_cards'),
     path('worker_post_feedback/', views.worker_post_feedback, name='worker_post_feedback'),
-    path('worker_view_feedback/', views.worker_view_feedback, name='worker_view_feedback'),
     path('worker_work_status_cards/', views.worker_work_status_cards, name='worker_work_status_cards'),
     path('worker_completed_workes/', views.worker_completed_workes, name='worker_completed_workes'),
     path('worker_curent_work/', views.worker_curent_work, name='worker_curent_work'),
