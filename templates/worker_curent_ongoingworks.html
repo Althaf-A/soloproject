@@ -56,7 +56,13 @@
         </div>
     </div>
 </div>
-
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{% if msg_success %}
+  <script>
+    alert('{{ msg_success }}')
+    javascript: history.go(-2);    
+  </script>
+  {% endif %}
 <script>
     function myFunction() {
         var input, filter, table, tr, td, i, txtValue;

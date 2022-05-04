@@ -425,7 +425,24 @@ def save_user_feedback(request):
     else:
         return redirect('/')
 
+# def account_user(request):
+#     if 'username2' in request.session:
+#         if request.session.has_key('username2'):
+#             username2 = request.session['username2']
+#         z = user_register.objects.filter(id=username2)
+#         return render(request,'account_user.html', {'z': z})
+#     else:
+#         return redirect('/')
 
+# def imagechange(request):
+
+#     if request.method == 'POST':
+#         id = request.GET.get('id')
+#         abc = user_register.objects.get(id=id)
+#         abc.photo = request.FILES['filenamees']
+#         abc.save()
+#         return redirect('account_trainer')
+#     return render(request, 'account_trainer.html')
     ######################worker##########
     
 def worker_dashboard(request):
@@ -461,6 +478,7 @@ def worker_edit_work_details(request):
             ut=user_register.objects.get(id=request.POST['category'])
             v.category_id= ut.id
             v.save()
+            
         return render(request,'worker_edit_work_details.html', {'z': z,'mem':mem})
     else:
         return redirect('/')
@@ -504,6 +522,8 @@ def worker_post_feedback(request):
             v.replay_status=1
             v.post_date=datetime.now()
             v.save()
+            msg_success = " Feedback Posted successfully"
+            return render(request, 'worker_post_feedback.html', {'z': z,'mem':mem,'msg_success': msg_success})
         return render(request,'worker_post_feedback.html', {'z': z,'mem':mem})
     else:
         return redirect('/')
@@ -549,6 +569,8 @@ def worker_curent_ongoingworks(request):
             v.work_status=1
             v.to_date=datetime.now()
             v.save()
+            msg_success = " Work Completed successfully"
+            return render(request, 'worker_curent_ongoingworks.html', {'z': z,'mem':mem,'msg_success': msg_success})
         return render(request,'worker_curent_ongoingworks.html', {'z': z,'mem':mem})
     else:
         return redirect('/')
@@ -572,6 +594,8 @@ def worker_curent_addwork(request):
             pb.replay_status=0
             pb.user_id_id= ut.id
             pb.save()
-        return render(request,'worker_curent_addwork.html', {'z': z,'mem':mem})
+            msg_success = "New Work Added successfully"
+            return render(request, 'worker_curent_addwork.html', {'z': z,'mem':mem,'msg_success': msg_success})
+        return render(request, 'worker_curent_addwork.html', {'z': z,'mem':mem})
     else:
         return redirect('/')
