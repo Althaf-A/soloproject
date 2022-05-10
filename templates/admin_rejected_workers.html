@@ -17,8 +17,6 @@
                         </form>
                     </div>
                 </div>
-
-
                 <div class="table-responsive">
                     <table class="table" id="myTable">
                         <thead>
@@ -30,7 +28,7 @@
                                 <th> Aprove </th>
                             </tr>
                         </thead>
-                        <tbody> 
+                        <tbody>
                             {% if wr %} {% for i in wr %}
                             <tr>
                                 <td>{{forloop.counter}}</td>
@@ -46,15 +44,16 @@
                                 <td>
                                     <form action="/admin_rejected_workers/?tid={{i.id}}" method="post">
                                         {%csrf_token%}
-                                    <button type="submit" class="btn btn-social-icon-text badge-outline-success" style="width: 105px;">
-                                        <i class="mdi mdi-playlist-check"></i>&nbsp; Aprove
-                                    </button>
+                                        <button type="submit" class="btn btn-social-icon-text badge-outline-success"
+                                            style="width: 105px;">
+                                            <i class="mdi mdi-playlist-check"></i>&nbsp; Aprove
+                                        </button>
                                     </form>
                                 </td>
                             </tr>
                             {% endfor %} {% else %}
                             <h5>Nothing to display...</h5>
-                             {% endif %}
+                            {% endif %}
                         </tbody>
                     </table>
                 </div>
@@ -64,27 +63,14 @@
 </div>
 </div>
 <script>
-    function myFunction() {
-        var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[1];
-            if (td) {
-                txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
-    }
-
-
-    
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
 </script>
 
 {% endblock %}

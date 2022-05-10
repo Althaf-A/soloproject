@@ -14,7 +14,7 @@
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-6 ">
                                     <select class="badge badge-outline-primary bg-dark text-light " id="depmt" name="dep "><option style="display: none ">Work Type</option>
                                         {% for i in mem %}
-                                        <option value="{{ i.id }}">{{i.category.name}}</option>
+                                        <option value="{{ i.id }}">{{i.name}}</option>
                                         {% endfor %}
                                       </select>
                                 </div>
@@ -26,9 +26,8 @@
                                 <label class="col-6 col-sm-6 col-md-6 col-lg-5 col-form-label ">Work </label>
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-6 ">
                                     <select class="badge badge-outline-primary bg-dark text-light " id="desi" name="desig "><option style="display: none ">Work</option>
-
-                                        {% for t in mem %}
-                                        <option value="{{t.id}}">{{t.work_name}}</option>
+                                        {% for t in mem1 %}
+                                        <option value="{{t.work_name}}">{{t.work_name}}</option>
                                         {% endfor %}
                                     </select>
                                 </div>
@@ -50,18 +49,14 @@
     </div>
 </div>
 
-
-
-
 <script type="text/javascript ">
     $("#btnSearch").click(function() {
-
-        const desi = $("#desi").val();
         const depmt = $("#depmt").val();
+        const desi = $("#desi").val();
         const csrf = document.getElementById('csrfmiddlewaretoken')
-        console.log("hihsd", depmt)
+        console.log( depmt,desi)
         jQuery.ajax({
-            url: '/admin_all_workers_table/',
+            url:'{% url "admin_all_workers_table" %}',
             method: 'post',
             data: {
 

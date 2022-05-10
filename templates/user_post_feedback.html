@@ -11,7 +11,8 @@
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12 ">
                         <form>
                             <div class="input-group input-group mb-3">
-                                <input type="text" class="form-control text-light" id="myInput" onkeyup="myFunction()" placeholder="Search for worker.." title="Type in a name">
+                                <input type="text" class="form-control text-light" id="myInput" onkeyup="myFunction()"
+                                    placeholder="Search for worker.." title="Type in a name">
 
                             </div>
                         </form>
@@ -41,12 +42,13 @@
                                 <td>{{i.worker_id.category.name}}</td>
                                 <td><span class="ps-2">{{i.work}}</span></td>
                                 <td>
-                                    <button type="button" class="btn btn-outline-success btn-icon-text" data-toggle="modal" data-target="#myModal{{i.id}}">Post Feedback</button>
+                                    <button type="button" class="btn btn-outline-success btn-icon-text"
+                                        data-toggle="modal" data-target="#myModal{{i.id}}">Post Feedback</button>
                                 </td>
                             </tr>
                             {% endfor %} {% else %}
                             <h5>Nothing to display...</h5>
-                           {% endif %}
+                            {% endif %}
                         </tbody>
                     </table>
                 </div>
@@ -70,13 +72,14 @@
             <form method="post" action="/save_user_feedback/?tid={{i.id}}">
                 {% csrf_token %}
                 <div class="modal-body">
-                    <textarea class="col-12 grid-margin stretch-card text-light" style="background-color: rgba(66, 65, 65, 0.267)" rows="6" name="feedback" Required></textarea>
+                    <textarea class="col-12 grid-margin stretch-card text-light"
+                        style="background-color: rgba(66, 65, 65, 0.267)" rows="6" name="feedback" Required></textarea>
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-outline-primary btn-icon-text">
-                    <i class="mdi mdi-file-check btn-icon-prepend text-info" style="font-size: 18px"></i>
-                    Submit
+                        <i class="mdi mdi-file-check btn-icon-prepend text-info" style="font-size: 18px"></i>
+                        Submit
                     </button>
                 </div>
             </form>
@@ -85,26 +88,14 @@
 </div>
 {% endfor %}
 <!-- modal end -->
-
-
 <script>
-    function myFunction() {
-        var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[2];
-            if (td) {
-                txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
-    }
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
 </script>
 {%endblock%}

@@ -11,8 +11,8 @@
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12 ">
                         <form>
                             <div class="input-group input-group mb-3">
-                                <input type="text" class="form-control text-light" id="myInput" onkeyup="myFunction()" placeholder="Search for worker.." title="Type in a name">
-
+                                <input type="text" class="form-control text-light" id="myInput" onkeyup="myFunction()"
+                                    placeholder="Search for worker.." title="Type in a name">
                             </div>
                         </form>
                     </div>
@@ -28,7 +28,8 @@
                                 <th>worker</th>
                                 <th>worker type</th>
                                 <th>work</th>
-                                <th>Feedback</th>
+                                <th>Worker Feedback</th>
+                                <th>Reply</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -37,19 +38,21 @@
                                 <td>{{forloop.counter}}</td>
                                 <td>{{i.post_date|date:"d-m-Y"}}</td>
                                 <td>{{i.replay_date|date:"d-m-Y"}}</td>
-                                <td>{{i.work_name.work_name}}</td>
-                                <td>{{i.work_type.work_type}}</td>
+                                <td>{{i.worker_id.fullname}}</td>
+                                <td>{{i.worker_id.category.name}}</td>
                                 <td><span class="ps-2">{{i.work}}</span></td>
                                 <td>
-                                    <button type="button" class="btn btn-outline-primary btn-icon-text" data-toggle="modal" data-target="#myModal{{i.id}}">Worker Feedback</button>
+                                    <button type="button" class="btn btn-outline-primary btn-icon-text"
+                                        data-toggle="modal" data-target="#myModal{{i.id}}">Worker Feedback</button>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-outline-primary btn-icon-text" data-toggle="modal" data-target="#myModal1{{i.id}}">Reply</button>
+                                    <button type="button" class="btn btn-outline-primary btn-icon-text"
+                                        data-toggle="modal" data-target="#myModal1{{i.id}}">Reply</button>
                                 </td>
                             </tr>
                             {% endfor %} {% else %}
-                              <h5>Nothing to display...</h5>
-                             {% endif %}
+                            <h5>Nothing to display...</h5>
+                            {% endif %}
                         </tbody>
                     </table>
                 </div>
@@ -112,23 +115,13 @@
 {% endfor %}
 <!-- modal end -->
 <script>
-    function myFunction() {
-        var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[2];
-            if (td) {
-                txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
-    }
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
 </script>
 {%endblock%}

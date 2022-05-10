@@ -4,20 +4,16 @@
             cursor: pointer;
         }
     </style>
-
     <!-- table start hear -->
-
     <div class="table-responsive">
         <table class="table " id="myTable">
             <thead>
-
                 <tr>
                     <th style="padding-left:38px;">sl no </th>
                     <th style="padding-left:15px;"> Name </th>
                     <th style="padding-left:12px;"> location </th>
                     <th style="padding-left:15px;"> work type</th>
                     <th style="padding-left:12px;"> work </th>
-
                     <th style="padding-left:28px;">view profile </th>
                     <th style="padding-left:15px;"> Register </th>
                 </tr>
@@ -28,7 +24,7 @@
                     <td>{{forloop.counter}}</td>
                     <td>{{i.fullname}}</td>
                     <td>{{i.city}}</td>
-                    <td>{{i.category.name}}</td>
+                    <td>{{i.category__name}}</td>
                     <td>{{i.work_name}}</td>
                     <td>
                         <a href="{% url 'admin_worker_profile_view' i.id %}" class="btn btn-outline-primary mr-2 ml-6  "
@@ -38,12 +34,10 @@
                         <a href="{% url 'admin_workers_register' i.id %}" class="btn btn-outline-success mr-2 ml-6  "
                             style="font-size: 15px; font-weight: 100;"> Register</a>
                     </td>
-
                 </tr>
                 {% endfor %} {% else %}
                 <h5>Nothing to display...</h5>
                 {% endif %}
-
             </tbody>
         </table>
     </div>

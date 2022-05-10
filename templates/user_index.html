@@ -8,9 +8,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>PROJECT</title>
   <!-- modal:css -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"> 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
   <!-- searchbar link-->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <!-- plugins:css -->
   <link rel="stylesheet" href="{% static 'assets/vendors/mdi/css/materialdesignicons.min.css' %}">
   <link rel="stylesheet" href="{% static 'assets/vendors/css/vendor.bundle.base.css' %}">
@@ -33,9 +34,9 @@
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="stylesheet" type="text/css" href="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.css">
   <!--ajax scripts-->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  
+
 </head>
 <style>
   @media (max-width:992px) {
@@ -49,7 +50,7 @@
 </style>
 
 <body>
-  
+
   <div class="container-scroller">
 
     <!-- partial:partials/_sidebar.html -->
@@ -65,47 +66,48 @@
       <ul class="nav">
         <li class="nav-item profile">
           <div class="profile-desc">
-              <div class="profile-pic">
-                  <div class="count-indicator">
-                      {% for z in z %}
-                      <img class="img-xs rounded-circle " src="{{z.photo.url}}" alt="">
-                      <span class="count bg-success"></span>
-                  </div>
-
-                  <div class="profile-name">
-                      <h5 class="mb-0 font-weight-normal">{{z.fullname }}</h5>
-                      <span>{{z.designation.designation}}</span>
-                  </div>
-
+            <div class="profile-pic">
+              <div class="count-indicator">
+                {% for z in z %}
+                <img class="img-xs rounded-circle " src="{{z.photo.url}}" alt="">
+                <span class="count bg-success"></span>
               </div>
-              <a href="#" id="profile-dropdown" data-bs-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
-              <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list" aria-labelledby="profile-dropdown">
-                  <a href="/account_trainer" class="dropdown-item preview-item">
-                      <div class="preview-thumbnail">
-                          <div class="preview-icon bg-dark rounded-circle">
-                              <i class="mdi mdi-settings text-primary"></i>
-                          </div>
-                      </div>
-                      <div class="preview-item-content">
-                          <p class="preview-subject ellipsis mb-1 text-small">Account settings</p>
-                      </div>
-                  </a>
-                  <div class="dropdown-divider"></div>
-                  <a href="/changepassword_trainer" class="dropdown-item preview-item">
-                      <div class="preview-thumbnail">
-                          <div class="preview-icon bg-dark rounded-circle">
-                              <i class="mdi mdi-onepassword  text-info"></i>
-                          </div>
-                      </div>
-                      <div class="preview-item-content">
-                          <p class="preview-subject ellipsis mb-1 text-small">Change Password</p>
-                      </div>
-                  </a>
 
-                  </a>
+              <div class="profile-name">
+                <h5 class="mb-0 font-weight-normal">{{z.fullname }}</h5>
+                <span>{{z.designation.designation}}</span>
               </div>
+
+            </div>
+            <a href="#" id="profile-dropdown" data-bs-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
+            <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list"
+              aria-labelledby="profile-dropdown">
+              <a href="/account_trainer" class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-dark rounded-circle">
+                    <i class="mdi mdi-settings text-primary"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <p class="preview-subject ellipsis mb-1 text-small">Account settings</p>
+                </div>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="/changepassword_trainer" class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-dark rounded-circle">
+                    <i class="mdi mdi-onepassword  text-info"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <p class="preview-subject ellipsis mb-1 text-small">Change Password</p>
+                </div>
+              </a>
+
+              </a>
+            </div>
           </div>
-      </li>
+        </li>
         <li class="nav-item nav-category">
           <span class="nav-link">Navigation</span>
         </li>
@@ -141,7 +143,7 @@
             <span class="menu-title">Post Feedback</span>
           </a>
         </li>
-        
+
       </ul>
     </nav>
     <!-- partial -->
@@ -162,30 +164,31 @@
             <li class="nav-item dropdown">
               <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
                 <div class="navbar-profile">
-                  
+
                   &nbsp;{{z.fullname }}<i class="mdi mdi-menu-down d-none d-sm-block"></i>
                 </div>
               </a>
-              <div id="log" class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
+              <div id="log" class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+                aria-labelledby="profileDropdown">
                 <h6 class="p-3 mb-0">Profile</h6>
                 <div class="dropdown-divider"></div>
                 <div class="dropdown-divider"></div>
 
                 <a class="dropdown-item preview-item" href="{% url 'logout' %}">
 
-                    <div class="preview-thumbnail">
-                        <div class="preview-icon bg-dark rounded-circle">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-dark rounded-circle">
 
-                            <i class="mdi mdi-logout text-danger"></i>
-                        </div>
+                      <i class="mdi mdi-logout text-danger"></i>
                     </div>
-                    <div class="preview-item-content">
-                        <p class="preview-subject mb-1">Log out</p>
-                    </div>
+                  </div>
+                  <div class="preview-item-content">
+                    <p class="preview-subject mb-1">Log out</p>
+                  </div>
                 </a>
                 </a>
                 <div class="dropdown-divider"></div>
-            </div>
+              </div>
             </li>
           </ul>
           <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
@@ -214,7 +217,7 @@
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
       <!-- endmodal -->
       <!-- container-scroller -->
-  
+
       <!-- plugins:js -->
       <script src="{% static 'assets/vendors/js/vendor.bundle.base.js' %}"></script>
       <!-- endinject -->

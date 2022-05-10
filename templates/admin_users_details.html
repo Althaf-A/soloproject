@@ -6,9 +6,6 @@
             cursor: pointer;
         }
     </style>
-
-
-
     <div class="row ">
         <div class="col-12 grid-margin">
             <div class="card">
@@ -27,18 +24,15 @@
                             </form>
                         </div>
                     </div>
-
                     <!-- table start hear -->
-
                     <div class="table-responsive">
                         <table class="table " id="myTable">
                             <thead>
-
-                                <tr >
+                                <tr>
                                     <th style="padding-left:15px;">sl no </th>
                                     <th style="padding-left:15px;"> Name </th>
                                     <th style="padding-left:12px;"> location </th>
-                                    
+
                                     <th style="padding-left:28px;">view profile </th>
                                     <th style="padding-left:28px;">Activities </th>
                                 </tr>
@@ -49,18 +43,20 @@
                                     <td>{{forloop.counter}}</td>
                                     <td> {{i.fullname}}</td>
                                     <td>{{i.city}}</td>
-                                    <td>               
-                                        <a href="{% url 'admin_user_profile_view'  i.id %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> view profile</a> 
+                                    <td>
+                                        <a href="{% url 'admin_user_profile_view'  i.id %}"
+                                            class="btn btn-outline-primary mr-2 ml-6  "
+                                            style="font-size: 15px; font-weight: 100;"> view profile</a>
                                     </td>
-                                    <td>               
-                                        <a href="{% url 'admin_user_activity' i.id %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  Activities</a> 
+                                    <td>
+                                        <a href="{% url 'admin_user_activity' i.id %}"
+                                            class="btn btn-outline-success mr-2 ml-6  "
+                                            style="font-size: 15px; font-weight: 100;"> Activities</a>
                                     </td>
-                                    
                                 </tr>
                                 {% endfor %} {% else %}
-                               <h5>Nothing to display...</h5>
+                                <h5>Nothing to display...</h5>
                                 {% endif %}
-     
                             </tbody>
                         </table>
                     </div>
@@ -68,31 +64,15 @@
             </div>
         </div>
     </div>
-
 </body>
-
 <script>
-    function myFunction() {
-        var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[1];
-            if (td) {
-                txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
-    }
-
-
-    
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
 </script>
-
 {% endblock %}

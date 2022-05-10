@@ -4,9 +4,9 @@
     }
 </style>
 <div class="row ">
-<div class="col-12 grid-margin">
-    <div class="card">
-        <div class="card-body">
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
 
                 <!-- table start hear -->
 
@@ -14,7 +14,7 @@
                     <table class="table " id="myTable">
                         <thead>
 
-                            <tr >
+                            <tr>
                                 <th style="padding-left:15px;"> Name </th>
                                 <th style="padding-left:12px;"> city </th>
                                 <th style="padding-left:15px;"> work type</th>
@@ -27,25 +27,32 @@
                         <tbody>
                             {% if names %} {% for i in names %}
                             <tr>
-                                <td>{{i.worker_id__fullname}}</td>
+                                <td>{{i.fullname}}</td>
                                 <td>{{i.city}}</td>
-                                <td>{{i.work_type}}</td>
+                                <td>{{i.category__name}}</td>
                                 <td>{{i.work_name}}</td>
-                                <td>               
-                                    <a href="{% url 'user_worker_profile' %}" class="btn btn-outline-warning mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> view profile</a> 
+                                <td>
+                                    <a href="{% url 'user_worker_profile' i.id %}"
+                                        class="btn btn-outline-warning mr-2 ml-6  "
+                                        style="font-size: 15px; font-weight: 100;"> view profile</a>
                                 </td>
-                                <td>               
-                                    <a href="{% url 'user_worker_reports' %}" class="btn btn-outline-success mr-2 ml-6  " style="font-size: 15px; font-weight: 100;"> View Reports</a> 
+                                <td>
+                                    <a href="{% url 'user_worker_reports' i.id %}"
+                                        class="btn btn-outline-success mr-2 ml-6  "
+                                        style="font-size: 15px; font-weight: 100;"> View Reports</a>
                                 </td>
-                                <td>               
-                                    <button type="button" class="btn btn-outline-danger mr-2 ml-6 btn-icon-text" data-toggle="modal" data-target="#myModal">Enquiry</button>
-                                    <a href="{% url 'admin_workers_register' %}" class="btn btn-outline-primary mr-2 ml-6  " style="font-size: 15px; font-weight: 100;">  call</a> 
-                                </td>
-                                
+                                <td>
+                                    <button type="button" class="btn btn-outline-danger mr-2 ml-6 btn-icon-text"
+                                        data-toggle="modal" data-target="#myModal{{i.id}}">Enquiry</button>
+                                    <a href=""
+                                        class="btn btn-outline-primary mr-2 ml-6  "
+                                        style="font-size: 15px; font-weight: 100;"> call</a>
+                                </td> 
+
                             </tr>
-                             {% endfor %} {% else %}
-                              <h5>Nothing to display...</h5>
-                             {% endif %}
+                            {% endfor %} {% else %}
+                            <h5>Nothing to display...</h5>
+                            {% endif %}
                         </tbody>
                     </table>
                 </div>
@@ -53,33 +60,35 @@
         </div>
     </div>
 </div>
+{% for i in names %}
 <!-- Modal -->
-<div class="modal" id="myModal">
-<div class="modal-dialog">
-    <div class="col-12 grid-margin stretch-card bg-dark text-light modal-content">
-        <!-- Modal Header -->
-        <div class="modal-header">
-            <h4 class="modal-title">Enquiry</h4>
-            <button type="button" style="color: white" class="close" data-dismiss="modal">
-                &times;
-            </button>
-        </div>
-        <!-- Modal body -->
-        <form method="post" action="">
-            {% csrf_token %}
-            <div class="modal-body">
-                <textarea class="col-12 grid-margin stretch-card text-light" style="background-color: rgba(66, 65, 65, 0.267)" rows="6" name="review" Required></textarea>
-            </div>
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-outline-primary btn-icon-text">
-                <i class="mdi mdi-file-check btn-icon-prepend text-info" style="font-size: 18px"></i>
-                Submit
+<div class="modal" id="myModal{{i.id}}">
+    <div class="modal-dialog">
+        <div class="col-12 grid-margin stretch-card bg-dark text-light modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Enquiry</h4>
+                <button type="button" style="color: white" class="close" data-dismiss="modal">
+                    &times;
                 </button>
             </div>
-        </form>
+            <!-- Modal body -->
+            <form method="post" action="/save_user_enquiry/?tid={{i.id}}">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <textarea class="col-12 grid-margin stretch-card text-light"
+                        style="background-color: rgba(66, 65, 65, 0.267)" rows="6" name="enquiry1" Required></textarea>
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-outline-primary btn-icon-text">
+                        <i class="mdi mdi-file-check btn-icon-prepend text-info" style="font-size: 18px"></i>
+                        Submit
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
-</div>
 <!-- modal end -->
-
+{% endfor %}

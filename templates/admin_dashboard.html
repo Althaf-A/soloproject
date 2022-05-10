@@ -3,119 +3,115 @@
 
 <h3 style="padding-left: 7px">My Profile</h3>
 <div class="row">
-    <div class="col-12 col-sm-12 col-md-12 col-lg-12 grid-margin">
-        <div class="card ">
-            <div class="card-body 0">
-                <div class="row">
-                    <div class="col-8 col-sm-8 col-md-10 col-lg-10 mt-3">
-                        <h4 class="card-title">PROFILE </h4>
-                    </div>
-                    {% for i in users %}
-                </div>
-                <div class="row">
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                        <div class="form-group row">
-                            <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Name</label>
-                            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                <p class="text-muted mt-2">{{i.first_name}}  {{i.last_name}}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                        <div class="form-group row">
-                            <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Designation</label>
-                            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                <p class="text-muted mt-2">Admin</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                        <div class="form-group row">
-                            <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Email</label>
-                            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                <p class="text-muted mt-2">{{i.email}}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                        <div class="form-group row">
-                            <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Join date</label>
-                            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                <p class="text-muted mt-2">{{i.date_joined|date:"d-m-Y"}}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <div class="col-12 col-sm-12 col-md-12 col-lg-12 grid-margin">
+    <div class="card ">
+      <div class="card-body 0">
+        <div class="row">
+          <div class="col-8 col-sm-8 col-md-10 col-lg-10 mt-3">
+            <h4 class="card-title">PROFILE </h4>
+          </div>
+          {% for i in users %}
         </div>
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="form-group row">
+              <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Name</label>
+              <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                <p class="text-muted mt-2">{{i.first_name}} {{i.last_name}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="form-group row">
+              <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Designation</label>
+              <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                <p class="text-muted mt-2">Admin</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="form-group row">
+              <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Email</label>
+              <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                <p class="text-muted mt-2">{{i.email}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="form-group row">
+              <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Join date</label>
+              <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                <p class="text-muted mt-2">{{i.date_joined|date:"d-m-Y"}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 {% endfor %}
 <div class="row" style="padding-top:20px;">
-    <div class="col-12 col-sm-6 col-md-6 col-lg-6 grid-margin">
-      <a href="{% url 'admin_all_workers' %}" style="text-decoration: none;">
-        <div class="card" style="height: 180px">
-          <div class="card-body">         
-            <div class="row" style="margin-top:40px;">
-              <div class="col-8 col-sm-12 col-xl-8 my-auto">
-                <div class="d-flex d-sm-block d-md-flex align-items-center">               
-                    <h3 class="mb-0" style="color:white;">All Workers</h3>                               
-                </div>            
-              </div>
-              <div class="col-4 col-sm-12 col-xl-2 text-center text-xl-right">
-                <h3 class="text-light">{{wrkr}}</h3>
+  <div class="col-12 col-sm-6 col-md-6 col-lg-6 grid-margin">
+    <a href="{% url 'admin_all_workers' %}" style="text-decoration: none;">
+      <div class="card" style="height: 180px">
+        <div class="card-body">
+          <div class="row" style="margin-top:40px;">
+            <div class="col-8 col-sm-12 col-xl-8 my-auto">
+              <div class="d-flex d-sm-block d-md-flex align-items-center">
+                <h3 class="mb-0" style="color:white;">All Workers</h3>
               </div>
             </div>
-          </div>
-      </div>
-      </a>
-    </div>
-    <div class="col-12 col-sm-6 col-md-6 col-lg-6 grid-margin">
-      <a href="{% url 'admin_all_contractors' %}" style="text-decoration:none;">
-        <div class="card" style="height: 180px">
-          <div class="card-body">
-            <div class="row" style="margin-top:40px;">
-              <div class="col-8 col-sm-12 col-md-8 col-lg-8 my-auto">
-                <div class="d-flex d-sm-block d-md-flex align-items-center">
-                  <h3 class="mb-0" style="color:white;">All Contractors</h3>
-                </div>
-              </div>
-              <div class="col-4 col-sm-12 col-md-4 col-lg-4 text-center text-xl-right">
-                <h3 class="text-light">{{con}}</h3>
-              </div>
+            <div class="col-4 col-sm-12 col-xl-2 text-center text-xl-right">
+              <h3 class="text-light">{{wrkr}}</h3>
             </div>
           </div>
         </div>
-      </a>
-    </div>
-    <div class="col-12 col-sm-6 col-md-6 col-lg-6 grid-margin">
-        <a href="{% url 'admin_users_details' %}" style="text-decoration: none;">
-          <div class="card" style="height: 180px">
-            <div class="card-body">         
-              <div class="row" style="margin-top:40px;">
-                <div class="col-8 col-sm-12 col-xl-8 my-auto">
-                  <div class="d-flex d-sm-block d-md-flex align-items-center">               
-                      <h3 class="mb-0" style="color:white;">All Users</h3>                               
-                  </div>            
-                </div>
-                <div class="col-4 col-sm-12 col-xl-2 text-center text-xl-right">
-                  <h3 class="text-light">{{uss}}</h3>
-                </div>
-              </div>
-            </div>
-        </div>
-        </a>
       </div>
+    </a>
   </div>
-  
+  <div class="col-12 col-sm-6 col-md-6 col-lg-6 grid-margin">
+    <a href="{% url 'admin_all_contractors' %}" style="text-decoration:none;">
+      <div class="card" style="height: 180px">
+        <div class="card-body">
+          <div class="row" style="margin-top:40px;">
+            <div class="col-8 col-sm-12 col-md-8 col-lg-8 my-auto">
+              <div class="d-flex d-sm-block d-md-flex align-items-center">
+                <h3 class="mb-0" style="color:white;">All Contractors</h3>
+              </div>
+            </div>
+            <div class="col-4 col-sm-12 col-md-4 col-lg-4 text-center text-xl-right">
+              <h3 class="text-light">{{con}}</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="col-12 col-sm-6 col-md-6 col-lg-6 grid-margin">
+    <a href="{% url 'admin_users_details' %}" style="text-decoration: none;">
+      <div class="card" style="height: 180px">
+        <div class="card-body">
+          <div class="row" style="margin-top:40px;">
+            <div class="col-8 col-sm-12 col-xl-8 my-auto">
+              <div class="d-flex d-sm-block d-md-flex align-items-center">
+                <h3 class="mb-0" style="color:white;">All Users</h3>
+              </div>
+            </div>
+            <div class="col-4 col-sm-12 col-xl-2 text-center text-xl-right">
+              <h3 class="text-light">{{uss}}</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
 
-
-
-                
 {% endblock %}

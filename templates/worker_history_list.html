@@ -11,7 +11,8 @@
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12 ">
                         <form>
                             <div class="input-group input-group mb-3">
-                                <input type="text" class="form-control text-light" id="myInput" onkeyup="myFunction()" placeholder="Search for worker.." title="Type in a name">
+                                <input type="text" class="form-control text-light" id="myInput" onkeyup="myFunction()"
+                                    placeholder="Search for worker.." title="Type in a name">
 
                             </div>
                         </form>
@@ -40,14 +41,16 @@
                                 <td>{{i.user_id.fullname}}</td>
                                 <td><span class="ps-2">{{i.work}}</span></td>
                                 <td>
-                                    <button type="button" class="btn btn-outline-primary btn-icon-text" data-toggle="modal" data-target="#myModal{{i.id}}">Feedback</button>
+                                    <button type="button" class="btn btn-outline-primary btn-icon-text"
+                                        data-toggle="modal" data-target="#myModal{{i.id}}">Feedback</button>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-outline-primary btn-icon-text" data-toggle="modal" data-target="#myModal1{{i.id}}">User Reply</button>
+                                    <button type="button" class="btn btn-outline-primary btn-icon-text"
+                                        data-toggle="modal" data-target="#myModal1{{i.id}}">User Reply</button>
                                 </td>
                             </tr>
                             {% endfor %} {% else %}
-                              <h5>Nothing to display...</h5>
+                            <h5>Nothing to display...</h5>
                             {% endif %}
                         </tbody>
                     </table>
@@ -108,23 +111,13 @@
 <!-- modal end -->
 {% endfor %}
 <script>
-    function myFunction() {
-        var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[2];
-            if (td) {
-                txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
-    }
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
 </script>
 {%endblock%}

@@ -134,8 +134,7 @@ def admin_new_worker_aprove(request):
 
 def reject_worker(request):
     if request.method == 'POST':
-        id = request.GET.get('tid')
-            
+        id = request.GET.get('tid')            
         v = user_register.objects.get(id=id)
         v.status=2
         v.save()
@@ -186,7 +185,6 @@ def admin_rejected_workers(request):
     else:
         return redirect('/')
 
-
 def admin_users_details(request):
     if 'SAdm_id' in request.session:
         if request.session.has_key('SAdm_id'):
@@ -228,23 +226,24 @@ def admin_workers_details(request):
             SAdm_id = request.session['SAdm_id']
         users = User.objects.filter(id=SAdm_id)
         des= category.objects.get(name='user')
-        mem=user_register.objects.filter().exclude(category_id=des.id)
+        mem= category.objects.filter().exclude(name='user')
+        mem1=user_register.objects.filter().exclude(category_id=des.id).values('work_name').distinct()
 
-        return render(request,'admin_workers_details.html',{'users': users,'mem':mem})
+        return render(request,'admin_workers_details.html',{'users': users,'mem':mem,'mem1':mem1})
     else:
         return redirect('/')
 
 @csrf_exempt
 def admin_all_workers_table(request):
     if 'SAdm_id' in request.session:
-        dept_id = int(request.POST['depmt'])
-        desig_id = request.POST['desi']
-
-        names = user_register.objects.filter( category_id=dept_id, work_name=desig_id).values(
+        dept = request.POST['depmt']
+        desi = request.POST['desi']
+        names = user_register.objects.filter( category_id=dept, work_name=desi).values(
             'category__name', 'city',  'fullname', 'work_name', 'id')
-        print(dept_id)
-        print(desig_id)
+        print(dept)
+        print(desi)
         print(names)
+        print('hai')
         return render(request,'admin_all_workers_table.html',{'names': names})
     else:
         return redirect('/')
@@ -342,46 +341,69 @@ def user_search_worker(request):
     if 'username2' in request.session:
         if request.session.has_key('username2'):
             username2 = request.session['username2']
-
         z = user_register.objects.filter(id=username2)
-        mem=user_register.objects.all()
-
-        return render(request,'user_search_worker.html',{'mem':mem,'z': z})
+        des= category.objects.get(name='user')
+        mem= category.objects.filter().exclude(name='user')
+        mem1=user_register.objects.filter().exclude(category_id=des.id).values('work_name').distinct()
+        m3=user_register.objects.filter().exclude(category_id=des.id).values('city').distinct()
+        return render(request,'user_search_worker.html',{'mem':mem,'z': z,'mem1':mem1,'m3':m3})
     else:
         return redirect('/')
 
 @csrf_exempt
 def user_search_worker_table(request):
     if 'username2' in request.session:
-        workt = int(request.POST['worktype'])
-        workn = request.POST['workname']
-        citty = request.POST['citty']
+        workt = request.POST['workt']
+        workn = request.POST['workn']
+        citty = request.POST['city']
 
-        names = user_register.objects.filter(city=citty, work_type_id=workt, work_name=workn).values(
-            'worker_id__fullname', 'work_city', 'user_id__account_no', 'user_id__bank_name', 'user_id__bank_branch', 'worker_id__id', 'user_id__email', 'id')
+        names = user_register.objects.filter(city=citty, category_id=workt, work_name=workn).values(
+            'category__name', 'city',  'fullname', 'work_name', 'id')
         print(workt)
         print(workn)
         print(citty)
         print(names)
+        
         return render(request, 'user_search_worker_table.html', {'names': names})
     else:
         return redirect('/')
 
-def user_worker_profile(request):
+def save_user_enquiry(request):
+    if 'username2' in request.session:
+        if request.session.has_key('username2'):
+            username2 = request.session['username2']
+        id = request.GET.get('tid')           
+        v = enquiry()
+        var=user_register.objects.get(id=username2)
+        v.user_id_id= var.id
+        v.worker_id_id=id
+        v.enquiry=request.POST.get('enquiry1')
+        v.status=0
+        v.save()
+        return redirect('user_search_worker')
+    else:
+        return redirect('/')
+        
+
+def user_worker_profile(request,id):
     if 'username2' in request.session:
         if request.session.has_key('username2'):
             username2 = request.session['username2']
         z = user_register.objects.filter(id=username2)
-        return render(request,'user_worker_profile.html', {'z': z})
+        mem= user_register.objects.get(id=id)
+        return render(request,'user_worker_profile.html', {'z': z,'mem':mem})
     else:
         return redirect('/')
 
-def user_worker_reports(request):
+def user_worker_reports(request,id):
     if 'username2' in request.session:
         if request.session.has_key('username2'):
             username2 = request.session['username2']
         z = user_register.objects.filter(id=username2)
-        return render(request,'user_worker_reports.html', {'z': z})
+        mem= user_register.objects.get(id=id)
+        mem1=feedback.objects.filter(worker_id=mem.id,replay_status=2)
+
+        return render(request,'user_worker_reports.html', {'z': z,'mem1':mem1})
     else:
         return redirect('/')
 
@@ -392,7 +414,7 @@ def user_history_list(request):
         if request.session.has_key('username'):
             username = request.session['username']
         z = user_register.objects.filter(id=username2)
-        mem= feedback.objects.filter(user_id_id=username2,replay_status='0')
+        mem= feedback.objects.filter(user_id_id=username2,work_status='1').exclude(replay_status='0')
         return render(request,'user_history_list.html', {'z': z,'mem':mem})
     else:
         return redirect('/')
@@ -404,45 +426,26 @@ def user_post_feedback(request):
         if request.session.has_key('username'):
             username = request.session['username']
         z = user_register.objects.filter(id=username2)
-        mem= feedback.objects.filter(user_id_id=username2,replay_status='0')
+        mem= feedback.objects.filter(user_id_id=username2,work_status='1').exclude(replay_status='2')
         return render(request,'user_post_feedback.html', {'z': z,'mem':mem})
     else:
         return redirect('/')
 def save_user_feedback(request):
     if 'username2' in request.session:
-
         if request.session.has_key('username2'):
             username2 = request.session['username2']
-
         tid = request.GET.get('tid')
         vars = feedback.objects.get(id=tid)
         print(vars.id)
+        vars.replay_date=datetime.now()
         vars.feedback_replay = request.POST.get('feedback')
-        vars.replay_status = 1
+        vars.replay_status = 2
         print('hello')
         vars.save()
         return redirect('user_post_feedback')
     else:
         return redirect('/')
-
-# def account_user(request):
-#     if 'username2' in request.session:
-#         if request.session.has_key('username2'):
-#             username2 = request.session['username2']
-#         z = user_register.objects.filter(id=username2)
-#         return render(request,'account_user.html', {'z': z})
-#     else:
-#         return redirect('/')
-
-# def imagechange(request):
-
-#     if request.method == 'POST':
-#         id = request.GET.get('id')
-#         abc = user_register.objects.get(id=id)
-#         abc.photo = request.FILES['filenamees']
-#         abc.save()
-#         return redirect('account_trainer')
-#     return render(request, 'account_trainer.html')
+        
     ######################worker##########
     
 def worker_dashboard(request):
@@ -514,7 +517,7 @@ def worker_post_feedback(request):
         if request.session.has_key('usernamew2'):
              usernamew2 = request.session['usernamew2']
         z = user_register.objects.filter(id=usernamew2)
-        mem = feedback.objects.filter(worker_id_id=usernamew2,replay_status=0)
+        mem = feedback.objects.filter(worker_id_id=usernamew2,work_status=1).exclude(replay_status=0)
         if request.method == 'POST':
             id = request.GET.get('tid')           
             v = feedback.objects.get(id=id)

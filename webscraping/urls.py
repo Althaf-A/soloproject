@@ -37,11 +37,12 @@ urlpatterns = [
     path('user_dashboard/', views.user_dashboard, name='user_dashboard'),
     path('user_search_worker/', views.user_search_worker, name='user_search_worker'),
     path('user_search_worker_table/', views.user_search_worker_table, name='user_search_worker_table'),
-    path('user_worker_profile/', views.user_worker_profile, name='user_worker_profile'),
-    path('user_worker_reports/', views.user_worker_reports, name='user_worker_reports'),
+    path('user_worker_profile/<int:id>/', views.user_worker_profile, name='user_worker_profile'),
+    path('user_worker_reports/<int:id>/', views.user_worker_reports, name='user_worker_reports'),
     path('user_history_list/', views.user_history_list, name='user_history_list'),
     path('user_post_feedback/', views.user_post_feedback, name='user_post_feedback'),
     path('save_user_feedback/', views.save_user_feedback, name='save_user_feedback'),
+    path('save_user_enquiry/', views.save_user_enquiry, name='save_user_enquiry'),
 
 ############################worker########################
     path('worker_dashboard/', views.worker_dashboard, name='worker_dashboard'),

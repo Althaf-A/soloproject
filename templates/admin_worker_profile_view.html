@@ -1,89 +1,89 @@
 {% extends 'admin_index.html' %} {% load static %} {% block content %}
 
 <div class="row">
-    <div class="col-12 col-sm-12 col-md-12 col-lg-12 grid-margin">
-      <div class="card mt-3 mb-5">
-        <div class="card-body">
-          <form class="form-sample">
-            <div class="row">
-              <div class="col-8 col-sm-8 col-md-10 col-lg-10 mt-3">
-                <h4 class="card-description"> Personal Information </h4>
-              </div>
-              <div class="col-4 col-sm-4 col-md-2 col-lg-2">
-                <img src="{{mem.photo.url}}" id="image" class="img-fluid rounded-circle mb-3 " alt="image"  style="margin-right:20px;height:100px; width:100px;"
-                data-toggle="modal" data-target="#myModal{{mem.id}}">
-              </div>
+  <div class="col-12 col-sm-12 col-md-12 col-lg-12 grid-margin">
+    <div class="card mt-3 mb-5">
+      <div class="card-body">
+        <form class="form-sample">
+          <div class="row">
+            <div class="col-8 col-sm-8 col-md-10 col-lg-10 mt-3">
+              <h4 class="card-description"> Personal Information </h4>
             </div>
-            <p class="card-description"> worker details </p>
-            <div class="row">
-              <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                <div class="form-group row">
-                  <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Full Name:</label>
-                  <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                    <p class="mt-2">{{mem.fullname}}</p>
-                  </div>
-                </div>
-              </div>
+            <div class="col-4 col-sm-4 col-md-2 col-lg-2">
+              <img src="{{mem.photo.url}}" id="image" class="img-fluid rounded-circle mb-3 " alt="image"
+                style="margin-right:20px;height:100px; width:100px;" data-toggle="modal"
+                data-target="#myModal{{mem.id}}">
             </div>
-            <div class="row">
-              <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                <div class="form-group row">
-                  <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">join date:</label>
-                  <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                    <p class="mt-2">{{mem.regdate|date:"d-m-Y"}}</p>
-                  </div>
+          </div>
+          <p class="card-description"> worker details </p>
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+              <div class="form-group row">
+                <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Full Name:</label>
+                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                  <p class="mt-2">{{mem.fullname}}</p>
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                <div class="form-group row">
-                  <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Category:</label>
-                  <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                    <p class="mt-2">{{mem.category.name}}</p>
-                  </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+              <div class="form-group row">
+                <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">join date:</label>
+                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                  <p class="mt-2">{{mem.regdate|date:"d-m-Y"}}</p>
                 </div>
               </div>
-              
-              <br><br><br><br>
-              <p class="card-description"> Work Details</p>
-              <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                <div class="form-group row">
-                  <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Work:</label>
-                  <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                    <p class="mt-2">{{mem.work_name.work_name}}</p>
-                  </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+              <div class="form-group row">
+                <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Category:</label>
+                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                  <p class="mt-2">{{mem.category.name}}</p>
                 </div>
               </div>
-              <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                <div class="form-group row">
-                  <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">contact no:</label>
-                  <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                    <p class="mt-2">{{mem.contact_no}}</p>
-                  </div>
+            </div>
+
+            <br><br><br><br>
+            <p class="card-description"> Work Details</p>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+              <div class="form-group row">
+                <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Work:</label>
+                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                  <p class="mt-2">{{mem.work_name}}</p>
                 </div>
               </div>
-              <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                <div class="form-group row">
-                  <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">City:</label>
-                  <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                    <p class="mt-2">{{mem.city}}</p>
-                  </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+              <div class="form-group row">
+                <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">contact no:</label>
+                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                  <p class="mt-2">{{mem.contact_no}}</p>
                 </div>
               </div>
-              <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                <div class="form-group row">
-                  <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">work experience:</label>
-                  <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                    <p class="mt-2">{{wr.experience}}years</p>
-                  </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+              <div class="form-group row">
+                <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">City:</label>
+                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                  <p class="mt-2">{{mem.city}}</p>
                 </div>
               </div>
-              
-          </form>
-        </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+              <div class="form-group row">
+                <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">work experience:</label>
+                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                  <p class="mt-2">{{mem.experience}}years</p>
+                </div>
+              </div>
+            </div>
+
+        </form>
       </div>
     </div>
-
+  </div>
 
 {% endblock %}

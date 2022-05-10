@@ -11,11 +11,13 @@
                             <div class="form-group row ">
                                 <label class="col-6 col-sm-6 col-md-6 col-lg-5 col-form-label ">Work Type </label>
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-6 ">
-                                    <select class="badge badge-outline-primary bg-dark text-light " id="wrkt" name="worktype "><option style="display: none ">Work Type</option>
+                                    <select class="badge badge-outline-primary bg-dark text-light " id="workt"
+                                        name="wrkt ">
+                                        <option style="display: none ">Work Type</option>
                                         {% for i in mem %}
-                                        <option value="{{ i.id }}">{{i.work_type.work_type}}</option>
+                                        <option value="{{ i.id }}">{{i.name}}</option>
                                         {% endfor %}
-                                      </select>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -24,10 +26,12 @@
                             <div class="form-group row ">
                                 <label class="col-6 col-sm-6 col-md-6 col-lg-5 col-form-label ">Work </label>
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-6 ">
-                                    <select class="badge badge-outline-primary bg-dark text-light " id="wrkn" name="workname "><option style="display: none ">Work</option>
-                                    {% for t in mem %}
-                                        <option value="{{t.id}}">{{t.work_name.work_name}}</option>
-                                    {% endfor %}
+                                    <select class="badge badge-outline-primary bg-dark text-light " id="workn"
+                                        name="wrkn ">
+                                        <option style="display: none ">Work</option>
+                                        {% for t in mem1 %}
+                                        <option value="{{t.work_name}}">{{t.work_name}}</option>
+                                        {% endfor %}
                                     </select>
                                 </div>
                             </div>
@@ -35,47 +39,49 @@
                         </div>
                     </div>
                     <div class="row mt-5 ">
-                        
+
                         <div class="col-12 col-sm-12 col-md-5 col-lg-5 ">
                             <div class="form-group row ">
                                 <label class="col-6 col-sm-6 col-md-6 col-lg-5 col-form-label ">City </label>
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-6 ">
-                                    <select class="badge badge-outline-primary bg-dark text-light " id="city" name="citty "><option style="display: none ">select city</option>
-                                    {% for t in mem %}
-                                        <option value="{{t.id}}">{{t.work_city}}</option>
-                                    {% endfor %}
+                                    <select class="badge badge-outline-primary bg-dark text-light " id="city"
+                                        name="city ">
+                                        <option style="display: none ">select city</option>
+                                        {% for t in m3 %}
+                                        <option value="{{t.city}}">{{t.city}}</option>
+                                        {% endfor %}
                                     </select>
                                 </div>
                             </div>
 
                         </div>
-                       
+
                     </div>
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-4 ">
-                            <center>
-                                <button type="button" class="btn btn-primary btn-icon-text " id="btnSearch" style="width: 100px; ">Search </button>
-                            </center>
+                        <center>
+                            <button type="button" class="btn btn-primary btn-icon-text " id="btnSearch"
+                                style="width: 100px; ">Search </button>
+                        </center>
 
-                        </div>
                     </div>
+                </div>
                 <div id="hiddendiv">
-                    
+
+                </div>
             </div>
         </div>
-      </div>
+    </div>
 </div>
-</div>
-
 <script type="text/javascript ">
 $("#btnSearch").click(function() {
 
-const workt = $("#wrkt").val();
-const workn = $("#wrkn").val();
+const workt = $("#workt").val();
+const workn = $("#workn").val();
 const city = $("#city").val();
 const csrf = document.getElementById('csrfmiddlewaretoken')
-console.log("hihsd", depmt)
+console.log(workt,workn,city)
 jQuery.ajax({
-url: 'user_search_worker_table',
+url: '{% url "user_search_worker_table" %}',
 method: 'post',
 data: {
 
