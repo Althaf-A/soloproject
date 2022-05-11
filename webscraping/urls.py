@@ -43,6 +43,10 @@ urlpatterns = [
     path('user_post_feedback/', views.user_post_feedback, name='user_post_feedback'),
     path('save_user_feedback/', views.save_user_feedback, name='save_user_feedback'),
     path('save_user_enquiry/', views.save_user_enquiry, name='save_user_enquiry'),
+    path('user_accounts/', views.user_accounts, name='user_accounts'),
+    path('imagechange_accounts/', views.imagechange_accounts, name='imagechange_accounts'),
+    path('changepassword_user/', views.changepassword_user, name='changepassword_user'),
+
 
 ############################worker########################
     path('worker_dashboard/', views.worker_dashboard, name='worker_dashboard'),

@@ -100,7 +100,7 @@ def Login(request):
 def logout(request):
     auth.logout(request)
     return redirect("/") 
-    
+
 def admin_dashboard(request):
     if 'SAdm_id' in request.session:
         if request.session.has_key('SAdm_id'):
@@ -327,6 +327,53 @@ def admin_all_contractors(request):
 
 
 ############################user################################
+
+def user_accounts(request):
+    if 'username2' in request.session:
+        if request.session.has_key('username2'):
+            username2 = request.session['username2']
+        z = user_register.objects.filter(id=username2)
+        return render(request, 'user_accounts.html', {'z': z})
+    else:
+        return redirect('/')
+
+
+def imagechange_accounts(request):
+    if 'username2' in request.session:
+        if request.method == 'POST':
+            id = request.GET.get('id')
+            abc = user_register.objects.get(id=id)
+            abc.photo = request.FILES['filenamees']
+            abc.save()
+            return redirect('user_accounts')
+        return render(request, 'user_accounts.html')
+    else:
+        return redirect('/')
+
+def changepassword_user(request):
+    if 'username2' in request.session:
+        if request.session.has_key('username2'):
+            username2 = request.session['username2']
+        z = user_register.objects.filter(id=username2)
+        if request.method == 'POST':
+            abc = user_register.objects.get(id=username2)
+            oldps = request.POST['currentPassword']
+            newps = request.POST['newPassword']
+            cmps = request.POST.get('confirmPassword')
+            if oldps != newps:
+                if newps == cmps:
+                    abc.password = request.POST.get('confirmPassword')
+                    abc.save()
+                    return render(request, 'user_dashboard.html', {'z': z})
+            elif oldps == newps:
+                messages.add_message(request, messages.INFO, 'Current and New password same')
+            else:
+                messages.info(request, 'Incorrect password same')
+            return render(request, 'changepassword_user.html', {'z': z})
+        return render(request, 'changepassword_user.html', {'z': z})
+    else:
+        return redirect('/')
+
 
 def user_dashboard(request):
     if 'username2' in request.session:

@@ -60,7 +60,7 @@
           <p style="color: white; opacity: 1; font-size: 35px;margin-top: 3vh;">PROJECT</p>
         </a>
         <a class="sidebar-brand brand-logo-mini text-light text-decoration-none" href="{% url 'user_dashboard' %}">
-          <p style="color: white; opacity: 1; font-size: 35px;margin-top: 3vh;">i</p>
+          <p style="color: white; opacity: 1; font-size: 35px;margin-top: 3vh;">P</p>
         </a>
       </div>
       <ul class="nav">
@@ -82,7 +82,7 @@
             <a href="#" id="profile-dropdown" data-bs-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
             <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list"
               aria-labelledby="profile-dropdown">
-              <a href="/account_trainer" class="dropdown-item preview-item">
+              <a href="{% url 'user_accounts' %}" class="dropdown-item preview-item">
                 <div class="preview-thumbnail">
                   <div class="preview-icon bg-dark rounded-circle">
                     <i class="mdi mdi-settings text-primary"></i>
@@ -93,7 +93,7 @@
                 </div>
               </a>
               <div class="dropdown-divider"></div>
-              <a href="/changepassword_trainer" class="dropdown-item preview-item">
+              <a href="{% url 'changepassword_user' %}" class="dropdown-item preview-item">
                 <div class="preview-thumbnail">
                   <div class="preview-icon bg-dark rounded-circle">
                     <i class="mdi mdi-onepassword  text-info"></i>
