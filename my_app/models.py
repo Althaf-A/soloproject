@@ -37,6 +37,7 @@ class feedback(models.Model):
     replay_date=models.DateField(auto_now_add=False, auto_now=False,  null=True, blank=True)
     feedback = models.CharField(max_length=300)
     feedback_replay = models.CharField(max_length=300)
+    w_r_status = models.CharField(max_length=20,default='0')
     replay_status = models.CharField(max_length=20,default='0')
     work_status = models.CharField(max_length=20,default='0')
 

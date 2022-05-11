@@ -46,6 +46,7 @@ urlpatterns = [
     path('user_accounts/', views.user_accounts, name='user_accounts'),
     path('imagechange_accounts/', views.imagechange_accounts, name='imagechange_accounts'),
     path('changepassword_user/', views.changepassword_user, name='changepassword_user'),
+    path('user_enquiry/', views.user_enquiry, name='user_enquiry'),
 
 
 ############################worker########################
@@ -60,6 +61,9 @@ urlpatterns = [
     path('worker_curent_work/', views.worker_curent_work, name='worker_curent_work'),
     path('worker_curent_ongoingworks/', views.worker_curent_ongoingworks, name='worker_curent_ongoingworks'),
     path('worker_curent_addwork/', views.worker_curent_addwork, name='worker_curent_addwork'),
+    path('worker_accounts/', views.worker_accounts, name='worker_accounts'),
+    path('imagechange_accounts1/', views.imagechange_accounts1, name='imagechange_accounts1'),
+    path('changepassword_worker/', views.changepassword_worker, name='changepassword_worker'),
 
 ]
 

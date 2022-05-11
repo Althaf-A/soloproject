@@ -1,0 +1,60 @@
+{%extends 'user_index.html'%} {% load static %} {% block content %}
+
+<div class="row mt-3 mb-5">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 ">
+                        <h3>Enquiries </h3>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 ">
+                        <form>
+                            <div class="input-group input-group mb-3">
+                                <input type="text" class="form-control text-light" id="myInput" onkeyup="myFunction()"
+                                    placeholder="Search for worker.." title="Type in a name">
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="table-responsive">
+
+                    <table class="table " id="myTable">
+                        <thead>
+                            <tr>
+                                <th>sl no</th>
+                                <th>Worker Name </th>
+                                <th>My Enquiry</th>
+                                <th>Worker Reply</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if mem %} {% for i in mem %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{i.worker_id.fullname}}</td>
+                                <td><span class="ps-2">{{i.enquiry}}</td>
+                                <td><span class="ps-2">{{i.enquiry_replay}}</span></td>
+                            </tr>
+                            {% endfor %} {% else %}
+                            <h5>Nothing to display...</h5>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
+{%endblock%}

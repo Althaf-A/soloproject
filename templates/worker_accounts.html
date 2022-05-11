@@ -1,4 +1,4 @@
-{%extends 'user_index.html'%}
+{%extends 'worker_index.html'%}
 {% load static %}
 {% block content %}
 
@@ -81,7 +81,7 @@
     </div>
   </div>
 
-<form method="post" action= "/imagechange_accounts/?id={{z.id}}" enctype="multipart/form-data" >
+<form method="post" action= "/imagechange_accounts1/?id={{z.id}}" enctype="multipart/form-data" >
   {% csrf_token %}
 <div class="modal" id="myModal{{mem.id}}">
     <div class="modal-dialog">

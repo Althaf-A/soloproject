@@ -285,7 +285,7 @@ def admin_workers_feedbacks(request):
         if request.session.has_key('SAdm_id'):
             SAdm_id = request.session['SAdm_id']
         users = User.objects.filter(id=SAdm_id)
-        mem= feedback.objects.filter(replay_status=0)
+        mem= feedback.objects.filter(w_r_status=1)
 
         return render(request,'admin_workers_feedbacks.html',{'users': users,'mem':mem})
     else:
@@ -333,7 +333,8 @@ def user_accounts(request):
         if request.session.has_key('username2'):
             username2 = request.session['username2']
         z = user_register.objects.filter(id=username2)
-        return render(request, 'user_accounts.html', {'z': z})
+        mem=user_register.objects.filter(id=username2)
+        return render(request, 'user_accounts.html', {'z': z,'mem':mem})
     else:
         return redirect('/')
 
@@ -448,7 +449,7 @@ def user_worker_reports(request,id):
             username2 = request.session['username2']
         z = user_register.objects.filter(id=username2)
         mem= user_register.objects.get(id=id)
-        mem1=feedback.objects.filter(worker_id=mem.id,replay_status=2)
+        mem1=feedback.objects.filter(worker_id=mem.id,replay_status=1)
 
         return render(request,'user_worker_reports.html', {'z': z,'mem1':mem1})
     else:
@@ -473,7 +474,7 @@ def user_post_feedback(request):
         if request.session.has_key('username'):
             username = request.session['username']
         z = user_register.objects.filter(id=username2)
-        mem= feedback.objects.filter(user_id_id=username2,work_status='1').exclude(replay_status='2')
+        mem= feedback.objects.filter(user_id_id=username2,work_status='1',replay_status='0')
         return render(request,'user_post_feedback.html', {'z': z,'mem':mem})
     else:
         return redirect('/')
@@ -486,14 +487,71 @@ def save_user_feedback(request):
         print(vars.id)
         vars.replay_date=datetime.now()
         vars.feedback_replay = request.POST.get('feedback')
-        vars.replay_status = 2
+        vars.replay_status = 1
         print('hello')
         vars.save()
         return redirect('user_post_feedback')
     else:
         return redirect('/')
+
+def user_enquiry(request):
+    if 'username2' in request.session:
+        if request.session.has_key('username2'):
+            username2 = request.session['username2']
+        z = user_register.objects.filter(id=username2)
+        mem= enquiry.objects.filter(status=1,user_id=username2)
+        return render(request,'user_enquiry.html', {'z': z,'mem':mem})
+    else:
+        return redirect('/')
         
     ######################worker##########
+
+def worker_accounts(request):
+    if 'usernamew2' in request.session:
+        if request.session.has_key('usernamew2'):
+            usernamew2 = request.session['usernamew2']
+        z = user_register.objects.filter(id=usernamew2)
+        mem=user_register.objects.filter(id=usernamew2)
+        return render(request, 'worker_accounts.html', {'z': z,'mem':mem})
+    else:
+        return redirect('/')
+
+
+def imagechange_accounts1(request):
+    if 'usernamew2' in request.session:
+        if request.method == 'POST':
+            id = request.GET.get('id')
+            abc = user_register.objects.get(id=id)
+            abc.photo = request.FILES['filenamees']
+            abc.save()
+            return redirect('worker_accounts')
+        return render(request, 'worker_accounts.html')
+    else:
+        return redirect('/')
+
+def changepassword_worker(request):
+    if 'usernamew2' in request.session:
+        if request.session.has_key('usernamew2'):
+            usernamew2 = request.session['usernamew2']
+        z = user_register.objects.filter(id=usernamew2)
+        if request.method == 'POST':
+            abc = user_register.objects.get(id=usernamew2)
+            oldps = request.POST['currentPassword']
+            newps = request.POST['newPassword']
+            cmps = request.POST.get('confirmPassword')
+            if oldps != newps:
+                if newps == cmps:
+                    abc.password = request.POST.get('confirmPassword')
+                    abc.save()
+                    return render(request, 'worker_dashboard.html', {'z': z})
+            elif oldps == newps:
+                messages.add_message(request, messages.INFO, 'Current and New password same')
+            else:
+                messages.info(request, 'Incorrect password same')
+            return render(request, 'changepassword_worker.html', {'z': z})
+        return render(request, 'changepassword_worker.html', {'z': z})
+    else:
+        return redirect('/')
     
 def worker_dashboard(request):
     if 'usernamew2' in request.session:
@@ -554,7 +612,7 @@ def worker_history_list(request):
         if request.session.has_key('usernamew2'):
             usernamew2 = request.session['usernamew2']
         z = user_register.objects.filter(id=usernamew2)
-        mem = feedback.objects.filter(worker_id=usernamew2,work_status=1).exclude(replay_status=0)
+        mem = feedback.objects.filter(worker_id=usernamew2,work_status=1).exclude(w_r_status=0)
         return render(request,'worker_history_list.html', {'z': z,'mem':mem})
     else:
         return redirect('/')
@@ -564,12 +622,12 @@ def worker_post_feedback(request):
         if request.session.has_key('usernamew2'):
              usernamew2 = request.session['usernamew2']
         z = user_register.objects.filter(id=usernamew2)
-        mem = feedback.objects.filter(worker_id_id=usernamew2,work_status=1).exclude(replay_status=0)
+        mem = feedback.objects.filter(worker_id_id=usernamew2,work_status=1).exclude(w_r_status=1)
         if request.method == 'POST':
             id = request.GET.get('tid')           
             v = feedback.objects.get(id=id)
             v.feedback=request.POST['feedback']
-            v.replay_status=1
+            v.w_r_status=1
             v.post_date=datetime.now()
             v.save()
             msg_success = " Feedback Posted successfully"
@@ -641,6 +699,7 @@ def worker_curent_addwork(request):
             ut=user_register.objects.get(id=request.POST['user'])
             print(ut)
             pb.work_status=0
+            pb.w_r_status=0
             pb.replay_status=0
             pb.user_id_id= ut.id
             pb.save()
